@@ -23,6 +23,8 @@ class User(db.Model, UserMixin):
     channels = db.relationship('Channel', back_populates='owner')
     messages = db.relationship('Message', back_populates='user')
     reactions = db.relationship('Reaction', back_populates='user')
+    direct_messages_sent = db.relationship('DirectMessage', foreign_keys='DirectMessage.sender_id', back_populates='sender')
+    direct_messages_received = db.relationship('DirectMessage', foreign_keys='DirectMessage.recipient_id', back_populates='recipient')
 
 class Server(db.Model):
     __tablename__ = 'servers'
@@ -81,3 +83,17 @@ class Reaction(db.Model):
     # Relationships
     message = db.relationship('Message', back_populates='reactions')
     user = db.relationship('User', back_populates='reactions')
+
+class DirectMessage(db.Model):
+    __tablename__ = 'direct_messages'
+
+    # Columns
+    id = db.Column(db.Integer, primary_key=True)
+    sender_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    recipient_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    message = db.Column(db.Text)
+
+    # Relationships
+    sender = db.relationship('User', foreign_keys=[sender_id], back_populates='direct_messages_sent')
+    recipient = db.relationship('User', foreign_keys=[recipient_id], back_populates='direct_messages_received')
+
