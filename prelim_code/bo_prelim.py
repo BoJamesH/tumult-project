@@ -9,6 +9,7 @@ db = SQLAlchemy()
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
+    # Columns
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255))
     email = db.Column(db.String(255))
@@ -26,6 +27,7 @@ class User(db.Model, UserMixin):
 class Server(db.Model):
     __tablename__ = 'servers'
 
+    # Columns
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -39,6 +41,7 @@ class Server(db.Model):
 class Channel(db.Model):
     __tablename__ = 'channels'
 
+    # Columns
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -53,6 +56,7 @@ class Channel(db.Model):
 class Message(db.Model):
     __tablename__ = 'messages'
 
+    # Columns
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     server_id = db.Column(db.Integer, db.ForeignKey('servers.id'))
@@ -68,6 +72,7 @@ class Message(db.Model):
 class Reaction(db.Model):
     __tablename__ = 'reactions'
 
+    # Columns
     id = db.Column(db.Integer, primary_key=True)
     message_id = db.Column(db.Integer, db.ForeignKey('messages.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -76,4 +81,3 @@ class Reaction(db.Model):
     # Relationships
     message = db.relationship('Message', back_populates='reactions')
     user = db.relationship('User', back_populates='reactions')
-
