@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 
@@ -7,8 +7,8 @@ class Reaction(db.Model):
 
     # Columns
     id = db.Column(db.Integer, primary_key=True)
-    message_id = db.Column(db.Integer, db.ForeignKey('messages.id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    message_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('messages.id')))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     reaction_type = db.Column(db.String)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

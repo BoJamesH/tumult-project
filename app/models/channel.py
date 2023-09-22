@@ -1,12 +1,12 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 
 channel_members = db.Table(
     "channel_members",
     db.Model.metadata,
-    db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
-    db.Column("channel_id", db.Integer, db.ForeignKey("channels.id"), primary_key=True)
+    db.Column("user_id", db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True),
+    db.Column("channel_id", db.Integer, db.ForeignKey(add_prefix_for_prod('channels.id')), primary_key=True)
 )
 
 class Channel(db.Model):
@@ -18,7 +18,7 @@ class Channel(db.Model):
     # Columns
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     server_id = db.Column(db.Integer)
     private = db.Column(db.Boolean)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
