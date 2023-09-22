@@ -33,7 +33,7 @@ class Server(db.Model):
             'updated_at': self.updated_at,
         }
 
-server_members = db.Table(
+server_member = db.Table(
     "server_members",
     db.Model.metadata,
     db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),

@@ -2,6 +2,12 @@ from .db import db, environment, SCHEMA
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 
+channel_members = db.Table(
+    "channel_members",
+    db.Model.metadata,
+    db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
+    db.Column("channel_id", db.Integer, db.ForeignKey("channels.id"), primary_key=True)
+)
 
 class Channel(db.Model):
     __tablename__ = 'channels'
@@ -20,7 +26,7 @@ class Channel(db.Model):
 
     # Relationships
     channel_owner = db.relationship('User', back_populates='owned_channels')
-    channel_member = db.relationship('User', back_populates='channel_membership')
+    channel_member = db.relationship('User', back_populates='channel_membership', secondary=channel_members)
     channel_messages = db.relationship('Message', back_populates='channel')
 
     def to_dict(self):
@@ -33,10 +39,3 @@ class Channel(db.Model):
             'created_at': self.created_at,
             'updated_at': self.updated_at,
         }
-
-channel_members = db.Table(
-    "channel_members",
-    db.Model.metadata,
-    db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
-    db.Column("channel_id", db.Integer, db.ForeignKey("channels.id"), primary_key=True)
-)

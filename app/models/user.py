@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
 
     # Relationships
     owned_servers = db.relationship('Server', back_populates='owner')
-    server_membership = db.relationship('Server', back_populates='server_member')
+    server_membership = db.relationship('Server', back_populates='server_member', overlaps="owned_servers")
     owned_channels = db.relationship('Channel', back_populates='channel_owner')
     channel_membership = db.relationship('Server', back_populates='channel_member')
 
