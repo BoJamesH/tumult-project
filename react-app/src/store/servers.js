@@ -50,16 +50,18 @@ export const getOneServer = (serverId) => async (dispatch) => {
 }
 
 export const postServer = (ownerId, server) => async (dispatch)=> {
-    const reponse = await fetch(`/api/servers/${ownerId}`, {
+    const response = await fetch(`/api/servers/${ownerId}`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify(server)})}
+		body: JSON.stringify(server)})
 
     if (response.ok){
         const newServer = await response.json()
-        dispatch(createServer(server))
+        // server id in response?
+        dispatch(getSingleServer(newServer))
+    }
 }
 
 
