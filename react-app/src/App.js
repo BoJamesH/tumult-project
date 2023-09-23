@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import PublicServers from "./components/publicServers/publicServers";
+import SelectedServer from "./components/selectedServer/selectedServer"
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +20,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path="/servers/:serverId">
+            <SelectedServer />
+          </Route>
           <Route path="/login" >
             <LoginFormPage />
           </Route>

@@ -12,6 +12,10 @@ const getServers = (allServers) => ({
     payload: allServers,
 })
 
+const getSingleServer = (server) => ({
+    type: SET_CURRENT_SERVER,
+    payload:server
+})
 // Thunks
 
 export const getPublicServers = () => async (dispatch) => {
@@ -28,9 +32,24 @@ export const getPublicServers = () => async (dispatch) => {
     }
 }
 
+export const getOneServer = (serverId) => async (dispatch) => {
+    const response = await fetch(`/api/servers/${serverId}`)
+
+    if (response.ok){
+        const server = await response.json()
+        dispatch(getSingleServer(server))
+    }else{
+        console.log('Could not load server')
+    }
+
+}
+
+
+
 // Reducers
 const initialState = {
-    allServers:{}
+    allServers:{},
+    selectedServer: {}
 }
 
 export default function serverReducer(state = initialState, action) {
@@ -40,6 +59,11 @@ export default function serverReducer(state = initialState, action) {
                 ...state,
                 allServers: action.payload
             };
+        case SET_CURRENT_SERVER:
+            return {
+                ...state,
+                selectedServer: action.payload
+            }
         default:
             return state;
     }
