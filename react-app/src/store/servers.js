@@ -16,6 +16,11 @@ const getSingleServer = (server) => ({
     type: SET_CURRENT_SERVER,
     payload:server
 })
+
+const createServer = (server) => ({
+    type: CREATE_SERVER,
+    payload: server
+})
 // Thunks
 
 export const getPublicServers = () => async (dispatch) => {
@@ -42,6 +47,19 @@ export const getOneServer = (serverId) => async (dispatch) => {
         console.log('Could not load server')
     }
 
+}
+
+export const postServer = (ownerId, server) => async (dispatch)=> {
+    const reponse = await fetch(`/api/servers/${ownerId}`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(server)})}
+
+    if (response.ok){
+        const newServer = await response.json()
+        dispatch(createServer(server))
 }
 
 

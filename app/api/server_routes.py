@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import Server
+from app.models import Server, db
 from app.forms.server_form import ServerForm
 
 server_routes = Blueprint('servers', __name__)
@@ -24,13 +24,22 @@ def single_server(server_id):
     single_server = Server.query.filter(Server.id == server_id)[0]
     return single_server.to_dict()
 
-@server_routes.route('', methods=['POST'])
+@server_routes.route('/<owner_id>', methods=['POST'])
 @login_required
-def create_server(new_server):
+def create_server(owner_id):
     """
     Create a new server
     """
     form = ServerForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        
+        data = form.data
+        new_server = Server(
+            name = data['name'],
+            owner_id = owner_id,
+            owner_id = data['owner_id'],
+            label_image = data['label_image'],
+            private = data['private'],
+        )
+        db.session.add(new_server)
+        db.session.commit()
