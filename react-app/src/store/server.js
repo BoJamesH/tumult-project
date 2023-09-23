@@ -9,7 +9,7 @@ const CREATE_SERVER = 'servers/CREATE_SERVER';
 
 const getServers = (allServers) => ({
     type:GET_ALL_SERVERS,
-    allServers,
+    payload: allServers,
 })
 
 // Thunks
@@ -36,7 +36,7 @@ const initialState = {
 export default function serverReducer(state = initialState, action) {
     switch (action.type) {
         case GET_ALL_SERVERS:
-            return {servers: action.payload };
+            return {servers: action.payload.servers };
         default:
             return state;
     }

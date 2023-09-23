@@ -4,11 +4,11 @@ from app.models import Server
 
 server_routes = Blueprint('servers', __name__)
 
-@server_routes.route('/')
+@server_routes.route('')
 @login_required
 def all_public_servers():
     """
     Get all public servers.
     """
-    public_servers = Server.query.filter(Server.private.is_boolean(False)).all()
+    public_servers = Server.query.filter(Server.private == False).all()
     return {'servers': [server.to_dict() for server in public_servers]}
