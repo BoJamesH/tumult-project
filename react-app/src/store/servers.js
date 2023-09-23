@@ -14,15 +14,15 @@ const getServers = (allServers) => ({
 
 // Thunks
 
-export const getAllServers = () => async (dispatch) => {
+export const getPublicServers = () => async (dispatch) => {
     const response = await fetch('/api/servers')
     console.log("Response", response)
 
     if (response.ok) {
         const getAllServers = await response.json();
-        // const allServers = getAllServers.Servers
-        console.log('All Servers: ',getAllServers)
-        dispatch(getServers(getAllServers));
+        const allServers = getAllServers.Servers
+        console.log('All Servers: ', allServers )
+        dispatch(getServers(allServers));
     } else {
         console.log('Could not load servers :-(')
     }
@@ -36,7 +36,7 @@ const initialState = {
 export default function serverReducer(state = initialState, action) {
     switch (action.type) {
         case GET_ALL_SERVERS:
-            return {servers: action.payload.servers };
+            return {servers: action.payload };
         default:
             return state;
     }
