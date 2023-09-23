@@ -1,6 +1,7 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import Server
+from app.forms.server_form import ServerForm
 
 server_routes = Blueprint('servers', __name__)
 
@@ -22,3 +23,14 @@ def single_server(server_id):
     """
     single_server = Server.query.filter(Server.id == server_id)[0]
     return single_server.to_dict()
+
+@server_routes.route('', methods=['POST'])
+@login_required
+def create_server(new_server):
+    """
+    Create a new server
+    """
+    form = ServerForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        
