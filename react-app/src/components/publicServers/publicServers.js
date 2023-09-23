@@ -5,15 +5,15 @@ import { getPublicServers  } from '../../store/servers'
 
 const PublicServers = () => {
     const dispatch = useDispatch()
-    const servers = useSelector( state => state.servers )
+    const servers = useSelector( state => state.servers.allServers )
 
-    useEffect(() => {
-        dispatch(getPublicServers())
+    useEffect( async () => {
+        await dispatch(getPublicServers())
     }, [dispatch])
 
     console.log("SERVER DATA", servers)
 
-    // if(!servers.length) return null
+    if(!servers.length) return null
 
     return(
         <div className='public-server-list'>

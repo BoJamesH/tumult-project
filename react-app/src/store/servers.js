@@ -20,7 +20,7 @@ export const getPublicServers = () => async (dispatch) => {
 
     if (response.ok) {
         const getAllServers = await response.json();
-        const allServers = getAllServers.Servers
+        const allServers = getAllServers.servers
         console.log('All Servers: ', allServers )
         dispatch(getServers(allServers));
     } else {
@@ -30,13 +30,16 @@ export const getPublicServers = () => async (dispatch) => {
 
 // Reducers
 const initialState = {
-    servers:{}
+    allServers:{}
 }
 
 export default function serverReducer(state = initialState, action) {
     switch (action.type) {
         case GET_ALL_SERVERS:
-            return {servers: action.payload };
+            return {
+                ...state,
+                allServers: action.payload
+            };
         default:
             return state;
     }

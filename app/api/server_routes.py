@@ -12,3 +12,5 @@ def all_public_servers():
     """
     public_servers = Server.query.filter(Server.private == False).all()
     return {'servers': [server.to_dict() for server in public_servers]}
+
+
