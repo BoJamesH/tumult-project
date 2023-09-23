@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
+from .channel import channel_members
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -20,9 +21,9 @@ class User(db.Model, UserMixin):
 
     # Relationships
     owned_servers = db.relationship('Server', back_populates='owner')
-    server_membership = db.relationship('Server', back_populates='server_member')
+    server_membership = db.relationship('Server', back_populates='server_member', overlaps="owned_servers")
     owned_channels = db.relationship('Channel', back_populates='channel_owner')
-    channel_membership = db.relationship('Server', back_populates='channel_member')
+    channel_membership = db.relationship('Channel', back_populates='channel_member', secondary=channel_members)
 
 
     user_messages = db.relationship('Message', back_populates='user')

@@ -1,7 +1,13 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 
+server_members = db.Table(
+    "server_members",
+    db.Model.metadata,
+    db.Column("user_id", db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True),
+    db.Column("server_id", db.Integer, db.ForeignKey(add_prefix_for_prod('servers.id')), primary_key=True)
+)
 
 class Server(db.Model):
     __tablename__ = 'servers'
@@ -12,7 +18,7 @@ class Server(db.Model):
     # Columns
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     label_image = db.Column(db.String)
     private = db.Column(db.Boolean)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
@@ -20,7 +26,7 @@ class Server(db.Model):
 
     # Relationships
     owner = db.relationship('User', back_populates='owned_servers')
-    server_member = db.relationship('User', back_populates='server_membership')
+    server_member = db.relationship('User', back_populates='server_membership', secondary=server_members)
 
     def to_dict(self):
         return {
@@ -32,10 +38,3 @@ class Server(db.Model):
             'created_at': self.created_at,
             'updated_at': self.updated_at,
         }
-
-server_members = db.Table(
-    "server_members",
-    db.Model.metadata,
-    db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
-    db.Column("server_id", db.Integer, db.ForeignKey("servers.id"), primary_key=True)
-)

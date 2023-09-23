@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 
@@ -7,9 +7,9 @@ class Message(db.Model):
 
     # Columns
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    server_id = db.Column(db.Integer, db.ForeignKey('servers.id'))
-    channel_id = db.Column(db.Integer, db.ForeignKey('channels.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    server_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('servers.id')))
+    channel_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('channels.id')))
     message_text = db.Column(db.Text)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
@@ -17,7 +17,7 @@ class Message(db.Model):
     # Relationships
     user = db.relationship('User', back_populates='user_messages')
     channel = db.relationship('Channel', back_populates='channel_messages')
-    reactions = db.relationship('Reaction', back_populates='message')
+    message_reactions = db.relationship('Reaction', back_populates='message')
 
     def to_dict(self):
         return {
