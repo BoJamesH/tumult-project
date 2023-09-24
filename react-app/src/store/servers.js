@@ -21,6 +21,12 @@ const createServer = (server) => ({
     type: CREATE_SERVER,
     payload: server
 })
+
+export const removeServer = (serverId) => ({
+    type: REMOVE_SERVER,
+    payload: serverId,
+});
+
 // Thunks
 
 export const getPublicServers = () => async (dispatch) => {
@@ -65,6 +71,29 @@ export const postServer = (server) => async (dispatch)=> {
     }
 }
 
+export const deleteServer = (serverId) => async (dispatch) => {
+    const response = await fetch(`/api/servers/${serverId}`, {
+        method: 'DELETE',
+    });
+    if (response.ok) {
+        dispatch(removeServer(serverId));
+        console.log('HIT DELETE SERVER')
+        return serverId;
+    }
+};
+
+export const updateServer = (updatedServer, serverId) => async (dispatch)=> {
+    const response = await fetch(`/api/servers/${serverId}`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(updatedServer)})
+        console.log(response)
+    if (response.ok){
+        dispatch(getOneServer(serverId))
+    }
+}
 
 
 // Reducers
@@ -84,6 +113,11 @@ export default function serverReducer(state = initialState, action) {
             return {
                 ...state,
                 selectedServer: action.payload
+            }
+        case REMOVE_SERVER:
+            return {
+                ...state,
+                selectedServer: {}
             }
         default:
             return state;

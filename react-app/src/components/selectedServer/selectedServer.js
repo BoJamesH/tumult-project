@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux'
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { getOneServer  } from '../../store/servers'
+import { deleteServer, getOneServer  } from '../../store/servers'
 import { getChannels } from '../../store/channels'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 
 const SelectedServer = () => {
+    const history = useHistory()
     const dispatch = useDispatch()
     const { serverId } = useParams()
     const server = useSelector( state => state.servers.selectedServer )
@@ -36,6 +38,17 @@ const SelectedServer = () => {
     //     fetchData();
     // }, [dispatch, serverId]);
 
+    const deleteServerHandler = async (e) => {
+        e.preventDefault()
+        dispatch(deleteServer(serverId))
+        history.push('/servers')
+    }
+
+    const updateServerHandler = async (e) => {
+        e.preventDefault()
+        history.push(`/servers/${serverId}/update`)
+    }
+
 
     console.log('Channels ' ,channels)
     console.log("channel length: ", channels.length)
@@ -51,6 +64,12 @@ const SelectedServer = () => {
                 </li>
                 <li>
                     {server.label_image}
+                </li>
+                <li>
+                    <button onClick={updateServerHandler}>UPDATE SERVER</button>
+                </li>
+                <li>
+                    <button onClick={deleteServerHandler}>DELETE SERVER</button>
                 </li>
             </ul>
         </div>
