@@ -5,6 +5,9 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import PublicServers from "./components/publicServers/publicServers";
+import SelectedServer from "./components/selectedServer/selectedServer"
+import CreateServerForm from "./components/createServer/createServer";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,11 +21,20 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/servers/:serverId">
+            <SelectedServer />
+          </Route>
+          <Route exact path="/servers/new">
+            <CreateServerForm />
+          </Route>
           <Route path="/login" >
             <LoginFormPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path="/servers">
+            <PublicServers />
           </Route>
         </Switch>
       )}

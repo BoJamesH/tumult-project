@@ -13,9 +13,9 @@ def seed_servers():
     server4 = Server(
         name='Server4', owner_id=4, label_image='fakeurl', private=False)
     server5 = Server(
-        name='Server1', owner_id=5, label_image='fakeurl', private=False)
+        name='Server5', owner_id=5, label_image='fakeurl', private=False)
     server6 = Server(
-        name='Server1', owner_id=4, label_image='fakeurl', private=False)
+        name='Server6', owner_id=4, label_image='fakeurl', private=False)
 
 
     db.session.add(server1)
