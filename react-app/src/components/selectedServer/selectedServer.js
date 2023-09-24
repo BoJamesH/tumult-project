@@ -16,25 +16,25 @@ const SelectedServer = () => {
 
     }
 
-    // useEffect( async () => {
-    //     await dispatch(getOneServer(serverId))
-    //     await dispatch(getChannels(serverId))
-    // }, [dispatch])
+    useEffect( async () => {
+        await dispatch(getOneServer(serverId))
+        await dispatch(getChannels(serverId))
+    }, [dispatch])
 
     // useEffect( () => {
     //     dispatch(getChannels(serverId))
     //     dispatch(getOneServer(serverId))
     // }, [dispatch])
 
-    useEffect(() => {
-        const fetchData = async () => {
-            await dispatch(getOneServer(serverId))
-            await dispatch(getChannels(serverId))
-            setForceRerender(true)
-        };
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         await dispatch(getOneServer(serverId))
+    //         await dispatch(getChannels(serverId))
+    //         setForceRerender(true)
+    //     };
 
-        fetchData();
-    }, [dispatch, serverId]);
+    //     fetchData();
+    // }, [dispatch, serverId]);
 
 
     console.log('Channels ' ,channels)
@@ -54,7 +54,7 @@ const SelectedServer = () => {
                 </li>
             </ul>
         </div>
-        {forceRerender && channels.length > 0 && (
+        {/* {forceRerender && channels.length > 0 && (
                 <div className='channels'>
                     <h3>Channels</h3>
                     {channels.map(channel => (
@@ -63,7 +63,16 @@ const SelectedServer = () => {
                         </div>
                     ))}
                 </div>
-            )}
+            )} */}
+        {channels.length ?
+        <div className='channels'>
+            {channels.map(channel => {
+                if (!channel.id) return null
+                return (
+                    <div key={channel.id} className='channel'>{channel.name}</div>
+                )
+            })}
+        </div>: null}
         </>
     )
 }
