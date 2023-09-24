@@ -28,11 +28,14 @@ export const removeChannel = (id) => ({
 });
 
 // Thunks
-export const getChannels = () => async (dispatch) => {
-    const response = await fetch('/api/channels');
+export const getChannels = (serverId) => async (dispatch) => {
+    const response = await fetch(`/api/channels/${serverId}`);
     if (response.ok) {
-        const channels = await response.json();
-        dispatch(setChannels(channels));
+        const getServerChannels = await response.json();
+        console.log('getServerChannels: ', getServerChannels)
+        const serverChannels = getServerChannels.channels
+        console.log('serverChannels: ', serverChannels)
+        dispatch(setChannels(serverChannels));
     }
 };
 
@@ -77,27 +80,30 @@ export const deleteChannel = (id) => async (dispatch) => {
 };
 
 // Reducer
-const initialState = { list: [] };
+const initialState = {
+    channelServers: {},
+    selectedChannel: {}
+};
 
-const channelsReducer = (state = initialState, action) => {
+export default function channelsReducer(state = initialState, action) {
     switch (action.type) {
         case SET_CHANNELS:
-            return { ...state, list: action.payload };
+            return { ...state, channelServers: action.payload };
         case ADD_CHANNEL:
-            return { ...state, list: [...state.list, action.payload] };
+            return { ...state, channelServers: [...state.channelServers, action.payload] };
         case UPDATE_CHANNEL: {
-            const updatedList = state.list.map((channel) =>
+            const updatedChannels = state.channelServers.map((channel) =>
                 channel.id === action.payload.id ? action.payload : channel
             );
-            return { ...state, list: updatedList };
+            return { ...state, channelServers: updatedChannels };
         }
         case REMOVE_CHANNEL: {
-            const updatedList = state.list.filter((channel) => channel.id !== action.payload);
-            return { ...state, list: updatedList };
+            const updatedChannels = state.channelServers.filter((channel) => channel.id !== action.payload);
+            return { ...state, channelServers: updatedChannels };
         }
         default:
             return state;
     }
 };
 
-export default channelsReducer;
+// export default channelsReducer;
