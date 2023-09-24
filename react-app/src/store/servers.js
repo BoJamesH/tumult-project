@@ -77,9 +77,23 @@ export const deleteServer = (serverId) => async (dispatch) => {
     });
     if (response.ok) {
         dispatch(removeServer(serverId));
+        console.log('HIT DELETE SERVER')
         return serverId;
     }
 };
+
+export const updateServer = (updatedServer, serverId) => async (dispatch)=> {
+    const response = await fetch(`/api/servers/${serverId}`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(updatedServer)})
+        console.log(response)
+    if (response.ok){
+        dispatch(getOneServer(serverId))
+    }
+}
 
 
 // Reducers

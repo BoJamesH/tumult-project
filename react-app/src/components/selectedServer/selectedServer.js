@@ -44,6 +44,11 @@ const SelectedServer = () => {
         history.push('/servers')
     }
 
+    const updateServerHandler = async (e) => {
+        e.preventDefault()
+        history.push(`/servers/${serverId}/update`)
+    }
+
 
     console.log('Channels ' ,channels)
     console.log("channel length: ", channels.length)
@@ -59,6 +64,9 @@ const SelectedServer = () => {
                 </li>
                 <li>
                     {server.label_image}
+                </li>
+                <li>
+                    <button onClick={updateServerHandler}>UPDATE SERVER</button>
                 </li>
                 <li>
                     <button onClick={deleteServerHandler}>DELETE SERVER</button>

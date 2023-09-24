@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import PublicServers from "./components/publicServers/publicServers";
 import SelectedServer from "./components/selectedServer/selectedServer"
 import CreateServerForm from "./components/createServer/createServer";
+import UpdateServerForm from "./components/UpdateServerModal/updateServer";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,11 +22,14 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route exact path="/servers/:serverId">
-            <SelectedServer />
-          </Route>
           <Route exact path="/servers/new">
             <CreateServerForm />
+          </Route>
+          <Route exact path="/servers/:serverId/update">
+            <UpdateServerForm />
+          </Route>
+          <Route exact path="/servers/:serverId">
+            <SelectedServer />
           </Route>
           <Route path="/login" >
             <LoginFormPage />
