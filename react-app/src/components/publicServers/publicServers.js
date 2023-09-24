@@ -20,7 +20,7 @@ const PublicServers = () => {
             {servers.map(server => {
                 if (!server.id) return null
                 return (
-                    <div key={server.id} className='server-card'>{server.name}</div>
+                    <div key={server.id} className='server-card'><Link to={`/servers/${server.id}`}>{server.name}</Link></div>
                 )
             })}
         </div>
