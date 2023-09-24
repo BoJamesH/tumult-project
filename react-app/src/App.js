@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import PublicServers from "./components/publicServers/publicServers";
 import SelectedServer from "./components/selectedServer/selectedServer"
+import CreateServerForm from "./components/createServer/createServer";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,7 +21,10 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/servers/:serverId">
+          <Route exact path="/servers/new">
+            <CreateServerForm />
+          </Route>
+          <Route exact path="/servers/:serverId">
             <SelectedServer />
           </Route>
           <Route path="/login" >
@@ -29,7 +33,7 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/servers">
+          <Route exact path="/servers">
             <PublicServers />
           </Route>
         </Switch>

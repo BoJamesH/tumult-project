@@ -49,8 +49,8 @@ export const getOneServer = (serverId) => async (dispatch) => {
 
 }
 
-export const postServer = (ownerId, server) => async (dispatch)=> {
-    const response = await fetch(`/api/servers/${ownerId}`, {
+export const postServer = (server) => async (dispatch)=> {
+    const response = await fetch(`/api/servers`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",

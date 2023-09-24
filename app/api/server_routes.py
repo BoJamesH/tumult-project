@@ -24,14 +24,14 @@ def single_server(server_id):
     single_server = Server.query.filter(Server.id == server_id)[0]
     return single_server.to_dict()
 
-@server_routes.route('/', methods=['POST'])
+@server_routes.route('', methods=['POST'])
 @login_required
 def create_server():
     """
     Create a new server
     """
     print(current_user)
-    user_id = current_user.get_id()
+    user_id = int(current_user.get_id())
     form = ServerForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
