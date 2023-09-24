@@ -7,11 +7,15 @@ from app.models import Channel, db
 channel_routes = Blueprint('channels', __name__)
 
 # Route to get all channels
-@channel_routes.route('/')
+@channel_routes.route('/<server_id>')
 @login_required
-def get_channels():
-    channels = Channel.query.all()
+def get_channels(server_id):
+    """
+    Get all the channels for a given server
+    """
+    channels = Channel.query.filter(Channel.server_id == server_id).all()
     return {'channels': [channel.to_dict() for channel in channels]}
+    # return [channel.to_dict() for channel in channels]
 
 # Route to create a new channel
 @channel_routes.route('/', methods=['POST'])
