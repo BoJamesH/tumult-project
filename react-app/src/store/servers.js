@@ -56,11 +56,12 @@ export const postServer = (server) => async (dispatch)=> {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify(server)})
-
+        console.log(response)
     if (response.ok){
         const newServer = await response.json()
+        console.log(newServer)
         // server id in response?
-        dispatch(getSingleServer(newServer))
+        dispatch(getSingleServer(newServer.id))
     }
 }
 

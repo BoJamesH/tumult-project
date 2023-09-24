@@ -39,9 +39,10 @@ def create_server():
         new_server = Server(
             name = data['name'],
             owner_id = user_id,
-            # owner_id = data['owner_id'],
             label_image = data['label_image'],
             private = data['private'],
         )
         db.session.add(new_server)
         db.session.commit()
+        return 'Server created'
+    return

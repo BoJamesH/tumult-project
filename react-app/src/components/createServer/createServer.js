@@ -29,13 +29,17 @@ const CreateServerForm = () => {
     console.log(payload)
 
     try {
-        let createdServer = await dispatch(postServer(payload));
-        history.push(`/servers/${createdServer.id}`);
+        const response = await dispatch(postServer(payload));
+        if (response) {
+            history.push(`/servers`);
+            const serverId = response.id
+        }
     } catch (error) {
         // If error is not a ValidationError, add slice at the end to remove extra
         // "Error: "
         setErrorMessages({ overall: error.toString().slice(7) })
     }
+    history.push(`/servers`);
     // if (createdServer) {
     //     setErrorMessages({});
     //     history.push(`/servers/${createdServer.id}`);
