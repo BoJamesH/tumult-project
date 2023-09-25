@@ -56,10 +56,10 @@ const CreateChannelForm = () => {
             value={name}
             onChange={updateName} />
         <input
-            type="text"
+            type="checkbox"
             placeholder="Private"
-            required
-            value={privateChannel}
+            
+            checked={privateChannel}
             onChange={updatePrivate} />
         <button type="submit">Create new channel</button>
         <button type="button">Cancel</button>

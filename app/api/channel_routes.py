@@ -39,8 +39,8 @@ def create_channel(server_id):
         )
         db.session.add(new_channel)
         db.session.commit()
-        # return new_channel.to_dict()
-        return new_channel
+        return new_channel.to_dict()
+        # return new_channel
     return 'Channel creation failed'
 
 # Route to update a channel
