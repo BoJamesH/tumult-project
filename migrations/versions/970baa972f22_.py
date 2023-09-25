@@ -51,7 +51,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE channels SET SCHEMA {SCHEMA};")
 
     op.create_table('servers',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -66,7 +66,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE servers SET SCHEMA {SCHEMA};")
 
     op.create_table('channel_members',
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -77,7 +77,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE channel_members SET SCHEMA {SCHEMA};")
 
     op.create_table('messages',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -94,7 +94,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE messages SET SCHEMA {SCHEMA};")
 
     op.create_table('server_members',
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -105,7 +105,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE server_members SET SCHEMA {SCHEMA};")
 
     op.create_table('reactions',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -120,7 +120,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE reactions SET SCHEMA {SCHEMA};")
 
     # ### end Alembic commands ###
 
