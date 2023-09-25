@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min"
 
 
 const SelectedChannel = () => {
-    const {channelId} = useParams()
+    const { channelId } = useParams()
     console.log('CHANNEL ID', channelId)
     const dispatch = useDispatch()
     const channelMessages = useSelector(state => state.messages.channelMessages)
@@ -17,27 +17,33 @@ const SelectedChannel = () => {
     }, [dispatch])
 
 
-    if (channelMessages.length < 1) return null
-    if (!channelMessages) return null
+    // if (channelMessages.length < 1) return null
+    // if (!channelMessages) return null
 
     return (
+        // <>
+        // <div>MESSAGES GO HERE</div>
+        // {channelMessages.length > 0 &&
+        //     <div>{channelMessages[0].message_text}</div>
+        // }
+        // </>
         <>
-        <div>MESSAGES GO HERE</div>
-        <div>{channelMessages[0].message_text}</div>
+        {channelMessages.length &&
+            <div className='messages'>
+                {channelMessages.map(message => {
+                    if (!message.id) return null
+                    return (
+                        <div key={message.id} className='message'>
+                            {/* {message.display_name} */}
+                            {message.message_text}
+                            {/* <Link to="/" */}
+                            {/* <messageUtils message={message}/> */}
+                        </div>
+                    )
+                })}
+            </div>
+        }
         </>
-            // <div className='messages'>
-            //     {channelMessages.map(message => {
-            //         if (!message.id) return null
-            //         return (
-            //             <div key={message.id} className='message'>
-            //                 {/* {message.display_name} */}
-            //                 {message.message_text}
-            //                 {/* <Link to="/" */}
-            //                 {/* <messageUtils message={message}/> */}
-            //             </div>
-            //         )
-            //     })}
-            // </div>
     )
 }
 
