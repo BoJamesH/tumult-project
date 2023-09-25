@@ -25,22 +25,22 @@ def create_channel(server_id):
     """
     Create a new channel
     """
-    form['csrf_token'].data = request.cookies['csrf_token']
     user_id = int(current_user.get_id())
     form = ChannelForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
         new_channel = Channel(
             name = data['name'],
-            owner_id = user_id,
-            server_id = server_id,
+            owner_id = data['owner_id'],
+            server_id = data['server_id'],
             private = data['private'],
         )
         db.session.add(new_channel)
         db.session.commit()
         # return new_channel.to_dict()
-        return 'Channel created'
-    return
+        return new_channel
+    return 'Channel creation failed'
 
 # Route to update a channel
 @channel_routes.route('/<int:id>', methods=['PUT'])
