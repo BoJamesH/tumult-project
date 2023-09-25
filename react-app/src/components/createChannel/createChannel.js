@@ -1,37 +1,36 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { postServer } from '../../store/servers'
+import { createChannel } from '../../store/channels'
 // import ErrorMessage from './ErrorMessage';
 
-const CreateServerForm = () => {
+const CreateChannelForm = () => {
     const userId = useSelector(state => state.session.user.id)
+    const serverId = useSelector(state => state.servers.selectedServer.id)
     const [errorMessages, setErrorMessages] = useState({});
     const dispatch = useDispatch();
     const history = useHistory();
     const [name, setName] = useState('');
-    const [labelImage, setLabelImage] = useState('');
-    const [privateServer, setPrivateServer] = useState(false)
+    const [privateChannel, setPrivateChannel] = useState(false)
 
     const updateName = (e) => setName(e.target.value);
-    const updateLabelImage = (e) => setLabelImage(e.target.value);
-    const updatePrivate = (e) => setPrivateServer(e.target.value);
+    const updatePrivate = (e) => setPrivateChannel(e.target.value);
 
-    const handleServerCreate = async (e) => {
+    const handleChannelCreate = async (e) => {
     e.preventDefault();
 
     const payload = {
         name,
         owner_id: userId,
-        label_image: labelImage,
-        private: privateServer,
+        server_id: serverId,
+        private: privateChannel,
     };
     console.log(payload)
 
     try {
-        const response = await dispatch(postServer(payload));
+        const response = await dispatch(createChannel(serverId, payload));
         if (response) {
-            history.push(`/servers`);
+            history.push(`/servers/${serverId}`);
             const serverId = response.id
         }
     } catch (error) {
@@ -39,7 +38,7 @@ const CreateServerForm = () => {
         // "Error: "
         setErrorMessages({ overall: error.toString().slice(7) })
     }
-    history.push(`/servers`);
+    history.push(`/servers/${serverId}`);
     // if (createdServer) {
     //     setErrorMessages({});
     //     history.push(`/servers/${createdServer.id}`);
@@ -47,38 +46,26 @@ const CreateServerForm = () => {
     // }
     };
 
-    const handleCancelClick = (e) => {
-    e.preventDefault();
-    setErrorMessages({});
-    // hideForm();
-    };
-
     return (
     <section className="new-form-holder centered middled">
-        <form className="create-pokemon-form" onSubmit={handleServerCreate}>
+        <form className="create-pokemon-form" onSubmit={handleChannelCreate}>
         <input
             type="text"
-            placeholder="Server Name"
+            placeholder="Channel Name"
             required
             value={name}
             onChange={updateName} />
         <input
-            type="text"
-            placeholder="Server Label Image URL"
-            required
-            value={labelImage}
-            onChange={updateLabelImage} />
-        <input
-            type="text"
+            type="checkbox"
             placeholder="Private"
-            required
-            value={privateServer}
+            
+            checked={privateChannel}
             onChange={updatePrivate} />
-        <button type="submit">Create new server</button>
-        <button type="button" onClick={handleCancelClick}>Cancel</button>
+        <button type="submit">Create new channel</button>
+        <button type="button">Cancel</button>
         </form>
     </section>
     );
 };
 
-export default CreateServerForm;
+export default CreateChannelForm;
