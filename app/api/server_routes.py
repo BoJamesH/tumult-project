@@ -46,3 +46,32 @@ def create_server():
         db.session.commit()
         return 'Server created'
     return
+
+# Route to delete a channel
+@server_routes.route('/<server_id>', methods=['DELETE'])
+@login_required
+def delete_channel(server_id):
+    server_to_delete = Server.query.get(server_id)
+    db.session.delete(server_to_delete)
+    db.session.commit()
+    return {'message': 'Server deleted'}
+
+@server_routes.route('/<server_id>', methods=['PUT'])
+@login_required
+def update_server(server_id):
+    """
+    Update an existing server
+    """
+    user_id = int(current_user.get_id())
+    form = ServerForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        server_to_update = Server.query.get(server_id)
+        data = form.data
+        server_to_update.name = data['name']
+        server_to_update.owner_id = user_id
+        server_to_update.label_image = data['label_image']
+        server_to_update.private = data['private']
+        db.session.commit()
+        return 'Server updated'
+    return
