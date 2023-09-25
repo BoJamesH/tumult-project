@@ -10,6 +10,7 @@ import SelectedServer from "./components/selectedServer/selectedServer"
 import CreateServerForm from "./components/createServer/createServer";
 import UpdateServerForm from "./components/UpdateServerModal/updateServer";
 import CreateChannelForm from "./components/createChannel/createChannel";
+import UpdateChannelForm from "./components/updateChannelModal/updateChannel";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,10 +30,13 @@ function App() {
           <Route exact path="/servers/:serverId">
             <SelectedServer />
           </Route>
+          <Route exact path="/servers/:serverId/:channelId/update">
+            <UpdateChannelForm />
+          </Route>
           <Route exact path="/servers/:serverId/new">
             <CreateChannelForm />
           </Route>
-          <Route exact path="/servers/:serverId/:channelId/update">
+          <Route exact path="/servers/:serverId/update">
             <UpdateServerForm />
           </Route>
           <Route path="/login" >

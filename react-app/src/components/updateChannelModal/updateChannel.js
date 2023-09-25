@@ -4,13 +4,19 @@ import { useHistory } from 'react-router-dom';
 import { postServer } from '../../store/servers'
 import { useParams } from 'react-router-dom';
 // import ErrorMessage from './ErrorMessage';
+import { updateChannel } from '../../store/channels';
 
 const UpdateChannelForm = () => {
     const userId = useSelector(state => state.session.user.id)
     const {serverId} = useParams();
     const {channelId} = useParams();
+    console.log("CHANNNEL ID", channelId)
+    console.log( serverId)
     const serverChannels = useSelector(state => state.channels.channelServers)
-    const channelToUpdate = serverChannels.filter((channel) => channel.id === channelId)
+    console.log('SERVER CHANNELS', serverChannels)
+    serverChannels.map((channel) => console.log('MAPPING CHANNEL ID',channel.id))
+    const channelToUpdate = serverChannels.find((channel) => channel.id == channelId)
+    console.log('CHANNEL TO UPDATE',channelToUpdate)
     const [errorMessages, setErrorMessages] = useState({});
     const dispatch = useDispatch();
     const history = useHistory();
@@ -19,8 +25,7 @@ const UpdateChannelForm = () => {
 
     const updateName = (e) => setName(e.target.value);
     const updatePrivate = (e) => setPrivateChannel(e.target.value);
-
-    const handleChannelCreate = async (e) => {
+    const handleChannelUpdate = async (e) => {
     e.preventDefault();
 
     const payload = {
@@ -49,6 +54,12 @@ const UpdateChannelForm = () => {
     //     // hideForm();
     // }
     };
+
+    const handleCancelClick = (e) => {
+        e.preventDefault();
+        setErrorMessages({});
+        // hideForm();
+        }
 
     return (
     <section className="new-form-holder centered middled">
