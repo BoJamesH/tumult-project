@@ -18,9 +18,13 @@ def get_channels(server_id):
     # return [channel.to_dict() for channel in channels]
 
 # Route to create a new channel
-@channel_routes.route('/', methods=['POST'])
+@channel_routes.route('/<server_id>', methods=['POST'])
 @login_required
-def create_channel():
+def create_channel(server_id):
+    """
+    Create a new server
+    """
+
     data = request.json
     new_channel = Channel(
         name=data['name'],
