@@ -21,11 +21,11 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route exact path="/servers/:serverId">
-            <SelectedServer />
-          </Route>
           <Route exact path="/servers/new">
             <CreateServerForm />
+          </Route>
+          <Route exact path="/servers/:serverId">
+            <SelectedServer />
           </Route>
           <Route path="/login" >
             <LoginFormPage />
