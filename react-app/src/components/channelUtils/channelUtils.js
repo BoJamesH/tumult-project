@@ -25,7 +25,7 @@ const ChannelUtils = ({channel}) => {
     return (
         <ul>
         <li>
-            {channel.name}
+            <Link to={`/servers/${serverId}/${channel.id}`}>{channel.name}</Link>
         </li>
         <li>
             <button onClick={updateChannelHandler}>UPDATE CHANNEL</button>

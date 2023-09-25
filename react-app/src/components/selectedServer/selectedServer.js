@@ -106,6 +106,7 @@ const SelectedServer = () => {
                 if (!channel.id) return null
                 return (
                     <div key={channel.id} className='channel'>
+                        {/* <Link to="/" */}
                         <ChannelUtils channel={channel}/>
                     </div>
                 )
