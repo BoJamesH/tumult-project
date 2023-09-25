@@ -1,32 +1,51 @@
 import { useDispatch, useSelector } from "react-redux"
 import { getMessages } from "../../store/messages"
-import { useEffect } from "react"
-import { useParams } from "react-router-dom/cjs/react-router-dom.min"
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import { postMessage } from "../../store/messages"
 
 
 
 const SelectedChannel = () => {
     const { channelId } = useParams()
-    console.log('CHANNEL ID', channelId)
+    const { serverId } = useParams()
+    console.log('SERVERID', serverId)
+    // console.log('CHANNEL ID', channelId)
     const dispatch = useDispatch()
+    const [message, setMessage] = useState('')
     const channelMessages = useSelector(state => state.messages.channelMessages)
-    console.log('channelMessages', channelMessages)
+    // console.log('channelMessages', channelMessages)
+    const [errorMessages, setErrorMessages] = useState({});
 
     useEffect( async () => {
-        await dispatch(getMessages(channelId))
+        await dispatch(getMessages(serverId, channelId))
     }, [dispatch])
 
+    const updateMessage = (e) => setMessage(e.target.value);
 
-    // if (channelMessages.length < 1) return null
-    // if (!channelMessages) return null
+    const handleMessageCreate = async (e) => {
+        e.preventDefault();
+
+        const payload = {
+            message_text: message,
+        };
+        try {
+            const response = await dispatch(postMessage(serverId, channelId, payload));
+        } catch (error) {
+            // If error is not a ValidationError, add slice at the end to remove extra
+            // "Error: "
+            setErrorMessages({ overall: error.toString().slice(7) })
+        }
+        // history.push(`/servers/${serverId}`);
+        // if (createdServer) {
+        //     setErrorMessages({});
+        //     history.push(`/servers/${createdServer.id}`);
+        //     // hideForm();
+        // }
+        setMessage('')
+    };
 
     return (
-        // <>
-        // <div>MESSAGES GO HERE</div>
-        // {channelMessages.length > 0 &&
-        //     <div>{channelMessages[0].message_text}</div>
-        // }
-        // </>
         <>
         {channelMessages.length &&
             <div className='messages'>
@@ -43,6 +62,16 @@ const SelectedChannel = () => {
                 })}
             </div>
         }
+        <form className="create-message" onSubmit={handleMessageCreate}>
+            <input
+                type="text"
+                placeholder="Message text . . ."
+                required
+                value={message}
+                onChange={updateMessage} />
+            <button type="submit">Create new message</button>
+        </form>
+
         </>
     )
 }
