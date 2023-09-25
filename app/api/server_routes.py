@@ -47,10 +47,10 @@ def create_server():
         return 'Server created'
     return
 
-# Route to delete a channel
+# Route to delete a server
 @server_routes.route('/<server_id>', methods=['DELETE'])
 @login_required
-def delete_channel(server_id):
+def delete_server(server_id):
     server_to_delete = Server.query.get(server_id)
     db.session.delete(server_to_delete)
     db.session.commit()
