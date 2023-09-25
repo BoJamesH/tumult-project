@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { postServer } from '../../store/servers'
 import { useParams } from 'react-router-dom';
 // import ErrorMessage from './ErrorMessage';
-import { updateChannel } from '../../store/channels';
+import { editChannel } from '../../store/channels';
 
 const UpdateChannelForm = () => {
     const userId = useSelector(state => state.session.user.id)
@@ -37,7 +37,7 @@ const UpdateChannelForm = () => {
     console.log(payload)
 
     try {
-        const response = await dispatch(updateChannel(payload));
+        const response = await dispatch(editChannel(payload, channelId));
         if (response) {
             history.push(`/servers/${serverId}`);
             const serverId = response.id

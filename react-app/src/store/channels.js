@@ -57,8 +57,8 @@ export const createChannel = (serverId, channelData) => async (dispatch) => {
     }
 };
 
-export const editChannel = (channelData) => async (dispatch) => {
-    const response = await fetch(`/api/channels/${channelData.id}`, {
+export const editChannel = (channelData, channelId) => async (dispatch) => {
+    const response = await fetch(`/api/channels/${channelId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ export const editChannel = (channelData) => async (dispatch) => {
     });
     if (response.ok) {
         const channel = await response.json();
-        dispatch(updateChannel(channel));
+        // dispatch(updateChannel(channel));
         return channel;
     }
 };

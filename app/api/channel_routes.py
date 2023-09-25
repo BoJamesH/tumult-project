@@ -44,15 +44,25 @@ def create_channel(server_id):
     return 'Channel creation failed'
 
 # Route to update a channel
-@channel_routes.route('/<int:id>', methods=['PUT'])
+@channel_routes.route('/<channel_id>', methods=['PUT'])
 @login_required
-def update_channel(id):
-    data = request.json
-    channel = Channel.query.get(id)
-    channel.name = data['name']
-    # Other fields should be updated here
-    db.session.commit()
-    return channel.to_dict()
+def update_channel(channel_id):
+    """
+    Update a exisiting Channel
+    """
+    form = ChannelForm()
+    print("FORM DATA", form.data)
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        channel_to_update = Channel.query.get(channel_id)
+        data = form.data
+        channel_to_update.name = data['name']
+        channel_to_update.private = data['private']
+        # Other fields should be updated here
+        db.session.commit()
+        return channel_to_update.to_dict()
+    return
 
 # Route to delete a channel
 @channel_routes.route('/<int:id>', methods=['DELETE'])
