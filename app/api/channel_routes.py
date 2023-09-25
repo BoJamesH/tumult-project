@@ -65,10 +65,10 @@ def update_channel(channel_id):
     return
 
 # Route to delete a channel
-@channel_routes.route('/<int:id>', methods=['DELETE'])
+@channel_routes.route('/<channel_id>', methods=['DELETE'])
 @login_required
-def delete_channel(id):
-    channel = Channel.query.get(id)
+def delete_channel(channel_id):
+    channel = Channel.query.get(channel_id)
     db.session.delete(channel)
     db.session.commit()
     return {'message': 'Channel deleted'}
