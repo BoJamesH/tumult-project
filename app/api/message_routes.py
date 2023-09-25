@@ -45,8 +45,10 @@ def post_message(server_id, channel_id):
 # Route to delete a message
 @message_routes.route('/<message_id>', methods=['DELETE'])
 @login_required
-def delete_server(message_id):
+def delete_message(server_id, channel_id,message_id):
+    print("-----MADE IT TO DELETE MESSAGE BACKEND-------")
     message_to_delete = Message.query.get(message_id)
+    print('MESSAGE TO DELETE:', message_to_delete)
     db.session.delete(message_to_delete)
     db.session.commit()
     return {'message': 'Message deleted'}

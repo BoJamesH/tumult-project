@@ -19,7 +19,7 @@ export const getMessages = (serverId, channelId) => async (dispatch) => {
     console.log('RESPONSE', response)
     if (response) {
         const getChannelMessages = await response.json();
-        console.log('MADE THROUGH RESPONSE.OK')
+        // console.log('MADE THROUGH RESPONSE.OK')
         const channelMessages = getChannelMessages.messages
         dispatch(setMessages(channelMessages))
     }
@@ -44,11 +44,11 @@ export const postMessage = (serverId, channelId, message_text) => async (dispatc
 }
 
 export const deleteMessage = (serverId, channelId, messageId) => async (dispatch) => {
-    const response = await fetch(`/api/${serverId}/${channelId}/${messageId}`, {
+    const response = await fetch(`/api/${serverId}/${channelId}/messages/${messageId}`, {
         method: 'DELETE',
     });
     if (response) {
-        dispatch(getMessages(channelId))
+        dispatch(getMessages(serverId, channelId))
         return channelId;
     }
 };

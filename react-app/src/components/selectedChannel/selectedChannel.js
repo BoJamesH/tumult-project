@@ -44,11 +44,16 @@ const SelectedChannel = () => {
         // }
         setMessage('')
     };
-
     const handleMessageDelete = async (e) => {
         e.preventDefault()
         dispatch(deleteMessage(serverId, channelId))
     }
+
+    const myClickHandler = async (messageId, e) => {
+        e.preventDefault()
+        dispatch(deleteMessage(serverId, channelId, messageId))
+    }
+
 
     return (
         <>
@@ -62,7 +67,7 @@ const SelectedChannel = () => {
                             {message.message_text}
                             {/* <Link to="/" */}
                             {/* <messageUtils message={message}/> */}
-                            <button onClick={handleMessageDelete}>Delete Message</button>
+                            <button onClick={(e) => myClickHandler(message.id, e)}>Click Me</button>
                         </div>
                     )
                 })}
