@@ -11,11 +11,14 @@ export const setMessages = (messages) => ({
 
 export const getMessages = (channelId) => async (dispatch) => {
     const response = await fetch(`/api/${channelId}/messages`);
+    console.log('RESPONSE', response)
     if (response.ok) {
         const getChannelMessages = await response.json();
+        console.log('MADE THROUGH RESPONSE.OK')
         const channelMessages = getChannelMessages.messages
         dispatch(setMessages(channelMessages))
     }
+    console.log('BAD RESPONSE')
 }
 
 const initialState = {
