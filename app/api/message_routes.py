@@ -42,37 +42,14 @@ def post_message(server_id, channel_id):
         return {"Success": "Message creation success"}
     return {"Error": "Message creation failed"}
 
-# @message_routes.route('', methods=['POST'])
-# @login_required
-# def create_server():
-#     """
-#     Create a new server
-#     """
-#     print(current_user)
-#     user_id = int(current_user.get_id())
-#     form = ServerForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
-#     if form.validate_on_submit():
-#         data = form.data
-#         new_server = Server(
-#             name = data['name'],
-#             owner_id = user_id,
-#             label_image = data['label_image'],
-#             private = data['private'],
-#         )
-#         db.session.add(new_server)
-#         db.session.commit()
-#         return 'Server created'
-#     return
-
-# # Route to delete a server
-# @message_routes.route('/<server_id>', methods=['DELETE'])
-# @login_required
-# def delete_server(server_id):
-#     server_to_delete = Server.query.get(server_id)
-#     db.session.delete(server_to_delete)
-#     db.session.commit()
-#     return {'message': 'Server deleted'}
+# Route to delete a message
+@message_routes.route('/<message_id>', methods=['DELETE'])
+@login_required
+def delete_server(message_id):
+    message_to_delete = Message.query.get(message_id)
+    db.session.delete(message_to_delete)
+    db.session.commit()
+    return {'message': 'Message deleted'}
 
 # @message_routes.route('/<server_id>', methods=['PUT'])
 # @login_required

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { getMessages } from "../../store/messages"
+import { deleteMessage, getMessages } from "../../store/messages"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { postMessage } from "../../store/messages"
@@ -45,6 +45,11 @@ const SelectedChannel = () => {
         setMessage('')
     };
 
+    const handleMessageDelete = async (e) => {
+        e.preventDefault()
+        dispatch(deleteMessage(serverId, channelId))
+    }
+
     return (
         <>
         {channelMessages.length &&
@@ -57,6 +62,7 @@ const SelectedChannel = () => {
                             {message.message_text}
                             {/* <Link to="/" */}
                             {/* <messageUtils message={message}/> */}
+                            <button onClick={handleMessageDelete}>Delete Message</button>
                         </div>
                     )
                 })}

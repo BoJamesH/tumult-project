@@ -43,6 +43,15 @@ export const postMessage = (serverId, channelId, message_text) => async (dispatc
     }
 }
 
+export const deleteMessage = (serverId, channelId, messageId) => async (dispatch) => {
+    const response = await fetch(`/api/${serverId}/${channelId}/${messageId}`, {
+        method: 'DELETE',
+    });
+    if (response) {
+        dispatch(getMessages(channelId))
+        return channelId;
+    }
+};
 
 
 const initialState = {
