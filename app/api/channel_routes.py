@@ -25,9 +25,9 @@ def create_channel(server_id):
     """
     Create a new channel
     """
+    form['csrf_token'].data = request.cookies['csrf_token']
     user_id = int(current_user.get_id())
     form = ChannelForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
         new_channel = Channel(

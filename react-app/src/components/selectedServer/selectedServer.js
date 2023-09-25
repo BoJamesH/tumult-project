@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { deleteServer, getOneServer  } from '../../store/servers'
 import { getChannels } from '../../store/channels'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { useHistory } from 'react-router-dom'
+import ChannelUtils from '../channelUtils/channelUtils'
 
 
 const SelectedServer = () => {
@@ -49,6 +50,22 @@ const SelectedServer = () => {
         history.push(`/servers/${serverId}/update`)
     }
 
+    const addChannelHandler = async (e) => {
+        e.preventDefault()
+        history.push(`/servers/${serverId}/new`)
+    }
+
+    // const deleteChannelHandler = async (e) => {
+    //     e.preventDefault()
+    //     dispatch(deleteServer(serverId))
+    //     history.push(`/servers/${serverId}`)
+    // }
+
+    // const updateChannelHandler = async (e) => {
+    //     e.preventDefault()
+    //     history.push(`/servers/${serverId}/${channelId}/update`)
+    // }
+
 
     console.log('Channels ' ,channels)
     console.log("channel length: ", channels.length)
@@ -88,10 +105,17 @@ const SelectedServer = () => {
             {channels.map(channel => {
                 if (!channel.id) return null
                 return (
-                    <div key={channel.id} className='channel'>{channel.name}</div>
+                    <div key={channel.id} className='channel'>
+                        <ChannelUtils channel={channel}/>
+                    </div>
                 )
             })}
         </div>: null}
+
+        <button onClick={addChannelHandler}>
+            Create new channel
+        </button>
+
         </>
     )
 }

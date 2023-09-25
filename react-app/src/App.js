@@ -9,6 +9,7 @@ import PublicServers from "./components/publicServers/publicServers";
 import SelectedServer from "./components/selectedServer/selectedServer"
 import CreateServerForm from "./components/createServer/createServer";
 import UpdateServerForm from "./components/UpdateServerModal/updateServer";
+import CreateChannelForm from "./components/createChannel/createChannel";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,11 +23,17 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/servers/new">
+            <CreateServerForm />
+          </Route>
           <Route exact path="/servers/:serverId">
             <SelectedServer />
           </Route>
-          <Route exact path="/servers/new">
-            <CreateServerForm />
+          <Route exact path="/servers/:serverId/new">
+            <CreateChannelForm />
+          </Route>
+          <Route exact path="/servers/:serverId/:channelId/update">
+            <UpdateServerForm />
           </Route>
           <Route path="/login" >
             <LoginFormPage />

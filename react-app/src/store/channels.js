@@ -39,8 +39,8 @@ export const getChannels = (serverId) => async (dispatch) => {
     }
 };
 
-export const createChannel = (channelData) => async (dispatch) => {
-    const response = await fetch('/api/channels', {
+export const createChannel = (serverId, channelData) => async (dispatch) => {
+    const response = await fetch(`/api/channels/${serverId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
