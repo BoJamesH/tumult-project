@@ -28,12 +28,13 @@ def create_channel(server_id):
     user_id = int(current_user.get_id())
     form = ChannelForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print("HIT ROUTE", form)
     if form.validate_on_submit():
         data = form.data
         new_channel = Channel(
             name = data['name'],
-            owner_id = data['owner_id'],
-            server_id = data['server_id'],
+            owner_id = user_id,
+            server_id = server_id,
             private = data['private'],
         )
         db.session.add(new_channel)
