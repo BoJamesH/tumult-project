@@ -55,12 +55,16 @@ export const deleteMessage = (serverId, channelId, messageId) => async (dispatch
     }
 };
 
-export const updateMessage = (serverId, channelId, messageId) => async (dispatch) => {
-    const response = await fetch(`/api/${serverId}/${channelId}/${messageId}`, {
-        method: 'PUT'
+export const updateMessage = (serverId, channelId, messageId, message_text) => async (dispatch) => {
+    const response = await fetch(`/api/${serverId}/${channelId}/messages/${messageId}`, {
+        method: 'PUT',
+        headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(message_text)
     });
-    console.log(response)
-    if(response.ok) {
+    console.log('UPDATE MESSAGE RESPONSE',response)
+    if(response) {
         dispatch(getMessages(serverId, channelId))
         return messageId
     }

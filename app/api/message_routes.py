@@ -59,6 +59,7 @@ def update_message(server_id, channel_id, message_id):
     """
     Update an existing message
     """
+    print('REQUEST GET JSON ',request.get_json())
     user_id = int(current_user.get_id())
     form = MessageForm()
     form['csrf_token'].data = request.cookies['csrf_token']

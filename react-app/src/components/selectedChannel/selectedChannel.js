@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
-import { deleteMessage, getMessages } from "../../store/messages"
+import { deleteMessage, getMessages, updateMessage, postMessage } from "../../store/messages"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { postMessage } from "../../store/messages"
 
 
 
@@ -15,6 +14,7 @@ const SelectedChannel = () => {
     const [message, setMessage] = useState('')
     const [editMessage, setEditMessage ] = useState(false)
     const [editMessageText, setEditMessageText] = useState("")
+    const [editMessageId, setEditMessageId] = useState(null)
     const channelMessages = useSelector(state => state.messages.channelMessages)
     // console.log('channelMessages', channelMessages)
     const [errorMessages, setErrorMessages] = useState({});
@@ -23,7 +23,7 @@ const SelectedChannel = () => {
         await dispatch(getMessages(serverId, channelId))
     }, [dispatch])
 
-    const updateMessage = (e) => setMessage(e.target.value);
+    // const updateMessage = (e) => setMessage(e.target.value);
 
     const handleMessageCreate = async (e) => {
         e.preventDefault();
@@ -54,8 +54,14 @@ const SelectedChannel = () => {
 
     const updateMessageHandler = async (messageId, message_text, e) => {
         e.preventDefault()
+        setEditMessageId(messageId)
         setEditMessage(true)
-        setEditMessageText(message_text.toString())
+        setEditMessageText(message_text)
+    }
+
+    const submitEditMessageHandler = async(messageId, message_text, e) => {
+        e.preventDefault()
+        dispatch(updateMessage(serverId, channelId, messageId, message_text))
     }
 
 
@@ -68,14 +74,18 @@ const SelectedChannel = () => {
                     return (
                     <>
                         {
-                            editMessage ? (
+                            editMessage && editMessageId == message.id ? (
+                            <div>
+
                             <input
                                 type="text"
                                 placeholder="Server Name"
                                 required
                                 value={editMessageText}
-                                // onChange={setEditMessageText}
+                                onChange={ (e) => setEditMessageText(e.target.value)}
                                 />
+                                <button onClick={(e) => submitEditMessageHandler(message.id, editMessageText, e)}>Update Message</button>
+                            </div>
 
                             ) : (
                             <div key={message.id} className='message'>
