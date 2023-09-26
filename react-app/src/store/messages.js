@@ -1,8 +1,9 @@
 
 const SET_MESSAGES = 'messages/SET_MESSAGES'
 const CREATE_MESSAGE = 'messages/CREATE_MESSAGES'
+// const UPDATE_MESSAGE = 'messages/UPDATE_MESSAGES'
 
-
+// Action Creators
 export const setMessages = (messages) => ({
     type: SET_MESSAGES,
     payload: messages
@@ -13,6 +14,7 @@ export const createMessage = (messages) => ({
     payload: messages
 })
 
+// Thunks
 
 export const getMessages = (serverId, channelId) => async (dispatch) => {
     const response = await fetch(`/api/${serverId}/${channelId}/messages`);
@@ -52,6 +54,17 @@ export const deleteMessage = (serverId, channelId, messageId) => async (dispatch
         return channelId;
     }
 };
+
+export const updateMessage = (serverId, channelId, messageId) => async (dispatch) => {
+    const response = await fetch(`/api/${serverId}/${channelId}/${messageId}`, {
+        method: 'PUT'
+    });
+    console.log(response)
+    if(response.ok) {
+        dispatch(getMessages(serverId, channelId))
+        return messageId
+    }
+}
 
 
 const initialState = {

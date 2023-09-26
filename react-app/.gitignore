@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-
+instance/dev.db
 # production
 /build
 
