@@ -3,6 +3,7 @@ import { deleteMessage, getMessages, updateMessage, postMessage } from "../../st
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import EmojiPicker, { Emoji, EmojiStyle, EmojiClickData } from 'emoji-picker-react'
+import { postReactions } from "../../store/reactions"
 
 // import ReactionsModal from "../reactionsModal/reactionsModal"
 
@@ -11,7 +12,7 @@ import EmojiPicker, { Emoji, EmojiStyle, EmojiClickData } from 'emoji-picker-rea
 const SelectedChannel = () => {
     const { channelId } = useParams()
     const { serverId } = useParams()
-    console.log('SERVERID', serverId)
+    // console.log('SERVERID', serverId)
     // console.log('CHANNEL ID', channelId)
     const dispatch = useDispatch()
     const [message, setMessage] = useState('')
@@ -78,14 +79,20 @@ const SelectedChannel = () => {
         setReactionMessageId(messageId)
     }
 
-    function onEmojiClick(EmojiClickData, MouseEvent) {
+    // MouseEvent
+
+    function onEmojiClick(message_id, EmojiClickData, e) {
         let emojiData = EmojiClickData
         console.log("EmojiClickData.unified", EmojiClickData.unified)
-        setInputValue(
-          (inputValue) =>
-            inputValue + (emojiData.isCustom ? emojiData.unified : emojiData.emoji)
-        );
+        // setInputValue(
+        //   (inputValue) =>
+        //     inputValue + (emojiData.isCustom ? emojiData.unified : emojiData.emoji)
+        // );
         setSelectedEmoji(EmojiClickData.unified);
+        console.log('MESSAGE ID IN ON EMOJI CLICK:', message_id)
+        console.log('EMOJICLICKDATA.UNIFIED ', EmojiClickData.unified)
+        const reaction_type = EmojiClickData.unified
+        dispatch(postReactions(message_id, reaction_type))
         setReactionsModal(false)
     }
 
@@ -125,7 +132,7 @@ const SelectedChannel = () => {
                             {reactionsModal && reactionMessageId == message.id &&
                                   <div>
                                   <EmojiPicker
-                                      onEmojiClick={onEmojiClick}
+                                      onEmojiClick={(e) => onEmojiClick(message.id, e)}
                                       autoFocusSearch={false}
                                       emojiStyle={EmojiStyle.DARK}
                                       theme={'dark'}
