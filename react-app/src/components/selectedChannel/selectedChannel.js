@@ -110,7 +110,7 @@ const SelectedChannel = () => {
                 placeholder="Message text . . ."
                 required
                 value={message}
-                onChange={updateMessage} />
+                onChange={ (e) => setMessage(e.target.value)} />
             <button type="submit">Create new message</button>
         </form>
 
