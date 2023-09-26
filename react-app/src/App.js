@@ -6,13 +6,14 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import PublicServers from "./components/publicServers/publicServers";
-import SelectedServer from "./components/selectedServer/selectedServer"
+import SelectedServer from "./components/selectedServer/selectedServer";
 import CreateServerForm from "./components/createServer/createServer";
 import UpdateServerForm from "./components/UpdateServerModal/updateServer";
 import CreateChannelForm from "./components/createChannel/createChannel";
 import UpdateChannelForm from "./components/updateChannelModal/updateChannel";
 import SelectedChannel from "./components/selectedChannel/selectedChannel";
-import EmojiPicker from 'emoji-picker-react'
+import Reactions from "./components/reactionComponents/reactions";
+import EmojiPicker from 'emoji-picker-react';
 
 function App() {
   const dispatch = useDispatch();
@@ -54,7 +55,7 @@ function App() {
             <PublicServers />
           </Route>
           <Route exact path='/reactions'>
-            <EmojiPicker />
+            <Reactions />
           </Route>
         </Switch>
 
