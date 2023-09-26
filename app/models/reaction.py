@@ -5,6 +5,9 @@ from flask_sqlalchemy import SQLAlchemy
 class Reaction(db.Model):
     __tablename__ = 'reactions'
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
     # Columns
     id = db.Column(db.Integer, primary_key=True)
     message_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('messages.id')))

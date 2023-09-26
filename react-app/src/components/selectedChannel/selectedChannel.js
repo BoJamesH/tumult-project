@@ -40,18 +40,19 @@ const SelectedChannel = () => {
         // if (createdServer) {
         //     setErrorMessages({});
         //     history.push(`/servers/${createdServer.id}`);
-        //     // hideForm();
+        //     hideForm();
         // }
         setMessage('')
     };
-    const handleMessageDelete = async (e) => {
-        e.preventDefault()
-        dispatch(deleteMessage(serverId, channelId))
-    }
 
-    const myClickHandler = async (messageId, e) => {
+    const deleteMessageHandler = async (messageId, e) => {
         e.preventDefault()
         dispatch(deleteMessage(serverId, channelId, messageId))
+    }
+
+    const updateMessageHandler = async (messageId, e) => {
+        e.preventDefault()
+        
     }
 
 
@@ -67,7 +68,8 @@ const SelectedChannel = () => {
                             {message.message_text}
                             {/* <Link to="/" */}
                             {/* <messageUtils message={message}/> */}
-                            <button onClick={(e) => myClickHandler(message.id, e)}>Click Me</button>
+                            <button onClick={(e) => console.log('object')}>Update Message</button>
+                            <button onClick={(e) => deleteMessageHandler(message.id, e)}>Delete Message</button>
                         </div>
                     )
                 })}

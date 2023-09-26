@@ -53,22 +53,19 @@ def delete_message(server_id, channel_id,message_id):
     db.session.commit()
     return {'message': 'Message deleted'}
 
-# @message_routes.route('/<server_id>', methods=['PUT'])
-# @login_required
-# def update_server(server_id):
-#     """
-#     Update an existing server
-#     """
-#     user_id = int(current_user.get_id())
-#     form = ServerForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
-#     if form.validate_on_submit():
-#         server_to_update = Server.query.get(server_id)
-#         data = form.data
-#         server_to_update.name = data['name']
-#         server_to_update.owner_id = user_id
-#         server_to_update.label_image = data['label_image']
-#         server_to_update.private = data['private']
-#         db.session.commit()
-#         return 'Server updated'
-#     return
+@message_routes.route('/<message_id>', methods=['PUT'])
+@login_required
+def update_message(server_id, channel_id, message_id):
+    """
+    Update an existing message
+    """
+    user_id = int(current_user.get_id())
+    form = MessageForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        message_to_update = Message.query.get(message_id)
+        data = form.data
+        message_to_update.message_text = data['message_text']
+        db.session.commit()
+        return {'message':'message updated'}
+    return {'messge':'Failed to update message'}
