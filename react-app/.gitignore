@@ -8,6 +8,7 @@
 # testing
 /coverage
 instance/dev.db
+migrations
 # production
 /build
 
