@@ -2,6 +2,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { deleteMessage, getMessages, updateMessage, postMessage } from "../../store/messages"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import EmojiPicker, { Emoji, EmojiStyle, EmojiClickData } from 'emoji-picker-react'
+
+// import ReactionsModal from "../reactionsModal/reactionsModal"
 
 
 
@@ -15,6 +18,10 @@ const SelectedChannel = () => {
     const [editMessage, setEditMessage ] = useState(false)
     const [editMessageText, setEditMessageText] = useState("")
     const [editMessageId, setEditMessageId] = useState(null)
+    const [reactionsModal, setReactionsModal] = useState(false)
+    const [ reactionMessageId, setReactionMessageId ] = useState(null)
+    const [selectedEmoji, setSelectedEmoji] = useState('');
+    const [inputValue, setInputValue] = useState("");
     const channelMessages = useSelector(state => state.messages.channelMessages)
     // console.log('channelMessages', channelMessages)
     const [errorMessages, setErrorMessages] = useState({});
@@ -65,6 +72,23 @@ const SelectedChannel = () => {
         setEditMessage(false)
     }
 
+    const reactionClickHandler = async(messageId, e) => {
+        e.preventDefault()
+        setReactionsModal(true)
+        setReactionMessageId(messageId)
+    }
+
+    function onEmojiClick(EmojiClickData, MouseEvent) {
+        let emojiData = EmojiClickData
+        console.log("EmojiClickData.unified", EmojiClickData.unified)
+        setInputValue(
+          (inputValue) =>
+            inputValue + (emojiData.isCustom ? emojiData.unified : emojiData.emoji)
+        );
+        setSelectedEmoji(EmojiClickData.unified);
+        setReactionsModal(false)
+    }
+
 
     return (
         <>
@@ -96,6 +120,21 @@ const SelectedChannel = () => {
                             {/* <messageUtils message={message}/> */}
                             <button onClick={(e) => updateMessageHandler(message.id, message.message_text, e)}>Update Message</button>
                             <button onClick={(e) => deleteMessageHandler(message.id, e)}>Delete Message</button>
+                            <button onClick={(e) => reactionClickHandler(message.id, e)}>Reactions</button>
+                            <Emoji unified={selectedEmoji} size="25" />
+                            {reactionsModal && reactionMessageId == message.id &&
+                                  <div>
+                                  <EmojiPicker
+                                      onEmojiClick={onEmojiClick}
+                                      autoFocusSearch={false}
+                                      emojiStyle={EmojiStyle.DARK}
+                                      theme={'dark'}
+                                  />
+                                  <p>
+                                      My Favorite emoji is:
+                                      <Emoji unified={selectedEmoji} size="25" />
+                                  </p>
+                                </div>}
                             </div>
                         )
                         }
