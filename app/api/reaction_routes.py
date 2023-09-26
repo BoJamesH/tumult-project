@@ -11,15 +11,19 @@ def post_reaction(message_id):
     """
     Post a new reaction to a message
     """
-    user_id = int(current_user.get_id())
+    user_id = current_user.get_id()
+    print('--------------USER_ID', user_id)
+    print('--------------MESSAGE_ID', message_id)
+
     form = ReactionForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print("--------------FORM DATA",form.data)
     if form.validate_on_submit():
         data = form.data
         print(data)
         new_reaction = Reaction(
             user_id = user_id,
-            message_id = int(message_id),
+            message_id = message_id,
             reaction_type = data['reaction_type']
         )
         db.session.add(new_reaction)
