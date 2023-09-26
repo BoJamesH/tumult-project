@@ -12,6 +12,7 @@ import UpdateServerForm from "./components/UpdateServerModal/updateServer";
 import CreateChannelForm from "./components/createChannel/createChannel";
 import UpdateChannelForm from "./components/updateChannelModal/updateChannel";
 import SelectedChannel from "./components/selectedChannel/selectedChannel";
+import EmojiPicker from 'emoji-picker-react'
 
 function App() {
   const dispatch = useDispatch();
@@ -52,7 +53,11 @@ function App() {
           <Route exact path="/servers">
             <PublicServers />
           </Route>
+          <Route exact path='/reactions'>
+            <EmojiPicker />
+          </Route>
         </Switch>
+
       )}
     </>
   );
