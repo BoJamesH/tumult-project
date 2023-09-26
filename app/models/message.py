@@ -5,6 +5,8 @@ from flask_sqlalchemy import SQLAlchemy
 class Message(db.Model):
     __tablename__ = 'messages'
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
     # Columns
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
