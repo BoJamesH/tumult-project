@@ -4,5 +4,4 @@ __pycache__/
 .venv
 .DS_Store
 .vscode/
-dev.db
-migrations
+instance/dev.db
