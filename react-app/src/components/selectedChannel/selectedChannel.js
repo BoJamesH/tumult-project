@@ -62,6 +62,7 @@ const SelectedChannel = () => {
     const submitEditMessageHandler = async(messageId, message_text, e) => {
         e.preventDefault()
         dispatch(updateMessage(serverId, channelId, messageId, message_text))
+        setEditMessage(false)
     }
 
 
@@ -79,8 +80,8 @@ const SelectedChannel = () => {
 
                             <input
                                 type="text"
-                                placeholder="Server Name"
                                 required
+                                name = "message_text"
                                 value={editMessageText}
                                 onChange={ (e) => setEditMessageText(e.target.value)}
                                 />

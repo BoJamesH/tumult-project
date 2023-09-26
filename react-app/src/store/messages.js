@@ -61,7 +61,7 @@ export const updateMessage = (serverId, channelId, messageId, message_text) => a
         headers: {
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify(message_text)
+        body: JSON.stringify({ message_text }),
     });
     console.log('UPDATE MESSAGE RESPONSE',response)
     if(response) {

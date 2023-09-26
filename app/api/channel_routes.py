@@ -44,7 +44,7 @@ def create_channel(server_id):
         # return new_channel
     return 'Channel creation failed'
 
- 
+
 
 # Route to update a channel
 @channel_routes.route('/<channel_id>', methods=['PUT'])

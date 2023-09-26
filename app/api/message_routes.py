@@ -67,6 +67,7 @@ def update_message(server_id, channel_id, message_id):
         message_to_update = Message.query.get(message_id)
         data = form.data
         message_to_update.message_text = data['message_text']
+        message_to_update.user_id = user_id
         db.session.commit()
         return {'message':'message updated'}
     return {'messge':'Failed to update message'}
