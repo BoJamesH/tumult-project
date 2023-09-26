@@ -3,7 +3,7 @@ import { deleteMessage, getMessages, updateMessage, postMessage } from "../../st
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import EmojiPicker, { Emoji, EmojiStyle, EmojiClickData } from 'emoji-picker-react'
-import { postReactions } from "../../store/reactions"
+import { getReactions, postReactions } from "../../store/reactions"
 
 // import ReactionsModal from "../reactionsModal/reactionsModal"
 
@@ -25,10 +25,13 @@ const SelectedChannel = () => {
     const [inputValue, setInputValue] = useState("");
     const channelMessages = useSelector(state => state.messages.channelMessages)
     // console.log('channelMessages', channelMessages)
+    const allReactions = useSelector(state =>  state.reactions.allReactions)
+    console.log('allReactions:', allReactions)
     const [errorMessages, setErrorMessages] = useState({});
 
-    useEffect( async () => {
-        await dispatch(getMessages(serverId, channelId))
+    useEffect( () => {
+        dispatch(getMessages(serverId, channelId))
+        dispatch(getReactions())
     }, [dispatch])
 
     // const updateMessage = (e) => setMessage(e.target.value);
@@ -93,6 +96,7 @@ const SelectedChannel = () => {
         console.log('EMOJICLICKDATA.UNIFIED ', EmojiClickData.unified)
         const reaction_type = EmojiClickData.unified
         dispatch(postReactions(message_id, reaction_type))
+        dispatch(getReactions())
         setReactionsModal(false)
     }
 
@@ -128,7 +132,18 @@ const SelectedChannel = () => {
                             <button onClick={(e) => updateMessageHandler(message.id, message.message_text, e)}>Update Message</button>
                             <button onClick={(e) => deleteMessageHandler(message.id, e)}>Delete Message</button>
                             <button onClick={(e) => reactionClickHandler(message.id, e)}>Reactions</button>
-                            <Emoji unified={selectedEmoji} size="25" />
+                            {allReactions.length &&
+                                allReactions.filter((reaction) => reaction.message_id == message.id).map((reaction) => {
+                                    {console.log('Reaction ', reaction.message_id)}
+                                    return (
+                                    <>
+                                        <span>
+                                            <Emoji unified={reaction.reaction_type} size='25' />
+                                        </span>
+                                    </>
+                                    )
+                                })
+                            }
                             {reactionsModal && reactionMessageId == message.id &&
                                   <div>
                                   <EmojiPicker
@@ -137,10 +152,6 @@ const SelectedChannel = () => {
                                       emojiStyle={EmojiStyle.DARK}
                                       theme={'dark'}
                                   />
-                                  <p>
-                                      My Favorite emoji is:
-                                      <Emoji unified={selectedEmoji} size="25" />
-                                  </p>
                                 </div>}
                             </div>
                         )
