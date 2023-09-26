@@ -13,6 +13,8 @@ const SelectedChannel = () => {
     // console.log('CHANNEL ID', channelId)
     const dispatch = useDispatch()
     const [message, setMessage] = useState('')
+    const [editMessage, setEditMessage ] = useState(false)
+    const [editMessageText, setEditMessageText] = useState("")
     const channelMessages = useSelector(state => state.messages.channelMessages)
     // console.log('channelMessages', channelMessages)
     const [errorMessages, setErrorMessages] = useState({});
@@ -50,9 +52,10 @@ const SelectedChannel = () => {
         dispatch(deleteMessage(serverId, channelId, messageId))
     }
 
-    const updateMessageHandler = async (messageId, e) => {
+    const updateMessageHandler = async (messageId, message_text, e) => {
         e.preventDefault()
-        
+        setEditMessage(true)
+        setEditMessageText(message_text.toString())
     }
 
 
@@ -63,14 +66,29 @@ const SelectedChannel = () => {
                 {channelMessages.map(message => {
                     if (!message.id) return null
                     return (
-                        <div key={message.id} className='message'>
+                    <>
+                        {
+                            editMessage ? (
+                            <input
+                                type="text"
+                                placeholder="Server Name"
+                                required
+                                value={editMessageText}
+                                // onChange={setEditMessageText}
+                                />
+
+                            ) : (
+                            <div key={message.id} className='message'>
                             {/* {message.display_name} */}
                             {message.message_text}
                             {/* <Link to="/" */}
                             {/* <messageUtils message={message}/> */}
-                            <button onClick={(e) => console.log('object')}>Update Message</button>
+                            <button onClick={(e) => updateMessageHandler(message.id, message.message_text, e)}>Update Message</button>
                             <button onClick={(e) => deleteMessageHandler(message.id, e)}>Delete Message</button>
-                        </div>
+                            </div>
+                        )
+                        }
+                    </>
                     )
                 })}
             </div>
