@@ -25,6 +25,7 @@ const SelectedChannel = () => {
     const [inputValue, setInputValue] = useState("");
     const [websocketMessage, setWebSocketMessage] = ([])
     const [chatInput, setChatInput] = useState("")
+    const [ sentMessage, setSentMessage ] = useState(null)
     const user = useSelector(state => state.session.user)
     const channelMessages = useSelector(state => state.messages.channelMessages)
     // console.log('channelMessages', channelMessages)
@@ -38,6 +39,13 @@ const SelectedChannel = () => {
     }, [dispatch])
 
     useEffect(() => {
+        if (sentMessage){
+            setWebSocketMessage([...websocketMessage, sentMessage])
+            setSentMessage(null)
+        }
+    }, [sentMessage])
+
+    useEffect(() => {
 
         // create websocket/connect
         socket = io();
@@ -46,6 +54,8 @@ const SelectedChannel = () => {
             // when we recieve a chat, add it into our messages array in state
             setWebSocketMessage(messages => [...messages, chat])
         })
+
+        // async function getAllM
 
         // when component unmounts, disconnect
         return (() => {
@@ -126,7 +136,7 @@ const SelectedChannel = () => {
     const sendChat = (e) => {
         e.preventDefault()
         // emit a message
-        socket.emit("chat", { user: user.username, msg: chatInput });
+        socket.emit("chat", { user: user.username, message_text: chatInput });
         // clear the input field after the message is sent
         setChatInput("")
     }
@@ -206,10 +216,10 @@ const SelectedChannel = () => {
                 <div key={ind}>{`${message.user_id}: ${message.message_text}`}</div>
             ))}
         </div>
-        <form onSubmit={handleMessageCreate}>
+        <form onSubmit={sendChat}>
             <input
-                value={message}
-                onChange={ (e) => setMessage(e.target.value)}
+                value={chatInput}
+                onChange={updateChatInput}
             />
             <button type="submit">Send</button>
         </form>

@@ -1,4 +1,4 @@
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, emit
 from app.models import Message, db
 import os
 
@@ -15,14 +15,14 @@ socketio = SocketIO(cors_allowed_origins=origins)
 
 @socketio.on("chat")
 def handle_chat(data):
-    if data['message_text'] != "has connected!" or data['message_text'] != 'has disconnected!':
         new_chat = Message(
             message_text = data['message_text'],
             user_id = data['user_id'],
             server_id = data['server_id'],
             channel_id = data['channel_id']
         )
-    db.session.add(new_chat)
-    db.session.commit()
-    emit("chat", data, broadcast=True)
+        print(new_chat)
+        db.session.add(new_chat)
+        db.session.commit()
+        emit("chat", data, broadcast=True)
     # code to follow
