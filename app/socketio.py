@@ -37,8 +37,16 @@ def handle_chat(data):
 
 @socketio.on("delete_message")
 def delete_message(data):
-     message_id = data["message_id"]
-     message_to_delete = Message.query.get(message_id)
-     db.session.delete(message_to_delete)
-     db.session.commit()
-     emit("delete_message", data, broadcast=True)
+    message_id = data["message_id"]
+    message_to_delete = Message.query.get(message_id)
+    db.session.delete(message_to_delete)
+    db.session.commit()
+    emit("delete_message", data, broadcast=True)
+
+@socketio.on("update_message")
+def update_message(data):
+    message_id = data["message_id"]
+    message_to_update = Message.query.get(message_id)
+    message_to_update.message_text = data['message_text']
+    db.session.commit()
+    emit("update_message", data, broadcast=True)

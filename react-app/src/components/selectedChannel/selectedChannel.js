@@ -85,6 +85,9 @@ const SelectedChannel = () => {
             dispatch(getMessages(serverId, channelId))
             // console.log(serverId, channelId, 'SERVER ID CHANNEL ID')
         })
+        socket.on("update_message", (update_message) => {
+            dispatch(getMessages(serverId, channelId))
+        })
         // when component unmounts, disconnect
         return (() => {
             socket.disconnect()
@@ -159,6 +162,24 @@ const SelectedChannel = () => {
         // dispatch(getMessages(serverId, channelId))
     }
 
+    const updateChat = (messageId, message_text, e) => {
+        e.preventDefault()
+        socket.emit("update_message", { message_text: message_text, message_id: messageId})
+        setEditMessage(false)
+    }
+
+    // const updateMessageHandler = async (messageId, message_text, e) => {
+    //     e.preventDefault()
+    //     setEditMessageId(messageId)
+    //     setEditMessage(true)
+    //     setEditMessageText(message_text)
+    // }
+
+    // const submitEditMessageHandler = async(messageId, message_text, e) => {
+    //     e.preventDefault()
+    //     dispatch(updateMessage(serverId, channelId, messageId, message_text))
+    //     setEditMessage(false)
+    // }
     return (
         <>
         {channelMessages.length ?
@@ -178,7 +199,7 @@ const SelectedChannel = () => {
                                 value={editMessageText}
                                 onChange={ (e) => setEditMessageText(e.target.value)}
                                 />
-                                <button onClick={(e) => submitEditMessageHandler(message.id, editMessageText, e)}>Update Message</button>
+                                <button onClick={(e) => updateChat(message.id, editMessageText, e)}>Update Message</button>
                             </div>
 
                             ) : (
