@@ -22,15 +22,16 @@ class Channel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
-    server_id = db.Column(db.Integer)
+    server_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('servers.id')))
     private = db.Column(db.Boolean)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     # Relationships
+    channel_servers = db.relationship('Server', back_populates='server_channels')
     channel_owner = db.relationship('User', back_populates='owned_channels')
     channel_member = db.relationship('User', back_populates='channel_membership', secondary=channel_members)
-    channel_messages = db.relationship('Message', back_populates='channel')
+    channel_messages = db.relationship('Message', back_populates='channel', cascade='all, delete-orphan')
 
     def to_dict(self):
         return {

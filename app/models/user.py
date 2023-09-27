@@ -20,11 +20,12 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     # Relationships
-    owned_servers = db.relationship('Server', back_populates='owner')
+    owned_servers = db.relationship('Server', back_populates='owner', cascade='all, delete-orphan')
     server_membership = db.relationship('Server', back_populates='server_member', overlaps="owned_servers")
     owned_channels = db.relationship('Channel', back_populates='channel_owner')
     channel_membership = db.relationship('Channel', back_populates='channel_member', secondary=channel_members)
-
+    user_messages = db.relationship('Message', back_populates='messages_user', cascade='all, delete-orphan')
+    user_reactions = db.relationship('Reaction', back_populates='reactions_user', cascade='all, delete-orphan')
 
     user_messages = db.relationship('Message', back_populates='user')
     user_reactions = db.relationship('Reaction', back_populates='user')
