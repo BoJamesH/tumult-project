@@ -30,7 +30,7 @@ const SelectedChannel = () => {
     const channelMessages = useSelector(state => state.messages.channelMessages)
     // console.log('channelMessages', channelMessages)
     const allReactions = useSelector(state =>  state.reactions.allReactions)
-    console.log('allReactions:', allReactions)
+    // console.log('allReactions:', allReactions)
     const [errorMessages, setErrorMessages] = useState({});
 
     useEffect( () => {
@@ -54,11 +54,12 @@ const SelectedChannel = () => {
             // when we recieve a chat, add it into our messages array in state
             console.log('-------------')
             console.log("Socket On")
+            console.log(socket)
             console.log('-------------')
             setWebSocketMessage(messages => [...messages, chat])
         })
 
-        
+
 
         // when component unmounts, disconnect
         return (() => {
@@ -67,7 +68,7 @@ const SelectedChannel = () => {
             console.log('Socket Disconnected')
             console.log('--------------')
         })
-    }, [])
+    }, [channelId])
 
     // const updateMessage = (e) => setMessage(e.target.value);
 
@@ -181,7 +182,7 @@ const SelectedChannel = () => {
                             <button onClick={(e) => reactionClickHandler(message.id, e)}>Reactions</button>
                             {allReactions.length &&
                                 allReactions.filter((reaction) => reaction.message_id == message.id).map((reaction) => {
-                                    {console.log('Reaction ', reaction.message_id)}
+                                    // {console.log('Reaction ', reaction.message_id)}
                                     return (
                                     <>
                                         <span>

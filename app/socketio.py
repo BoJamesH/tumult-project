@@ -32,4 +32,5 @@ def handle_chat(data):
         db.session.add(new_chat)
         db.session.commit()
         emit("chat", data, broadcast=True)
+        # emit("chat", new_chat.to_dict(), broadcast=True, to=channel_id)
     # code to follow
