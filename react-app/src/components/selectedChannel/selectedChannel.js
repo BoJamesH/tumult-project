@@ -4,11 +4,12 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import EmojiPicker, { Emoji, EmojiStyle, EmojiClickData } from 'emoji-picker-react'
 import { deleteReaction, getReactions, postReactions } from "../../store/reactions"
+import { io } from 'socket.io-client'
 import './selectedChannel.css'
 
 // import ReactionsModal from "../reactionsModal/reactionsModal"
 
-
+let socket;
 
 const SelectedChannel = () => {
     const { channelId } = useParams()
@@ -23,7 +24,11 @@ const SelectedChannel = () => {
     const [reactionsModal, setReactionsModal] = useState(false)
     const [ reactionMessageId, setReactionMessageId ] = useState(null)
     const [selectedEmoji, setSelectedEmoji] = useState('');
-    const [inputValue, setInputValue] = useState("");
+    // const [inputValue, setInputValue] = useState("");
+    const [websocketMessage, setWebSocketMessage] = useState([])
+    const [chatInput, setChatInput] = useState("")
+    const [ sentMessage, setSentMessage ] = useState(null)
+    const user = useSelector(state => state.session.user)
     const channelMessages = useSelector(state => state.messages.channelMessages)
     const sessionUserId = useSelector(state => state.session.user.id)
     const allReactions = useSelector(state =>  state.reactions.allReactions)
@@ -50,14 +55,37 @@ const SelectedChannel = () => {
             // "Error: "
             setErrorMessages({ overall: error.toString().slice(7) })
         }
-        // history.push(`/servers/${serverId}`);
-        // if (createdServer) {
-        //     setErrorMessages({});
-        //     history.push(`/servers/${createdServer.id}`);
-        //     hideForm();
-        // }
         setMessage('')
     };
+
+    useEffect(() => {
+        if (sentMessage){
+            setWebSocketMessage([...websocketMessage, sentMessage])
+            setSentMessage(null)
+        }
+    }, [sentMessage])
+
+    useEffect(() => {
+        // create websocket/connect
+        socket = io();
+        console.log(socket)
+        socket.on("chat", (chat) => {
+            // when we recieve a chat, add it into our messages array in state
+            console.log('-------------')
+            console.log("Socket On")
+            console.log(socket)
+            console.log('-------------')
+            setWebSocketMessage(messages => [...messages, chat])
+            dispatch(getMessages(serverId, channelId))
+        })
+        // when component unmounts, disconnect
+        return (() => {
+            socket.disconnect()
+            console.log('--------------')
+            console.log('Socket Disconnected')
+            console.log('--------------')
+        })
+    }, [channelId])
 
     const deleteMessageHandler = async (messageId, e) => {
         e.preventDefault()
@@ -109,6 +137,14 @@ const SelectedChannel = () => {
         dispatch(deleteReaction(reaction.id, message.id))
     }
 
+    const sendChat = (e) => {
+        e.preventDefault()
+        // emit a message
+        socket.emit("chat", { user_id: user.id, message_text: chatInput, server_id:serverId, channel_id:channelId });
+        // clear the input field after the message is sent
+        setChatInput("")
+    }
+
     return (
         <>
         {channelMessages.length ?
@@ -133,7 +169,7 @@ const SelectedChannel = () => {
 
                             ) : (
                             <div key={message.id} className='message'>
-                            {/* {message.display_name} */}
+                            {message.user_id}
                             {message.message_text}
                             {/* <Link to="/" */}
                             {/* <messageUtils message={message}/> */}
@@ -169,7 +205,7 @@ const SelectedChannel = () => {
                 })}
             </div> : null
         }
-        <form className="create-message" onSubmit={handleMessageCreate}>
+        {/* <form className="create-message" onSubmit={handleMessageCreate}>
             <input
                 type="text"
                 placeholder="Message text . . ."
@@ -177,8 +213,19 @@ const SelectedChannel = () => {
                 value={message}
                 onChange={ (e) => setMessage(e.target.value)} />
             <button type="submit">Create new message</button>
+        </form> */}
+        {/* <div>
+            {channelMessages.length && channelMessages.map((message, ind) => (
+                <div key={ind}>{`${message.user_id}: ${message.message_text}`}</div>
+            ))}
+        </div> */}
+        <form onSubmit={sendChat}>
+            <input
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+            />
+            <button type="submit">Send</button>
         </form>
-
         </>
     )
 }
