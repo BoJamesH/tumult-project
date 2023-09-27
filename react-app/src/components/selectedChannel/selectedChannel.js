@@ -89,6 +89,9 @@ const SelectedChannel = () => {
             dispatch(getMessages(serverId, channelId))
         })
         // when component unmounts, disconnect
+        socket.on('post_emoji', () => {
+            dispatch(getReactions())
+        })
         return (() => {
             socket.disconnect()
             console.log('--------------')
@@ -168,18 +171,13 @@ const SelectedChannel = () => {
         setEditMessage(false)
     }
 
-    // const updateMessageHandler = async (messageId, message_text, e) => {
-    //     e.preventDefault()
-    //     setEditMessageId(messageId)
-    //     setEditMessage(true)
-    //     setEditMessageText(message_text)
-    // }
+    const emojiChat = (message_id, EmojiClickData, e) => {
+        // e.preventDefault()
+        socket.emit('post_emoji', {message_id: message_id, user_id: user.id, reaction_type:EmojiClickData.unified})
+        setReactionsModal(false)
+    }
 
-    // const submitEditMessageHandler = async(messageId, message_text, e) => {
-    //     e.preventDefault()
-    //     dispatch(updateMessage(serverId, channelId, messageId, message_text))
-    //     setEditMessage(false)
-    // }
+
     return (
         <>
         {channelMessages.length ?
@@ -226,7 +224,7 @@ const SelectedChannel = () => {
                             {reactionsModal && reactionMessageId == message.id &&
                                   <div>
                                   <EmojiPicker
-                                      onEmojiClick={(e) => onEmojiClick(message.id, e)}
+                                      onEmojiClick={(e) => emojiChat(message.id, e)}
                                       autoFocusSearch={false}
                                       emojiStyle={EmojiStyle.DARK}
                                       theme={'dark'}

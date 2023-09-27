@@ -1,5 +1,5 @@
 from flask_socketio import SocketIO, emit
-from app.models import Message, db
+from app.models import Message, db, Reaction
 import os
 
 if os.environ.get("FLASK_ENV") == "production":
@@ -50,3 +50,14 @@ def update_message(data):
     message_to_update.message_text = data['message_text']
     db.session.commit()
     emit("update_message", data, broadcast=True)
+
+@socketio.on('post_emoji')
+def post_emoji(data):
+     new_emoji = Reaction(
+          message_id=data['message_id'],
+          user_id=data['user_id'],
+          reaction_type=data['reaction_type'],
+     )
+     db.session.add(new_emoji)
+     db.session.commit()
+     emit('post_emoji', data, broadcast=True)
