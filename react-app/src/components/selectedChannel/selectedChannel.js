@@ -40,6 +40,7 @@ const SelectedChannel = () => {
         dispatch(getReactions())
     }, [dispatch])
 
+    console.log('webSocketMessage', websocketMessage)
     // const updateMessage = (e) => setMessage(e.target.value);
 
     const handleMessageCreate = async (e) => {
@@ -78,6 +79,12 @@ const SelectedChannel = () => {
             setWebSocketMessage(messages => [...messages, chat])
             dispatch(getMessages(serverId, channelId))
         })
+        socket.on("delete_message", (delete_message) => {
+            console.log('DELETE MESSAGE CHAT: ', delete_message)
+            // setWebSocketMessage(messages => [...messages, delete_message])
+            dispatch(getMessages(serverId, channelId))
+            // console.log(serverId, channelId, 'SERVER ID CHANNEL ID')
+        })
         // when component unmounts, disconnect
         return (() => {
             socket.disconnect()
@@ -87,10 +94,10 @@ const SelectedChannel = () => {
         })
     }, [channelId])
 
-    const deleteMessageHandler = async (messageId, e) => {
-        e.preventDefault()
-        dispatch(deleteMessage(serverId, channelId, messageId))
-    }
+    // const deleteMessageHandler = async (messageId, e) => {
+    //     e.preventDefault()
+    //     dispatch(deleteMessage(serverId, channelId, messageId))
+    // }
 
     const updateMessageHandler = async (messageId, message_text, e) => {
         e.preventDefault()
@@ -145,6 +152,13 @@ const SelectedChannel = () => {
         setChatInput("")
     }
 
+    const deleteChat = (messageId, e) => {
+        e.preventDefault()
+        // emit a message
+        socket.emit("delete_message", { message_id: messageId });
+        // dispatch(getMessages(serverId, channelId))
+    }
+
     return (
         <>
         {channelMessages.length ?
@@ -174,7 +188,7 @@ const SelectedChannel = () => {
                             {/* <Link to="/" */}
                             {/* <messageUtils message={message}/> */}
                             <button hidden={sessionUserId !== message.user_id} onClick={(e) => updateMessageHandler(message.id, message.message_text, e)}>Update Message</button>
-                            <button hidden={sessionUserId !== message.user_id} onClick={(e) => deleteMessageHandler(message.id, e)}>Delete Message</button>
+                            <button hidden={sessionUserId !== message.user_id} onClick={(e) => deleteChat(message.id, e)}>Delete Message</button>
                             <button onClick={(e) => reactionClickHandler(message.id, e)}>Reactions</button>
                             {allReactions.length &&
                                 allReactions.filter((reaction) => reaction.message_id == message.id).map((reaction) => {
@@ -205,20 +219,6 @@ const SelectedChannel = () => {
                 })}
             </div> : null
         }
-        {/* <form className="create-message" onSubmit={handleMessageCreate}>
-            <input
-                type="text"
-                placeholder="Message text . . ."
-                required
-                value={message}
-                onChange={ (e) => setMessage(e.target.value)} />
-            <button type="submit">Create new message</button>
-        </form> */}
-        {/* <div>
-            {channelMessages.length && channelMessages.map((message, ind) => (
-                <div key={ind}>{`${message.user_id}: ${message.message_text}`}</div>
-            ))}
-        </div> */}
         <form onSubmit={sendChat}>
             <input
                 value={chatInput}

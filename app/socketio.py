@@ -34,3 +34,11 @@ def handle_chat(data):
         emit("chat", data, broadcast=True)
         # emit("chat", new_chat.to_dict(), broadcast=True, to=channel_id)
     # code to follow
+
+@socketio.on("delete_message")
+def delete_message(data):
+     message_id = data["message_id"]
+     message_to_delete = Message.query.get(message_id)
+     db.session.delete(message_to_delete)
+     db.session.commit()
+     emit("delete_message", data, broadcast=True)
