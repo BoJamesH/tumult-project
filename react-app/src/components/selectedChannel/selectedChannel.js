@@ -57,6 +57,7 @@ const SelectedChannel = () => {
             console.log(socket)
             console.log('-------------')
             setWebSocketMessage(messages => [...messages, chat])
+            dispatch(getMessages(serverId, channelId))
         })
 
 
@@ -146,6 +147,7 @@ const SelectedChannel = () => {
         socket.emit("chat", { user_id: user.id, message_text: chatInput, server_id:serverId, channel_id:channelId });
         // clear the input field after the message is sent
         setChatInput("")
+
     }
 
 
