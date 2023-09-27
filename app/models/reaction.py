@@ -17,9 +17,8 @@ class Reaction(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     # Relationships
-    # # Strugglebus
     message = db.relationship('Message', back_populates='message_reactions')
-    user = db.relationship('User', back_populates='user_reactions')
+    reactions_user = db.relationship('User', back_populates='user_reactions')
 
     def to_dict(self):
         return {
