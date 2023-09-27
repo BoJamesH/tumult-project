@@ -26,9 +26,8 @@ class User(db.Model, UserMixin):
     channel_membership = db.relationship('Channel', back_populates='channel_member', secondary=channel_members)
     user_messages = db.relationship('Message', back_populates='messages_user', cascade='all, delete-orphan')
     user_reactions = db.relationship('Reaction', back_populates='reactions_user', cascade='all, delete-orphan')
-
     user_messages = db.relationship('Message', back_populates='user')
-    user_reactions = db.relationship('Reaction', back_populates='user')
+
 
     @property
     def password(self):
