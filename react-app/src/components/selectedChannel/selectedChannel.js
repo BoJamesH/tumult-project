@@ -4,10 +4,10 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import EmojiPicker, { Emoji, EmojiStyle, EmojiClickData } from 'emoji-picker-react'
 import { getReactions, postReactions } from "../../store/reactions"
-
+import { io } from 'socket.io-client'
 // import ReactionsModal from "../reactionsModal/reactionsModal"
 
-
+let socket;
 
 const SelectedChannel = () => {
     const { channelId } = useParams()
@@ -23,6 +23,9 @@ const SelectedChannel = () => {
     const [ reactionMessageId, setReactionMessageId ] = useState(null)
     const [selectedEmoji, setSelectedEmoji] = useState('');
     const [inputValue, setInputValue] = useState("");
+    const [websocketMessage, setWebSocketMessage] = ([])
+    const [chatInput, setChatInput] = useState("")
+    const user = useSelector(state => state.session.user)
     const channelMessages = useSelector(state => state.messages.channelMessages)
     // console.log('channelMessages', channelMessages)
     const allReactions = useSelector(state =>  state.reactions.allReactions)
@@ -33,6 +36,22 @@ const SelectedChannel = () => {
         dispatch(getMessages(serverId, channelId))
         dispatch(getReactions())
     }, [dispatch])
+
+    useEffect(() => {
+
+        // create websocket/connect
+        socket = io();
+        console.log(socket)
+        socket.on("chat", (chat) => {
+            // when we recieve a chat, add it into our messages array in state
+            setWebSocketMessage(messages => [...messages, chat])
+        })
+
+        // when component unmounts, disconnect
+        return (() => {
+            socket.disconnect()
+        })
+    }, [])
 
     // const updateMessage = (e) => setMessage(e.target.value);
 
@@ -98,6 +117,18 @@ const SelectedChannel = () => {
         dispatch(postReactions(message_id, reaction_type))
         dispatch(getReactions())
         setReactionsModal(false)
+    }
+
+    const updateChatInput = (e) => {
+        setChatInput(e.target.value)
+    };
+
+    const sendChat = (e) => {
+        e.preventDefault()
+        // emit a message
+        socket.emit("chat", { user: user.username, msg: chatInput });
+        // clear the input field after the message is sent
+        setChatInput("")
     }
 
 
@@ -170,7 +201,18 @@ const SelectedChannel = () => {
                 onChange={ (e) => setMessage(e.target.value)} />
             <button type="submit">Create new message</button>
         </form>
-
+        <div>
+            {channelMessages.length && channelMessages.map((message, ind) => (
+                <div key={ind}>{`${message.user_id}: ${message.message_text}`}</div>
+            ))}
+        </div>
+        <form onSubmit={handleMessageCreate}>
+            <input
+                value={message}
+                onChange={ (e) => setMessage(e.target.value)}
+            />
+            <button type="submit">Send</button>
+        </form>
         </>
     )
 }
