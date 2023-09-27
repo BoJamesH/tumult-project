@@ -8,7 +8,7 @@ import Navigation from "./components/Navigation";
 import PublicServers from "./components/publicServers/publicServers";
 import SelectedServer from "./components/selectedServer/selectedServer"
 import CreateServerForm from "./components/createServer/createServer";
-import UpdateServerForm from "./components/UpdateServerModal/updateServer";
+import UpdateServerForm from "./components/updateServerModal/updateServer";
 import CreateChannelForm from "./components/createChannel/createChannel";
 import UpdateChannelForm from "./components/updateChannelModal/updateChannel";
 import SelectedChannel from "./components/selectedChannel/selectedChannel";

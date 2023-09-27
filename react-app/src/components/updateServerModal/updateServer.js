@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { updateServer } from '../../store/servers'
@@ -7,7 +7,7 @@ import { updateServer } from '../../store/servers'
 const UpdateServerForm = () => {
     const userId = useSelector(state => state.session.user.id)
     const serverToUpdate = useSelector(state => state.servers.selectedServer)
-    const [errorMessages, setErrorMessages] = useState({});
+    // const [errorMessages, setErrorMessages] = useState({});
     const dispatch = useDispatch();
     const history = useHistory();
     const [name, setName] = useState(serverToUpdate.name);
@@ -37,7 +37,7 @@ const UpdateServerForm = () => {
     } catch (error) {
         // If error is not a ValidationError, add slice at the end to remove extra
         // "Error: "
-        setErrorMessages({ overall: error.toString().slice(7) })
+        // setErrorMessages({ overall: error.toString().slice(7) })
     }
     history.push(`/servers/${serverToUpdate.id}`);
     // if (createdServer) {
@@ -49,7 +49,7 @@ const UpdateServerForm = () => {
 
     const handleCancelClick = (e) => {
     e.preventDefault();
-    setErrorMessages({});
+    // setErrorMessages({});
     // hideForm();
     };
 

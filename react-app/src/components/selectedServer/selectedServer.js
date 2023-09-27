@@ -13,6 +13,7 @@ const SelectedServer = () => {
     const { serverId } = useParams()
     const server = useSelector( state => state.servers.selectedServer )
     const channels = useSelector( state => state.channels.channelServers)
+    const sessionUserId = useSelector(state => state.session.user.id)
     const [forceRerender, setForceRerender] = useState(false);
 
     const conminedDispatch = (serverId) => {
@@ -82,10 +83,10 @@ const SelectedServer = () => {
                 <li>
                     {server.label_image}
                 </li>
-                <li>
+                <li hidden={sessionUserId !== server.owner_id}>
                     <button onClick={updateServerHandler}>UPDATE SERVER</button>
                 </li>
-                <li>
+                <li hidden={sessionUserId !== server.owner_id}>
                     <button onClick={deleteServerHandler}>DELETE SERVER</button>
                 </li>
             </ul>
@@ -107,7 +108,7 @@ const SelectedServer = () => {
                 return (
                     <div key={channel.id} className='channel'>
                         {/* <Link to="/" */}
-                        <ChannelUtils channel={channel}/>
+                        <ChannelUtils channel={channel} server={server}/>
                     </div>
                 )
             })}
