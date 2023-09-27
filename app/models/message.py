@@ -19,7 +19,8 @@ class Message(db.Model):
     # Relationships
     user = db.relationship('User', back_populates='user_messages')
     channel = db.relationship('Channel', back_populates='channel_messages')
-    message_reactions = db.relationship('Reaction', back_populates='message')
+    message_reactions = db.relationship('Reaction', back_populates='message', cascade='all, delete-orphan')
+    messages_users = db.relationship('User', back_populates='user_messages', cascade='all, delete-orphan')
 
     def to_dict(self):
         return {
