@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import SignupFormPage from "./components/SignupFormPage";
-import LoginFormPage from "./components/LoginFormPage";
+import SignupFormPage from "./components/signupFormPage";
+import LoginFormPage from "./components/loginFormPage";
 import { authenticate } from "./store/session";
-import Navigation from "./components/Navigation";
+import Navigation from "./components/navigation";
 import PublicServers from "./components/publicServers/publicServers";
 import SelectedServer from "./components/selectedServer/selectedServer"
 import CreateServerForm from "./components/createServer/createServer";

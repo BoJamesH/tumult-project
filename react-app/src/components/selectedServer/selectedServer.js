@@ -14,31 +14,11 @@ const SelectedServer = () => {
     const server = useSelector( state => state.servers.selectedServer )
     const channels = useSelector( state => state.channels.channelServers)
     const sessionUserId = useSelector(state => state.session.user.id)
-    const [forceRerender, setForceRerender] = useState(false);
-
-    const conminedDispatch = (serverId) => {
-
-    }
 
     useEffect( async () => {
         await dispatch(getOneServer(serverId))
         await dispatch(getChannels(serverId))
     }, [dispatch])
-
-    // useEffect( () => {
-    //     dispatch(getChannels(serverId))
-    //     dispatch(getOneServer(serverId))
-    // }, [dispatch])
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         await dispatch(getOneServer(serverId))
-    //         await dispatch(getChannels(serverId))
-    //         setForceRerender(true)
-    //     };
-
-    //     fetchData();
-    // }, [dispatch, serverId]);
 
     const deleteServerHandler = async (e) => {
         e.preventDefault()
@@ -55,21 +35,6 @@ const SelectedServer = () => {
         e.preventDefault()
         history.push(`/servers/${serverId}/new`)
     }
-
-    // const deleteChannelHandler = async (e) => {
-    //     e.preventDefault()
-    //     dispatch(deleteServer(serverId))
-    //     history.push(`/servers/${serverId}`)
-    // }
-
-    // const updateChannelHandler = async (e) => {
-    //     e.preventDefault()
-    //     history.push(`/servers/${serverId}/${channelId}/update`)
-    // }
-
-
-    console.log('Channels ' ,channels)
-    console.log("channel length: ", channels.length)
 
     if(!server) return null
 
