@@ -3,7 +3,8 @@ import { deleteMessage, getMessages, updateMessage, postMessage } from "../../st
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import EmojiPicker, { Emoji, EmojiStyle, EmojiClickData } from 'emoji-picker-react'
-import { getReactions, postReactions } from "../../store/reactions"
+import { deleteReaction, getReactions, postReactions } from "../../store/reactions"
+import './selectedChannel.css'
 
 // import ReactionsModal from "../reactionsModal/reactionsModal"
 
@@ -100,6 +101,14 @@ const SelectedChannel = () => {
         setReactionsModal(false)
     }
 
+    const reactionDeleteHandler = async (reaction, message, e) => {
+        if (reaction.user_id !== sessionUserId) {
+            return
+        }
+        console.log('HITTING DELETE REACTION DISPATCH')
+        dispatch(deleteReaction(reaction.id, message.id))
+    }
+
     return (
         <>
         {channelMessages.length ?
@@ -136,8 +145,8 @@ const SelectedChannel = () => {
                                     {console.log('Reaction ', reaction.message_id)}
                                     return (
                                     <>
-                                        <span>
-                                            <Emoji unified={reaction.reaction_type} size='25' />
+                                        <span className="emoji-span" onClick={(e) => reactionDeleteHandler(reaction, message, e)}>
+                                            <Emoji className='emoji-react' unified={reaction.reaction_type} size='20' />
                                         </span>
                                     </>
                                     )
