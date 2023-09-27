@@ -23,7 +23,7 @@ const SelectedChannel = () => {
     const [ reactionMessageId, setReactionMessageId ] = useState(null)
     const [selectedEmoji, setSelectedEmoji] = useState('');
     const [inputValue, setInputValue] = useState("");
-    const [websocketMessage, setWebSocketMessage] = ([])
+    const [websocketMessage, setWebSocketMessage] = useState([])
     const [chatInput, setChatInput] = useState("")
     const [ sentMessage, setSentMessage ] = useState(null)
     const user = useSelector(state => state.session.user)
@@ -52,14 +52,20 @@ const SelectedChannel = () => {
         console.log(socket)
         socket.on("chat", (chat) => {
             // when we recieve a chat, add it into our messages array in state
+            console.log('-------------')
+            console.log("Socket On")
+            console.log('-------------')
             setWebSocketMessage(messages => [...messages, chat])
         })
 
-        // async function getAllM
+        
 
         // when component unmounts, disconnect
         return (() => {
             socket.disconnect()
+            console.log('--------------')
+            console.log('Socket Disconnected')
+            console.log('--------------')
         })
     }, [])
 
@@ -129,14 +135,14 @@ const SelectedChannel = () => {
         setReactionsModal(false)
     }
 
-    const updateChatInput = (e) => {
-        setChatInput(e.target.value)
-    };
+    // const updateChatInput = (e) => {
+    //     setChatInput(e.target.value)
+    // };
 
     const sendChat = (e) => {
         e.preventDefault()
         // emit a message
-        socket.emit("chat", { user: user.username, message_text: chatInput });
+        socket.emit("chat", { user_id: user.id, message_text: chatInput, server_id:serverId, channel_id:channelId });
         // clear the input field after the message is sent
         setChatInput("")
     }
@@ -219,7 +225,7 @@ const SelectedChannel = () => {
         <form onSubmit={sendChat}>
             <input
                 value={chatInput}
-                onChange={updateChatInput}
+                onChange={(e) => setChatInput(e.target.value)}
             />
             <button type="submit">Send</button>
         </form>
