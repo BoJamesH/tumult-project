@@ -31,6 +31,19 @@ def post_reaction(message_id):
         return {"Success": "Reaction creation success"}
     return {"Error": "Reaction creation failed"}
 
+@reaction_routes.route('/<reaction_id>', methods=['DELETE'])
+@login_required
+def delete_reactions(reaction_id):
+    """
+    Delete a reaction
+    """
+    print('HITTING DELETE REACTION ENDPOINT')
+    reaction_to_delete = Reaction.query.get(reaction_id)
+    print('REACTION TO DELETE: ', reaction_to_delete)
+    db.session.delete(reaction_to_delete)
+    db.session.commit()
+    return {'message': 'Reaction deleted'}
+
 @reaction_routes.route('')
 @login_required
 def get_reactions():

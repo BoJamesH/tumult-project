@@ -41,6 +41,15 @@ export const getReactions = () => async (dispatch) => {
     console.log("Bad Response")
 }
 
+export const deleteReaction = (reaction_id, message_id) => async (dispatch) => {
+    const response = await fetch(`/api/reactions/${reaction_id}`, {
+        method: 'DELETE',
+    })
+    if (response.ok) {
+        dispatch(getReactions(message_id))
+    }
+}
+
 const initialState = {
     allReactions: {}
 }

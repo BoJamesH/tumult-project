@@ -3,7 +3,8 @@ import { deleteMessage, getMessages, updateMessage, postMessage } from "../../st
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import EmojiPicker, { Emoji, EmojiStyle, EmojiClickData } from 'emoji-picker-react'
-import { getReactions, postReactions } from "../../store/reactions"
+import { deleteReaction, getReactions, postReactions } from "../../store/reactions"
+import './selectedChannel.css'
 
 // import ReactionsModal from "../reactionsModal/reactionsModal"
 
@@ -24,7 +25,7 @@ const SelectedChannel = () => {
     const [selectedEmoji, setSelectedEmoji] = useState('');
     const [inputValue, setInputValue] = useState("");
     const channelMessages = useSelector(state => state.messages.channelMessages)
-    // console.log('channelMessages', channelMessages)
+    const sessionUserId = useSelector(state => state.session.user.id)
     const allReactions = useSelector(state =>  state.reactions.allReactions)
     console.log('allReactions:', allReactions)
     const [errorMessages, setErrorMessages] = useState({});
@@ -100,10 +101,17 @@ const SelectedChannel = () => {
         setReactionsModal(false)
     }
 
+    const reactionDeleteHandler = async (reaction, message, e) => {
+        if (reaction.user_id !== sessionUserId) {
+            return
+        }
+        console.log('HITTING DELETE REACTION DISPATCH')
+        dispatch(deleteReaction(reaction.id, message.id))
+    }
 
     return (
         <>
-        {channelMessages.length &&
+        {channelMessages.length ?
             <div className='messages'>
                 {channelMessages.map(message => {
                     if (!message.id) return null
@@ -129,16 +137,16 @@ const SelectedChannel = () => {
                             {message.message_text}
                             {/* <Link to="/" */}
                             {/* <messageUtils message={message}/> */}
-                            <button onClick={(e) => updateMessageHandler(message.id, message.message_text, e)}>Update Message</button>
-                            <button onClick={(e) => deleteMessageHandler(message.id, e)}>Delete Message</button>
+                            <button hidden={sessionUserId !== message.user_id} onClick={(e) => updateMessageHandler(message.id, message.message_text, e)}>Update Message</button>
+                            <button hidden={sessionUserId !== message.user_id} onClick={(e) => deleteMessageHandler(message.id, e)}>Delete Message</button>
                             <button onClick={(e) => reactionClickHandler(message.id, e)}>Reactions</button>
                             {allReactions.length &&
                                 allReactions.filter((reaction) => reaction.message_id == message.id).map((reaction) => {
                                     {console.log('Reaction ', reaction.message_id)}
                                     return (
                                     <>
-                                        <span>
-                                            <Emoji unified={reaction.reaction_type} size='25' />
+                                        <span className="emoji-span" onClick={(e) => reactionDeleteHandler(reaction, message, e)}>
+                                            <Emoji className='emoji-react' unified={reaction.reaction_type} size='20' />
                                         </span>
                                     </>
                                     )
@@ -159,7 +167,7 @@ const SelectedChannel = () => {
                     </>
                     )
                 })}
-            </div>
+            </div> : null
         }
         <form className="create-message" onSubmit={handleMessageCreate}>
             <input

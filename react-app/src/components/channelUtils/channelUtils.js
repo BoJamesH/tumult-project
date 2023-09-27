@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { deleteChannel, getChannels } from '../../store/channels'
+import { deleteChannel } from '../../store/channels'
 import { useHistory } from 'react-router-dom'
 
-const ChannelUtils = ({channel}) => {
+const ChannelUtils = ({channel, server}) => {
     const { serverId } = useParams()
     const history = useHistory()
     const dispatch = useDispatch()
+    const sessionUserId = useSelector(state => state.session.user.id)
 
     const deleteChannelHandler = async (e) => {
         e.preventDefault()
@@ -27,16 +28,14 @@ const ChannelUtils = ({channel}) => {
         <li>
             <Link to={`/servers/${serverId}/${channel.id}`}>{channel.name}</Link>
         </li>
-        <li>
+        <li hidden={!(sessionUserId == channel.owner_id || sessionUserId == server.owner_id)}>
             <button onClick={updateChannelHandler}>UPDATE CHANNEL</button>
         </li>
-        <li>
+        <li hidden={!(sessionUserId == channel.owner_id || sessionUserId == server.owner_id)}>
             <button onClick={deleteChannelHandler}>DELETE CHANNEL</button>
         </li>
     </ul>
     )
-
-
 }
 
 export default ChannelUtils
