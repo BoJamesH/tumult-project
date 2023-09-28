@@ -1,15 +1,10 @@
 .emoji-span {
-    /* border: solid 2px rgb(131, 42, 153); */
-    /* color: white; */
+    border: solid 2px rgb(131, 42, 153);
+    color: white;
     display: inline-block;
     height: 20px;
     cursor: pointer;
-}
-
-.emoji-react {
-    /* border: solid 2px rgb(226, 220, 220);
-    color: white;
-    height: 100px; */
+    border-radius: 5px;
 }
 
 .message {
