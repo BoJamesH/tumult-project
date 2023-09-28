@@ -54,6 +54,15 @@ function LandingPage({user}){
             </div>
             <img className="rightheaderimage" src="../images/headerright_splashart.png" alt="Tumult"/>
             </div>
+            <div>
+                <div>
+                    <img src="../images/pagetop_splashart.png" alt="Tumult"/>
+                </div>
+                <div>
+                    <h2>Create an invite-only place where you belong</h2>
+                    <div>Discord servers are organized into topic-based channels where you can collaborate, share, and just talk about your day without clogging up a group chat.</div>
+                </div>
+            </div>
         <div>
             <div>
             </div>
@@ -62,7 +71,6 @@ function LandingPage({user}){
             <img src="../images/pagebottom_splashart.png" alt="Tumult"/>
             <img src="../images/pagelower_splashart.png" alt="Tumult"/>
             <img src="../images/pagemiddle_splashart.png" alt="Tumult"/>
-            <img src="../images/pagetop_splashart.png" alt="Tumult"/>
         </div>
         </>
 
