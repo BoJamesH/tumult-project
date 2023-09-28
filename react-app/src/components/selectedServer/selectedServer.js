@@ -13,31 +13,12 @@ const SelectedServer = () => {
     const { serverId } = useParams()
     const server = useSelector( state => state.servers.selectedServer )
     const channels = useSelector( state => state.channels.channelServers)
-    const [forceRerender, setForceRerender] = useState(false);
-
-    const conminedDispatch = (serverId) => {
-
-    }
+    const sessionUserId = useSelector(state => state.session.user.id)
 
     useEffect( async () => {
         await dispatch(getOneServer(serverId))
         await dispatch(getChannels(serverId))
     }, [dispatch])
-
-    // useEffect( () => {
-    //     dispatch(getChannels(serverId))
-    //     dispatch(getOneServer(serverId))
-    // }, [dispatch])
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         await dispatch(getOneServer(serverId))
-    //         await dispatch(getChannels(serverId))
-    //         setForceRerender(true)
-    //     };
-
-    //     fetchData();
-    // }, [dispatch, serverId]);
 
     const deleteServerHandler = async (e) => {
         e.preventDefault()
@@ -55,21 +36,6 @@ const SelectedServer = () => {
         history.push(`/servers/${serverId}/new`)
     }
 
-    // const deleteChannelHandler = async (e) => {
-    //     e.preventDefault()
-    //     dispatch(deleteServer(serverId))
-    //     history.push(`/servers/${serverId}`)
-    // }
-
-    // const updateChannelHandler = async (e) => {
-    //     e.preventDefault()
-    //     history.push(`/servers/${serverId}/${channelId}/update`)
-    // }
-
-
-    console.log('Channels ' ,channels)
-    console.log("channel length: ", channels.length)
-
     if(!server) return null
 
     return(
@@ -82,10 +48,10 @@ const SelectedServer = () => {
                 <li>
                     {server.label_image}
                 </li>
-                <li>
+                <li hidden={sessionUserId !== server.owner_id}>
                     <button onClick={updateServerHandler}>UPDATE SERVER</button>
                 </li>
-                <li>
+                <li hidden={sessionUserId !== server.owner_id}>
                     <button onClick={deleteServerHandler}>DELETE SERVER</button>
                 </li>
             </ul>
@@ -107,7 +73,7 @@ const SelectedServer = () => {
                 return (
                     <div key={channel.id} className='channel'>
                         {/* <Link to="/" */}
-                        <ChannelUtils channel={channel}/>
+                        <ChannelUtils channel={channel} server={server}/>
                     </div>
                 )
             })}
