@@ -1,0 +1,57 @@
+.discordLogo {
+    height: 35px;
+    width: 35px;
+}
+
+.home-nav-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.imagine-container{
+    grid-column: 3/span 8;
+    text-align: center;
+}
+
+.leftheaderimage{
+    height: 300px;
+    width: 300px;
+}
+
+.rightheaderimage{
+    height: 300px;
+    width: 300px;
+}
+
+.header-image-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.second-image-container{
+    display: flex;
+    align-items: center;
+}
+
+.third-image-container{
+    display: flex;
+    align-items: center;
+}
+
+.fourth-image-container{
+    display: flex;
+    align-items: center;
+}
+
+.fifth-image-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.last-description-container{
+    display: flex;
+    justify-content: center;
+}
