@@ -8,7 +8,7 @@ function LandingPage({user}){
     const history = useHistory()
     console.log(user)
 
-    const handleOpenDiscord = (e) => {
+    const handleOpenTumult = (e) => {
         e.preventDefault();
         history.push("/servers")
     }
@@ -17,6 +17,7 @@ function LandingPage({user}){
         <>
             <nav>
                 <div className="home-nav-container">
+                    
                     <img className="discordLogo" src="../images/icon_clyde_black_RGB.png" alt="Tumult"/>
                     <span>
                         Fill
@@ -31,7 +32,7 @@ function LandingPage({user}){
                         Fill4
                     </span>
                 { user ? (
-                    <button className="open-discord" onClick={handleOpenDiscord}>Open Discord</button>
+                    <button className="open-tumult" onClick={handleOpenTumult}>Open Tumult</button>
                     ) : (
                         <OpenModalButton
                         buttonText="Log In"
@@ -51,14 +52,14 @@ function LandingPage({user}){
                 </div>
                 <div>
                     { user ? (
-                        <button className="open-discord-header" onClick={handleOpenDiscord}>Open Discord in your browser</button>
+                        <button className="open-tumult-header" onClick={handleOpenTumult}>Open Tumult in your browser</button>
                         ) : (
                         <>
                             <OpenModalButton
                             buttonText="Log In"
                             // onItemClick={closeMenu}
                             modalComponent={<LoginFormModal />}
-                            
+
                             />
 
                             <OpenModalButton
