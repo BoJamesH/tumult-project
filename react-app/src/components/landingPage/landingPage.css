@@ -57,21 +57,23 @@
 }
 
 .nav-login{
-    padding: 10px 40px;
+    padding: 10px;
     border-radius: 20px;
 }
 
-.open-tumult{
+.open-discord{
     padding: 10px;
     border-radius: 20px;
     background-color: white;
     color:#23272a;
 }
 
-.open-tumult-header{
+.open-discord-header{
     margin-top: 10px;
     padding: 10px 80px;
     border-radius: 20px;
     background-color: white;
     color:#23272a;
 }
+
+
