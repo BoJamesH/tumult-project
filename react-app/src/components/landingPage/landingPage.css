@@ -55,25 +55,3 @@
     display: flex;
     justify-content: center;
 }
-
-.nav-login{
-    padding: 10px;
-    border-radius: 20px;
-}
-
-.open-discord{
-    padding: 10px;
-    border-radius: 20px;
-    background-color: white;
-    color:#23272a;
-}
-
-.open-discord-header{
-    margin-top: 10px;
-    padding: 10px 80px;
-    border-radius: 20px;
-    background-color: white;
-    color:#23272a;
-}
-
-
