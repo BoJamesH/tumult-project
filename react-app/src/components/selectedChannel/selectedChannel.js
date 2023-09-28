@@ -147,6 +147,13 @@ const SelectedChannel = () => {
     const sendChat = (e) => {
         e.preventDefault()
         // emit a message
+        if (chatInput.length > 4000) {
+            alert('Messages must be under 4,000 characters to be courteous to others.')
+            return
+        }
+        if (chatInput.trim().length < 1) {
+            return
+        }
         socket.emit("chat", { user_id: user.id, message_text: chatInput, server_id:serverId, channel_id:channelId });
         // clear the input field after the message is sent
         setChatInput("")
@@ -161,12 +168,24 @@ const SelectedChannel = () => {
 
     const updateChat = (messageId, message_text, e) => {
         e.preventDefault()
+        if (message_text.length > 4000) {
+            alert('Messages must be under 4,000 characters to be courteous to others.')
+            return
+        }
+        if (message_text.trim().length < 1) {
+           return
+        }
         socket.emit("update_message", { message_text: message_text, message_id: messageId})
         setEditMessage(false)
     }
 
     const emojiChat = (message_id, EmojiClickData, e) => {
         // e.preventDefault()
+        const postEmojis = allReactions.filter(reaction => reaction.message_id == message_id)
+        if (postEmojis.length > 30){
+            alert('This post already has the maximum number of reactions')
+            return
+        }
         socket.emit('post_emoji', {message_id: message_id, user_id: user.id, reaction_type:EmojiClickData.unified})
         setReactionsModal(false)
     }
