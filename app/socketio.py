@@ -61,3 +61,10 @@ def post_emoji(data):
      db.session.add(new_emoji)
      db.session.commit()
      emit('post_emoji', data, broadcast=True)
+
+@socketio.on('delete_emoji')
+def delete_emoji(data):
+     emoji_to_delete = Reaction.query.get(data['reaction_id'])
+     db.session.delete(emoji_to_delete)
+     db.session.commit()
+     emit('delete_emoji', data, broadcast=True)

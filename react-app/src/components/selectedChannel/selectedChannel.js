@@ -92,6 +92,9 @@ const SelectedChannel = () => {
         socket.on('post_emoji', () => {
             dispatch(getReactions())
         })
+        socket.on('delete_emoji', () => {
+            dispatch(getReactions())
+        })
         return (() => {
             socket.disconnect()
             console.log('--------------')
@@ -99,11 +102,6 @@ const SelectedChannel = () => {
             console.log('--------------')
         })
     }, [channelId])
-
-    // const deleteMessageHandler = async (messageId, e) => {
-    //     e.preventDefault()
-    //     dispatch(deleteMessage(serverId, channelId, messageId))
-    // }
 
     const updateMessageHandler = async (messageId, message_text, e) => {
         e.preventDefault()
@@ -126,29 +124,25 @@ const SelectedChannel = () => {
 
     // MouseEvent
 
-    function onEmojiClick(message_id, EmojiClickData, e) {
-        let emojiData = EmojiClickData
-        console.log("EmojiClickData.unified", EmojiClickData.unified)
-        // setInputValue(
-        //   (inputValue) =>
-        //     inputValue + (emojiData.isCustom ? emojiData.unified : emojiData.emoji)
-        // );
-        setSelectedEmoji(EmojiClickData.unified);
-        console.log('MESSAGE ID IN ON EMOJI CLICK:', message_id)
-        console.log('EMOJICLICKDATA.UNIFIED ', EmojiClickData.unified)
-        const reaction_type = EmojiClickData.unified
-        dispatch(postReactions(message_id, reaction_type))
-        dispatch(getReactions())
-        setReactionsModal(false)
-    }
+    // function onEmojiClick(message_id, EmojiClickData, e) {
+    //     let emojiData = EmojiClickData
+    //     console.log("EmojiClickData.unified", EmojiClickData.unified)
+    //     setSelectedEmoji(EmojiClickData.unified);
+    //     console.log('MESSAGE ID IN ON EMOJI CLICK:', message_id)
+    //     console.log('EMOJICLICKDATA.UNIFIED ', EmojiClickData.unified)
+    //     const reaction_type = EmojiClickData.unified
+    //     dispatch(postReactions(message_id, reaction_type))
+    //     dispatch(getReactions())
+    //     setReactionsModal(false)
+    // }
 
     const reactionDeleteHandler = async (reaction, message, e) => {
         if (reaction.user_id !== sessionUserId) {
             return
         }
-        console.log('HITTING DELETE REACTION DISPATCH')
-        dispatch(deleteReaction(reaction.id, message.id))
+        socket.emit("delete_emoji", { reaction_id : reaction.id })
     }
+
 
     const sendChat = (e) => {
         e.preventDefault()
