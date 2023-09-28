@@ -1,3 +1,5 @@
+import { createChannel } from "./channels";
+
 // Action Types
 const GET_ALL_SERVERS = 'servers/GET_ALL_SERVERS';
 const SET_CURRENT_SERVER = 'server/SET_CURRENT_SERVER';
@@ -67,6 +69,11 @@ export const postServer = (server) => async (dispatch)=> {
         const newServer = await response.json()
         console.log(newServer)
         // server id in response?
+        dispatch(createChannel(newServer.id, {
+            name: 'general',
+            owner_id: newServer.owner_id,
+            server_id: newServer.id,
+            private: false}))
         dispatch(getSingleServer(newServer.id))
     }
 }
