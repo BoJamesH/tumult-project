@@ -15,6 +15,7 @@ import SelectedChannel from "./components/selectedChannel/selectedChannel";
 import LandingPage from "./components/landingPage/landingPage";
 import Main from "./components/mainComponent/mainComponent"
 import { useSelector } from "react-redux";
+
 function App() {
   const dispatch = useDispatch();
   const  user  = useSelector(state => state.session.user)
