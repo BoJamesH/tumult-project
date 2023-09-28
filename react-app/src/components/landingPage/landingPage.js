@@ -87,6 +87,7 @@ function LandingPage({user}){
                     <h2>Create an invite-only place where you belong</h2>
                     <div>Discord servers are organized into topic-based channels where you can collaborate, share, and just talk about your day without clogging up a group chat.</div>
                 </div>
+
             </div>
             <div className="third-image-container">
                 <div>
@@ -177,7 +178,6 @@ function LandingPage({user}){
                 </div>
             <div>
         </div>
-
         </div>
     </>
     )
