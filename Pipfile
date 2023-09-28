@@ -28,6 +28,7 @@ wtforms = "==3.0.1"
 flask-socketio = "*"
 eventlet = "*"
 python-socketio = "==5.5.0"
+socketio = "*"
 
 [dev-packages]
 
