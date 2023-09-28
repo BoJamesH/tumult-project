@@ -55,6 +55,8 @@ const CreateChannelForm = () => {
     return (
     <section className="new-form-holder centered middled">
         <form className="create-pokemon-form" onSubmit={handleChannelCreate}>
+            <label>
+                Channel Name
         <input
             type="text"
             placeholder="Channel Name"
@@ -64,12 +66,14 @@ const CreateChannelForm = () => {
             value={name}
             onChange={updateName} />
             <span className='channel-errors'>{errorMessages.name}</span>
+            </label>
+            <label>
+                Private?
         <input
             type="checkbox"
-            placeholder="Private"
-
             checked={privateChannel}
             onChange={updatePrivate} />
+            </label>
         <button type="submit">Create new channel</button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>
         </form>

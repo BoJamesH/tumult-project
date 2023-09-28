@@ -84,7 +84,7 @@ const UpdateServerForm = () => {
         <input
             type="checkbox"
             placeholder="Private"
-            value={privateServer}
+            checked={privateServer}
             onChange={updatePrivate} />
             </label>
         <button type="submit">Update server</button>

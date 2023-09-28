@@ -10,9 +10,11 @@ const ChannelUtils = ({channel, server}) => {
     const history = useHistory()
     const dispatch = useDispatch()
     const sessionUserId = useSelector(state => state.session.user.id)
+    const channelServers = useSelector(state => state.channels.channelServers)
 
     const deleteChannelHandler = async (e) => {
         e.preventDefault()
+        if (channelServers.length < 2) return
         dispatch(deleteChannel(serverId, channel.id))
         history.push(`/servers/${serverId}`)
     }
