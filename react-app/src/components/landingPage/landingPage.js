@@ -54,7 +54,7 @@ function LandingPage({user}){
             </div>
             <img className="rightheaderimage" src="../images/headerright_splashart.png" alt="Tumult"/>
             </div>
-            <div>
+            <div className="second-image-container">
                 <div>
                     <img src="../images/pagetop_splashart.png" alt="Tumult"/>
                 </div>
@@ -63,14 +63,41 @@ function LandingPage({user}){
                     <div>Discord servers are organized into topic-based channels where you can collaborate, share, and just talk about your day without clogging up a group chat.</div>
                 </div>
             </div>
+            <div className="third-image-container">
+                <div>
+                    <h2>Where hanging out is easy</h2>
+                    <div>Grab a seat in a voice channel when you're free. Friends in your server can see you're around and instantly pop in to talk without having to call.</div>
+                </div>
+                <div>
+                    <img src="../images/pagemiddle_splashart.png" alt="Tumult"/>
+                </div>
+            </div>
+            <div className="fourth-image-container">
+                <div>
+                    <img src="../images/pagelower_splashart.png" alt="Tumult"/>
+                </div>
+                <div>
+                    <h2>From few to a fandom</h2>
+                    <div>Get any community running with moderation tools and custom member access. Give members special powers, set up private channels, and more.</div>
+                </div>
+            </div>
+            <div className="fifth-image-container">
+                <div>
+                    <h2>RELIABLE TECH FOR STAYING CLOSE</h2>
+                    <div>Low-latency voice and video feels like you’re in the same room. Wave hello over video, watch friends stream their games, or gather up and have a drawing session with screen share.</div>
+                </div>
+                <div>
+                    <img src="../images/pagebottom_splashart.png" alt="Tumult"/>
+                </div>
+            </div>
+            <div className="last-description-container">
+                <h2>Ready to start your journey?</h2>
+            </div>
         <div>
             <div>
             </div>
-            <img className="blueClouds" src="../images/header_blurpleclouds.png" alt="Tumult"/>
-            <img src="../images/header_redclouds.png" alt="Tumult"/>
-            <img src="../images/pagebottom_splashart.png" alt="Tumult"/>
-            <img src="../images/pagelower_splashart.png" alt="Tumult"/>
-            <img src="../images/pagemiddle_splashart.png" alt="Tumult"/>
+            {/* <img className="blueClouds" src="../images/header_blurpleclouds.png" alt="Tumult"/>
+            <img src="../images/header_redclouds.png" alt="Tumult"/> */}
         </div>
         </>
 
