@@ -32,12 +32,25 @@ export const getChannels = (serverId) => async (dispatch) => {
     const response = await fetch(`/api/channels/${serverId}`);
     if (response.ok) {
         const getServerChannels = await response.json();
-        console.log('getServerChannels: ', getServerChannels)
+        // console.log('getServerChannels: ', getServerChannels)
         const serverChannels = getServerChannels.channels
-        console.log('serverChannels: ', serverChannels)
+        // console.log('serverChannels: ', serverChannels)
         dispatch(setChannels(serverChannels));
+        // return serverChannels
     }
 };
+
+export const getChannelId = serverId => async (dispatch) => {
+    const response = await fetch(`/api/channels/${serverId}`);
+    if (response.ok) {
+        const getServerChannels = await response.json();
+        const serverChannels = getServerChannels.channels
+        console.log('serverChannels: ', serverChannels)
+        return serverChannels
+    } else {
+        return []
+    }
+}
 
 export const createChannel = (serverId, channelData) => async (dispatch) => {
     const response = await fetch(`/api/channels/${serverId}`, {

@@ -13,6 +13,7 @@ import CreateChannelForm from "./components/createChannel/createChannel";
 import UpdateChannelForm from "./components/updateChannelModal/updateChannel";
 import SelectedChannel from "./components/selectedChannel/selectedChannel";
 import LandingPage from "./components/landingPage/landingPage";
+import Main from "./components/mainComponent/mainComponent"
 import { useSelector } from "react-redux";
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/main/:serverId/:channelId">
+            <Main />
+          </Route>
           <Route exact path="/servers/new">
             <CreateServerForm />
           </Route>
