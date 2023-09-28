@@ -2,6 +2,7 @@ import { NavLink, useHistory  } from "react-router-dom"
 import "./landingPage.css"
 import OpenModalButton from "../openModalButton";
 import LoginFormModal from "../loginFormModal";
+import SignupFormModal from "../signupFormModal";
 
 function LandingPage({user}){
     const history = useHistory()
@@ -30,11 +31,12 @@ function LandingPage({user}){
                         Fill4
                     </span>
                 { user ? (
-                    <button onClick={handleOpenDiscord}>Open Discord</button>
+                    <button className="open-discord" onClick={handleOpenDiscord}>Open Discord</button>
                     ) : (
                         <OpenModalButton
                         buttonText="Log In"
-                        modalComponent={<LoginFormModal />}
+                        className='nav-login'
+                        modalComponent={<LoginFormModal/>}
                         />
                     )
                 }
@@ -48,8 +50,25 @@ function LandingPage({user}){
                     <div>...where you can belong to a school club, a gaming group, or a worldwide art community. Where just you and a handful of friends can spend time together. A place that makes it easy to talk every day and hang out more often.</div>
                 </div>
                 <div>
-                    <button>Log In</button>
-                    <button>Sign Up</button>
+                    { user ? (
+                        <button className="open-discord-header" onClick={handleOpenDiscord}>Open Discord in your browser</button>
+                        ) : (
+                        <>
+                            <OpenModalButton
+                            buttonText="Log In"
+                            // onItemClick={closeMenu}
+                            modalComponent={<LoginFormModal />}
+                            
+                            />
+
+                            <OpenModalButton
+                            buttonText="Sign Up"
+                            // onItemClick={closeMenu}
+                            modalComponent={<SignupFormModal />}
+                            />
+                        </>
+                        )
+                    }
                 </div>
             </div>
             <img className="rightheaderimage" src="../images/headerright_splashart.png" alt="Tumult"/>
