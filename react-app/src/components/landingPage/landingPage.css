@@ -1,0 +1,144 @@
+.tumultLogo {
+    height: 35px;
+    width: 35px;
+}
+
+.title-tumult{
+    text-decoration: none;
+    color:black
+}
+
+.home-nav-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color:#5865f2;;
+}
+
+.imagine-container{
+    grid-column: 3/span 8;
+    text-align: center;
+}
+
+.leftheaderimage{
+    height: 400px;
+    width: 500px;
+}
+
+.rightheaderimage{
+    height: 400px;
+    width: 500px;
+}
+
+.header-image-container{
+    display: flex;
+    justify-content: space-between;
+    background-color:#5865f2;;
+}
+
+.second-image-container{
+    display: flex;
+    align-items: center;
+}
+
+.third-image-container{
+    display: flex;
+    align-items: center;
+    background-color: gainsboro
+}
+
+.fourth-image-container{
+    display: flex;
+    align-items: center;
+}
+
+.fifth-image-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:gainsboro;
+}
+
+.last-description-container{
+    display: flex;
+    justify-content: center;
+}
+
+.nav-login{
+    padding: 10px 50px;
+    border-radius: 20px;
+}
+
+.open-tumult{
+    padding: 10px;
+    border-radius: 20px;
+    background-color: white;
+    color:#23272a;
+
+}
+
+.open-tumult-header{
+    margin-top: 10px;
+    padding: 10px 80px;
+    border-radius: 20px;
+    background-color: white;
+    color:#23272a;
+}
+
+.title-logo-container{
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+
+.github-logo{
+    height: 20px;
+    width: 20px
+}
+
+.linked-logo{
+    height: 20px;
+    width: 20px
+}
+
+.about-link-container{
+    display: flex;
+    justify-content: space-around;
+    background-color: #5865f2;;
+    color: white;
+}
+
+.github-linked-container{
+    display:flex;
+}
+
+.homepage-container{
+    display:grid
+}
+
+.second-image-container{
+    display: flex;
+    align-items: center;
+}
+
+.third-image-container{
+    display: flex;
+    align-items: center;
+}
+
+.fourth-image-container{
+    display: flex;
+    align-items: center;
+}
+
+.fifth-image-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.last-description-container{
+    display: flex;
+    justify-content: center;
+}

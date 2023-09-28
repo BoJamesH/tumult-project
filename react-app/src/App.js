@@ -12,9 +12,13 @@ import UpdateServerForm from "./components/updateServerModal/updateServer";
 import CreateChannelForm from "./components/createChannel/createChannel";
 import UpdateChannelForm from "./components/updateChannelModal/updateChannel";
 import SelectedChannel from "./components/selectedChannel/selectedChannel";
+import LandingPage from "./components/landingPage/landingPage";
+import Main from "./components/mainComponent/mainComponent"
+import { useSelector } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
+  const  user  = useSelector(state => state.session.user)
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
@@ -25,6 +29,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/main/:serverId/:channelId">
+            <Main />
+          </Route>
           <Route exact path="/servers/new">
             <CreateServerForm />
           </Route>
@@ -42,6 +49,9 @@ function App() {
           </Route>
           <Route exact path="/servers/:serverId/:channelId">
             <SelectedChannel />
+          </Route>
+          <Route path="/home">
+            <LandingPage user={user}/>
           </Route>
           <Route path="/login" >
             <LoginFormPage />

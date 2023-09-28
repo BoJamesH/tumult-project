@@ -44,7 +44,7 @@ const CreateServerForm = () => {
                 // "Error: "
                 setErrorMessages({ overall: error.toString().slice(7) })
             }
-            history.push(`/servers`);
+            // history.push(`/servers`);
         } else {
             setErrorMessages(validationErrors)
         }
@@ -52,7 +52,7 @@ const CreateServerForm = () => {
 
 
     const handleCancelClick = (e) => {
-    e.preventDefault();
+        e.preventDefault();
         history.push('/servers')
 
     };
@@ -60,6 +60,8 @@ const CreateServerForm = () => {
     return (
     <section className="new-form-holder centered middled">
         <form className="create-pokemon-form" onSubmit={handleServerCreate}>
+        <label>
+            Server Name
         <input
             type="text"
             placeholder="Server Name"
@@ -68,13 +70,17 @@ const CreateServerForm = () => {
             required
             value={name}
             onChange={updateName} />
-            <span className='server-errors'>{errorMessages.name}</span>
+                <span className='server-errors'>{errorMessages.name}</span>
+        </label>
+        <label>
+            Server Image URL
         <input
             type="url"
             placeholder="Server Label Image URL"
             required
             value={labelImage}
             onChange={updateLabelImage} />
+        </label>
         <label>Private?
         <input
             type="checkbox"
