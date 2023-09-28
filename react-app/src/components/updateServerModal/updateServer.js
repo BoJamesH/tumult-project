@@ -7,7 +7,7 @@ import { updateServer } from '../../store/servers'
 const UpdateServerForm = () => {
     const userId = useSelector(state => state.session.user.id)
     const serverToUpdate = useSelector(state => state.servers.selectedServer)
-    // const [errorMessages, setErrorMessages] = useState({});
+    const [errorMessages, setErrorMessages] = useState({});
     const dispatch = useDispatch();
     const history = useHistory();
     const [name, setName] = useState(serverToUpdate.name);
