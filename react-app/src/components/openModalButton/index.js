@@ -1,5 +1,6 @@
 import React from 'react';
 import { useModal } from '../../context/Modal';
+import './openModalButton.css'
 
 function OpenModalButton({
   modalComponent, // component to render inside the modal

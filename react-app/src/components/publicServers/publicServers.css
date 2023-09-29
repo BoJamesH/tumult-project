@@ -1,10 +1,29 @@
-.main-public-server-list{
-    border: solid black 1px;
-}
-
-.server-card{
-    border: 1px solid;
+.server-image {
     border-radius: 50%;
-    padding: 15% 0%;
+    height: 50px;
+    width: 50px;
+    padding: 5px;
+    display: flex;
+    cursor: pointer;
+    transition: all 0.2s;
+    object-fit: cover;
 }
 
+.server-image:hover {
+    border-radius: 40%;
+}
+
+.server-image.selected {
+    border-radius: 40%;
+}
+
+.new-server-button.button {
+    padding: 10px 50px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.new-server-button.button:hover {
+    border-radius: 40%;
+}

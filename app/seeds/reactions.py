@@ -5,17 +5,17 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_reactions():
     reaction1 = Reaction(
-        message_id=1, user_id=1, reaction_type='thumbsup')
+        message_id=1, user_id=1, reaction_type='1f60e')
     reaction2 = Reaction(
-        message_id=2, user_id=2, reaction_type='thumbsdown')
+        message_id=2, user_id=2, reaction_type='1f1eb-1f1ee')
     reaction3 = Reaction(
-        message_id=3, user_id=3, reaction_type='reaction3')
+        message_id=3, user_id=3, reaction_type='1f60e')
     reaction4 = Reaction(
-        message_id=4, user_id=4, reaction_type='reaction4')
+        message_id=4, user_id=4, reaction_type='1f60e')
     reaction5 = Reaction(
-        message_id=5, user_id=5, reaction_type='reaction5')
+        message_id=5, user_id=5, reaction_type='1f480')
     reaction6 = Reaction(
-        message_id=5, user_id=6, reaction_type='reaction6')
+        message_id=5, user_id=6, reaction_type='1f480')
 
 
     db.session.add(reaction1)

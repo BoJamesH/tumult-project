@@ -1,0 +1,17 @@
+.nav-login {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ffffff; /* Add background color */
+    padding: 0px;
+    color: rgb(65, 2, 146); /* Text color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.nav-login:hover {
+    border-radius: 40%;
+}

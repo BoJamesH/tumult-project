@@ -9,6 +9,7 @@ import OpenModalButton from '../openModalButton'
 import CreateChannelForm from '../createChannel/createChannel'
 import UpdateServerForm from '../updateServerModal/updateServer'
 import DeleteServerModal from '../deleteModal/deleteServerModal'
+import './SelectedServer.css'
 
 const SelectedServer = () => {
     const history = useHistory()
