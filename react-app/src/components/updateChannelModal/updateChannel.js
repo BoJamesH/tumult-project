@@ -10,13 +10,13 @@ const UpdateChannelForm = () => {
     const userId = useSelector(state => state.session.user.id)
     const {serverId} = useParams();
     const {channelId} = useParams();
-    // console.log("CHANNNEL ID", channelId)
-    // console.log( serverId)
+     console.log("CHANNNEL ID", channelId)
+     console.log( serverId)
     const serverChannels = useSelector(state => state.channels.channelServers)
     // console.log('SERVER CHANNELS', serverChannels)
-    serverChannels.map((channel) => console.log('MAPPING CHANNEL ID',channel.id))
+    //serverChannels.map((channel) => console.log('MAPPING CHANNEL ID',channel.id))
     const channelToUpdate = serverChannels.find((channel) => channel.id == channelId)
-    // console.log('CHANNEL TO UPDATE',channelToUpdate)
+     console.log('CHANNEL TO UPDATE',channelToUpdate)
     const [errorMessages, setErrorMessages] = useState({});
     const dispatch = useDispatch();
     const history = useHistory();

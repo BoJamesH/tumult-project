@@ -4,13 +4,18 @@ import { Link, useParams } from 'react-router-dom'
 import { deleteChannel } from '../../store/channels'
 import { useHistory } from 'react-router-dom'
 import { getMessages } from '../../store/messages'
+import OpenModalButton from '../openModalButton'
+import UpdateChannelForm from '../updateChannelModal/updateChannel'
 
-const ChannelUtils = ({channel, server}) => {
+const ChannelUtils = ({ channel, server }) => {
     const { serverId } = useParams()
     const history = useHistory()
     const dispatch = useDispatch()
     const sessionUserId = useSelector(state => state.session.user.id)
     const channelServers = useSelector(state => state.channels.channelServers)
+
+    
+    //const channelToUpdate = channelServers.find(channel = channel.id == channelID) || { name: '', private: false }
 
     const deleteChannelHandler = async (e) => {
         e.preventDefault()
@@ -30,20 +35,22 @@ const ChannelUtils = ({channel, server}) => {
         history.push(`/main/${server.id}/${channel.id}`)
     }
 
-
     return (
         <ul>
-        <li>
-            <div onClick={selectChannelHandler}>{channel.name}</div>
-        </li>
-        <li hidden={!(sessionUserId == channel.owner_id || sessionUserId == server.owner_id)}>
-            <button onClick={updateChannelHandler}>UPDATE CHANNEL</button>
-        </li>
-        <li hidden={!(sessionUserId == channel.owner_id || sessionUserId == server.owner_id)}>
-            <button onClick={deleteChannelHandler}>DELETE CHANNEL</button>
-        </li>
-    </ul>
+            <li>
+                <div onClick={selectChannelHandler}>{channel.name}</div>
+            </li>
+            <li hidden={!(sessionUserId == channel.owner_id || sessionUserId == server.owner_id)}>
+                <button onClick={updateChannelHandler}>UPDATE CHANNEL</button>
+                <OpenModalButton
+                    modalComponent={<UpdateChannelForm channel={channel} />}
+                    buttonText={"Update Channel"}
+                />
+            </li>
+            <li hidden={!(sessionUserId == channel.owner_id || sessionUserId == server.owner_id)}>
+                <button onClick={deleteChannelHandler}>DELETE CHANNEL</button>
+            </li>
+        </ul>
     )
 }
-
 export default ChannelUtils
