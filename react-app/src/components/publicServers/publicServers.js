@@ -34,10 +34,10 @@ const PublicServers = () => {
 
     console.log("SERVER DATA", servers)
 
-    const handleNewServer = (e) => {
-        e.preventDefault()
-        history.push('/servers/new')
-    }
+    // const handleNewServer = (e) => {
+    //     e.preventDefault()
+    //     history.push('/servers/new')
+    // }
 
     if(!servers.length) return null
 
@@ -52,7 +52,7 @@ const PublicServers = () => {
                 })}
             </div>
             <div>
-                <button to='/servers/new' onClick={handleNewServer}>Create a new server</button>
+                {/* <button to='/servers/new' onClick={handleNewServer}>Create a new server</button> */}
                 <OpenModalButton
                     modalComponent={<CreateServerForm />}
                     buttonText="Create a new Server"
