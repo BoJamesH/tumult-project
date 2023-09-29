@@ -1,6 +1,8 @@
 # Tumult - Discord Clone
 
-Welcome to Tumult, your go-to destination for creating and managing online communities with ease! Tumult is an open-source project that brings the power of communication and collaboration to your fingertips. Whether you're a gaming group, a study club, or just a bunch of friends looking to argue, Tumult provides you with all the tools you need to forge your exclusive battleground where you belong.
+Welcome to Tumult, your go-to destination for creating and managing online communities with ease! Tumult is an open-source project that brings the power of communication and collaboration to your fingertips. Whether you're a gaming group, a study club, or just a bunch of friends looking to argue, Tumult provides you with all the tools you need to forge your exclusive battleground where you belong. Come check out our live application at:
+
+https://tumult.onrender.com/
 
 ![Tumult](public/images/tumult_splash_header1.png)
 
@@ -10,7 +12,8 @@ Welcome to Tumult, your go-to destination for creating and managing online commu
 - [Database Schema](https://github.com/BoJamesH/tumult-project/wiki/Database-Schema)
 - [Features](#features)
 - [Contributing](#Contributing)
-  
+- [Getting Started](#getting-started) <!-- Added link to Getting Started section -->
+
 ## Contributing
 
 If you'd like to contribute to Tumult, please check out our team members' GitHub profiles:
