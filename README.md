@@ -6,10 +6,11 @@ Welcome to Tumult, your go-to destination for creating and managing online commu
 
 ## Table of Contents
 
+## Table of Contents
+
+- [Wiki](https://github.com/BoJamesH/tumult-project/wiki)
+- [Database Schema](https://github.com/BoJamesH/tumult-project/wiki/Database-Schema)
 - [Features](#features)
-- [Getting Started](#getting-started)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
