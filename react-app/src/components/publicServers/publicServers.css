@@ -1,0 +1,10 @@
+.main-public-server-list{
+    border: solid black 1px;
+}
+
+.server-card{
+    border: 1px solid;
+    border-radius: 50%;
+    padding: 15% 0%;
+}
+
