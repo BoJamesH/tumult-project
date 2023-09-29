@@ -1,12 +1,115 @@
-.emoji-span {
-    border: solid 2px rgb(131, 42, 153);
-    color: white;
-    display: inline-block;
-    height: 20px;
-    cursor: pointer;
-    border-radius: 5px;
+
+.messages {
+    height: auto;
+    flex-grow: 1;
+    overflow-y: auto;
 }
 
 .message {
-    height: 30px
+    height: auto;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.messages-overall-div {
+    display: flex;
+    flex-direction: column;
+    height: 800px;
+    background-color: #252525;
+    padding-left: 40px;
+    color: white;
+    padding-top: 20px;
+    word-wrap: break-word;
+    padding-right: 20px;
+    max-width: 1000px;
+}
+
+.message-display-name {
+    color: rgb(146, 44, 177);
+    font-weight: 700;
+}
+
+.message-date-span {
+    margin-left: 30px;
+    font-size: 10px;
+    color: grey;
+}
+
+.message-text-div {
+    margin-top: 10px;
+    margin-right: 80px;
+    font-size: 14px;
+}
+
+.emoji-span {
+    border: solid 1px rgb(131, 42, 153);
+    color: white;
+    display: inline-block;
+    height: 22px;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 1px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.message-update-delete-div {
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.message-reaction-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: rgb(148, 148, 148);
+    font-size: 12px;
+}
+
+.message-delete-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: rgb(148, 148, 148);
+    margin-right: 20px;
+    font-size: 12px;
+}
+
+.message-update-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: rgb(148, 148, 148);
+    margin-right: 20px;
+    font-size: 12px;
+}
+
+.emoji-picker-div {
+    display: inline-block;
+}
+
+.emoji-picker-itself {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+}
+
+.message-input-field {
+    background-color: #181a1c;
+    border-radius: 5px;
+    width: fit-content;
+    height: 30px;
+    width: 700px;
+    color: white;
+}
+
+.submit-message-button {
+    height: 35px;
+    width: 80px;
 }

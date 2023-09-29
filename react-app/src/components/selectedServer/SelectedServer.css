@@ -1,0 +1,11 @@
+.button {
+    background-color: brown;
+}
+
+.server-details-div,
+.selected-server {
+    background-color: #2c2d32;
+    color: #969aa5;
+}
+
+

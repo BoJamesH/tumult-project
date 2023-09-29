@@ -1,0 +1,39 @@
+.server-image {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    padding: 5px;
+    display: flex;
+    cursor: pointer;
+    transition: all 0.2s;
+    object-fit: cover;
+}
+
+.server-image:hover {
+    border-radius: 40%;
+}
+
+.server-image.selected {
+    border-radius: 40%;
+}
+
+.new-server-button.button {
+    padding: 10px 50px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: #1e1f22;
+    color: #969aa5;
+}
+
+.new-server-button.button:hover {
+    border-radius: 40%;
+    color: aquamarine;
+}
+
+.server-list-comp {
+    background-color: #1e1f22;
+    justify-content: center;
+    padding:10px ;
+    height: 100%;
+}

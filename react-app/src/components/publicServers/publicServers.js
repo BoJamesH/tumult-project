@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getOneServer, getPublicServers  } from '../../store/servers'
 import { useHistory } from 'react-router-dom'
@@ -7,11 +7,14 @@ import { getChannelId, getChannels } from '../../store/channels'
 import { getMessages } from '../../store/messages'
 import OpenModalButton from '../openModalButton'
 import CreateServerForm from '../createServer/createServer'
+import './publicServers.css'
 
 const PublicServers = () => {
     const history = useHistory()
     const dispatch = useDispatch()
     const servers = useSelector( state => state.servers.allServers )
+
+    const [selectedServerId, setSelectedServerId] = useState(null);
 
 
     const handleServerClick = async (serverId, e) => {
@@ -20,6 +23,7 @@ const PublicServers = () => {
         console.log('-----------------------------------')
         console.log('RESPONSE: ', response)
         console.log('-----------------------------------')
+        setSelectedServerId(serverId);
         const firstChannelId = response[0].id
         dispatch(getChannels(serverId))
         dispatch(getOneServer(serverId))
@@ -43,22 +47,28 @@ const PublicServers = () => {
 
     return(
         <>
+        <div className='server-list-comp'>
             <div className='public-server-list'>
                 {servers.map(server => {
                     if (!server.id) return null
                     return (
-                        <div key={server.id} className='server-card' onClick={(e) => handleServerClick(server.id, e)}>{server.name}</div>
-                    )
-                })}
+                        <img
+                        className={`server-image ${selectedServerId === server.id ? 'selected' : ''}`}
+                        src={server.label_image}
+                        alt={server.name}
+                        title={server.name}
+                        onClick={(e) => handleServerClick(server.id, e)}
+                        />
+                        )
+                    })}
             </div>
-            <div>
-                {/* <button to='/servers/new' onClick={handleNewServer}>Create a new server</button> */}
+            <div className='new-server-button'>
                 <OpenModalButton
                     modalComponent={<CreateServerForm />}
-                    buttonText="Create a new Server"
-
+                    buttonText="+"
                 />
             </div>
+        </div>
         </>
     )
 }

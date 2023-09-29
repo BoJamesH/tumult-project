@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux"
 import { deleteMessage, getMessages, updateMessage, postMessage } from "../../store/messages"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { useParams } from "react-router-dom"
 import EmojiPicker, { Emoji, EmojiStyle, EmojiClickData } from 'emoji-picker-react'
 import { deleteReaction, getReactions, postReactions } from "../../store/reactions"
 import { io } from 'socket.io-client'
 import './selectedChannel.css'
+
 
 // import ReactionsModal from "../reactionsModal/reactionsModal"
 
@@ -14,8 +15,6 @@ let socket;
 const SelectedChannel = () => {
     const { channelId } = useParams()
     const { serverId } = useParams()
-    // console.log('SERVERID', serverId)
-    // console.log('CHANNEL ID', channelId)
     const dispatch = useDispatch()
     const [message, setMessage] = useState('')
     const [editMessage, setEditMessage ] = useState(false)
@@ -24,7 +23,7 @@ const SelectedChannel = () => {
     const [reactionsModal, setReactionsModal] = useState(false)
     const [ reactionMessageId, setReactionMessageId ] = useState(null)
     const [selectedEmoji, setSelectedEmoji] = useState('');
-    // const [inputValue, setInputValue] = useState("");
+    const messagesRef = useRef(null);
     const [websocketMessage, setWebSocketMessage] = useState([])
     const [chatInput, setChatInput] = useState("")
     const [ sentMessage, setSentMessage ] = useState(null)
@@ -34,6 +33,7 @@ const SelectedChannel = () => {
     const allReactions = useSelector(state =>  state.reactions.allReactions)
     console.log('allReactions:', allReactions)
     const [errorMessages, setErrorMessages] = useState({});
+    const emojiPickerRef = useRef(null);
 
     useEffect( () => {
         dispatch(getMessages(serverId, channelId))
@@ -103,6 +103,24 @@ const SelectedChannel = () => {
         })
     }, [channelId])
 
+    useEffect(() => {
+        scrollToBottom();
+    }, [channelMessages, chatInput]);
+
+    useEffect(() => {
+        if (reactionsModal) {
+            document.addEventListener('mousedown', handleClickOutsideEmojiPicker);
+        } else {
+            document.removeEventListener('mousedown', handleClickOutsideEmojiPicker);
+        }
+
+        // Cleanup event listener on component unmount
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutsideEmojiPicker);
+        };
+    }, [reactionsModal]);
+
+
     const updateMessageHandler = async (messageId, message_text, e) => {
         e.preventDefault()
         setEditMessageId(messageId)
@@ -110,11 +128,11 @@ const SelectedChannel = () => {
         setEditMessageText(message_text)
     }
 
-    const submitEditMessageHandler = async(messageId, message_text, e) => {
-        e.preventDefault()
-        dispatch(updateMessage(serverId, channelId, messageId, message_text))
-        setEditMessage(false)
-    }
+    // const submitEditMessageHandler = async(messageId, message_text, e) => {
+    //     e.preventDefault()
+    //     dispatch(updateMessage(serverId, channelId, messageId, message_text))
+    //     setEditMessage(false)
+    // }
 
     const reactionClickHandler = async(messageId, e) => {
         e.preventDefault()
@@ -190,11 +208,64 @@ const SelectedChannel = () => {
         setReactionsModal(false)
     }
 
+    function formatDate(dateString) {
+        const messageDate = new Date(dateString);
+        const now = new Date();
+        if (
+            messageDate.getDate() === now.getDate() &&
+            messageDate.getMonth() === now.getMonth() &&
+            messageDate.getFullYear() === now.getFullYear()
+        ) {
+            const hours = messageDate.getHours();
+            const minutes = messageDate.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const formattedHours = hours % 12 || 12;
+            const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+
+            return `Today at ${formattedHours}:${formattedMinutes} ${ampm}`;
+        } else if (
+            messageDate.getDate() === now.getDate() - 1 &&
+            messageDate.getMonth() === now.getMonth() &&
+            messageDate.getFullYear() === now.getFullYear()
+        ) {
+            const hours = messageDate.getHours();
+            const minutes = messageDate.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const formattedHours = hours % 12 || 12;
+            const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+
+            return `Yesterday at ${formattedHours}:${formattedMinutes} ${ampm}`;
+        } else {
+            const month = messageDate.getMonth() + 1;
+            const day = messageDate.getDate();
+            const year = messageDate.getFullYear();
+            const hours = messageDate.getHours();
+            const minutes = messageDate.getMinutes();
+
+            const formattedDate = `${month}/${day}/${year}`;
+            const formattedTime = `${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
+
+            return `${formattedDate} ${formattedTime}`;
+        }
+    }
+
+    const scrollToBottom = () => {
+        if (messagesRef.current) {
+            messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+        }
+    };
+
+    const handleClickOutsideEmojiPicker = (event) => {
+        if (emojiPickerRef.current && !emojiPickerRef.current.contains(event.target)) {
+            setReactionsModal(false);
+        }
+    };
+
 
     return (
-        <>
+        <div className="messages-overall-div">
         {channelMessages.length ?
-            <div className='messages'>
+            <div className='messages' ref={messagesRef}>
                 {channelMessages.map(message => {
                     if (!message.id) return null
                     return (
@@ -215,13 +286,17 @@ const SelectedChannel = () => {
 
                             ) : (
                             <div key={message.id} className='message'>
-                            {message.user.display_name}{message.created_at}
-                            {message.message_text}
-                            {/* <Link to="/" */}
-                            {/* <messageUtils message={message}/> */}
-                            <button hidden={sessionUserId !== message.user_id} onClick={(e) => updateMessageHandler(message.id, message.message_text, e)}>Update Message</button>
-                            <button hidden={sessionUserId !== message.user_id} onClick={(e) => deleteChat(message.id, e)}>Delete Message</button>
-                            <button onClick={(e) => reactionClickHandler(message.id, e)}>Reactions</button>
+                            <div className="message-name-date-div">
+                                <span className="message-display-name">
+                                    {message.user.display_name}
+                                </span>
+                            <span className="message-date-span">
+                                {formatDate(message.created_at)}
+                            </span>
+                            </div>
+                            <div className="message-text-div">
+                                {message.message_text}
+                            </div>
                             {allReactions.length &&
                                 allReactions.filter((reaction) => reaction.message_id == message.id).map((reaction) => {
                                     {console.log('Reaction ', reaction.message_id)}
@@ -234,13 +309,20 @@ const SelectedChannel = () => {
                                     )
                                 })
                             }
+                            <div className="message-update-delete-div">
+                            <button className="message-update-button"  hidden={sessionUserId !== message.user_id} onClick={(e) => updateMessageHandler(message.id, message.message_text, e)}>Edit</button>
+                            <button className="message-delete-button" hidden={sessionUserId !== message.user_id} onClick={(e) => deleteChat(message.id, e)}>Delete</button>
+                            <button className="message-reaction-button" onClick={(e) => reactionClickHandler(message.id, e)}>React</button>
+                            </div>
                             {reactionsModal && reactionMessageId == message.id &&
-                                  <div>
+                                  <div className="emoji-picker-div">
                                   <EmojiPicker
                                       onEmojiClick={(e) => emojiChat(message.id, e)}
                                       autoFocusSearch={false}
                                       emojiStyle={EmojiStyle.DARK}
                                       theme={'dark'}
+                                      width={700}
+                                      className='emoji-picker-itself'
                                   />
                                 </div>}
                             </div>
@@ -252,13 +334,16 @@ const SelectedChannel = () => {
             </div> : null
         }
         <form onSubmit={sendChat}>
+        {/* <div ref={containerRef} className="auto-growing-input-container"> */}
             <input
                 value={chatInput}
                 onChange={(e) => setChatInput(e.target.value)}
+                className="message-input-field"
             />
-            <button type="submit">Send</button>
+            {/* </div> */}
+            <button className="submit-message-button" type="submit">Send</button>
         </form>
-        </>
+        </div>
     )
 }
 

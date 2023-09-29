@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createChannel, getChannels } from '../../store/channels'
 import { useModal } from "../../context/Modal";
+import './createChannel.css'
 
 const CreateChannelForm = () => {
     const userId = useSelector(state => state.session.user.id)
@@ -57,29 +58,42 @@ const CreateChannelForm = () => {
     };
 
     return (
-    <section className="new-form-holder centered middled">
-        <form className="create-pokemon-form" onSubmit={handleChannelCreate}>
-            <label>
-                Channel Name
-        <input
-            type="text"
-            placeholder="Channel Name"
-            minLength={1}
-            maxLength={30}
-            required
-            value={name}
-            onChange={updateName} />
+    <section className="create-channel-container">
+        <h2>Create a Channel</h2>
+        <form className="create-channel-form-container" onSubmit={handleChannelCreate}>
+
             <span className='channel-errors'>{errorMessages.name}</span>
-            </label>
-            <label>
-                Private?
-        <input
-            type="checkbox"
-            checked={privateChannel}
-            onChange={updatePrivate} />
-            </label>
-        <button type="submit">Create new channel</button>
-        <button type="button" onClick={handleCancelClick}>Cancel</button>
+            <div>
+
+                <label>
+                    CHANNEL NAME
+                </label>
+                <input
+                type="text"
+                placeholder="Channel Name"
+                minLength={1}
+                maxLength={30}
+                required
+                value={name}
+                onChange={updateName} />
+            </div>
+
+            <div>
+                <label>
+                    PRIVATE
+                    <input
+                    className='private-input'
+                    type="checkbox"
+                    checked={privateChannel}
+                    onChange={updatePrivate} />
+                </label>
+            </div>
+
+            <div className='create-channel-buttons-container'>
+                <button className="create-channel-cancel-button-modal" type="button" onClick={handleCancelClick}>Cancel</button>
+                <button className="create-channel-button-modal" type="submit">Create Channel</button>
+            </div>
+
         </form>
     </section>
     );
