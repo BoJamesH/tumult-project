@@ -1,8 +1,7 @@
 import PublicServers from "../publicServers/publicServers"
 import SelectedServer from "../selectedServer/selectedServer"
 import SelectedChannel from "../selectedChannel/selectedChannel"
-import { useParams } from "react-router-dom/cjs/react-router-dom.min"
-import { useEffect, useState } from "react"
+import '../mainComponent/mainComponent.css'
 
 
 const Main = () => {
@@ -20,13 +19,21 @@ const Main = () => {
     //     setServerFocusId(serverId)
     // },[serverId])
 
-    
+
 
     return (
         <>
-            <PublicServers />
-            <SelectedServer />
-            <SelectedChannel />
+        <div className="main-overall-div">
+            <div className="main-servers-div">
+                <PublicServers />
+            </div>
+            <div className="main-selected-servers-div">
+                <SelectedServer />
+            </div>
+            <div className="main-selected-channel-div">
+                <SelectedChannel />
+            </div>
+        </div>
         </>
 
     )
