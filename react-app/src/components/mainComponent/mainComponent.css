@@ -1,4 +1,19 @@
-.main-component-container{
+.main-overall-div {
     display: flex;
-    align-items: baseline;
+    flex-direction: row;
+}
+
+.main-servers-div {
+    flex: 1;
+    margin: 20px;
+}
+
+.main-selected-servers-div {
+    flex: 2;
+    margin: 20px;
+}
+
+.main-selected-channel-div {
+    flex: 7;
+    margin: 20px;
 }

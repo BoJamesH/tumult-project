@@ -1,12 +1,89 @@
 .emoji-span {
-    border: solid 2px rgb(131, 42, 153);
+    border: solid 1px rgb(131, 42, 153);
     color: white;
     display: inline-block;
-    height: 20px;
+    height: 16px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 3px;
+    padding: 1px;
+    margin-right: 5px;
+    margin-top: 5px;
 }
 
 .message {
-    height: 30px
+    height: auto;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.messages-overall-div {
+    display: flex;
+    flex-direction: column;
+    height: 700px;
+    background-color: #252525;
+}
+
+.message-display-name {
+    color: rgb(99, 27, 121);
+}
+
+.message-date-span {
+    margin-left: 30px;
+    font-size: 10px;
+    color: grey;
+}
+
+.message-text-div {
+    margin-top: 10px;
+    margin-right: 80px;
+}
+
+.message-update-delete-div {
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.message-reaction-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: blue;
+    font-size: 12px;
+}
+
+.message-delete-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: blue;
+    margin-right: 20px;
+    font-size: 12px;
+}
+
+.message-update-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: blue;
+    margin-right: 20px;
+    font-size: 12px;
+}
+
+.message-input-field {
+    background-color: #181a1c;
+    border-radius: 5px;
+    width: fit-content;
+    height: 30px;
+    width: 600px;
+}
+
+.submit-message-button {
+    height: 35px;
+    width: 80px;
 }
