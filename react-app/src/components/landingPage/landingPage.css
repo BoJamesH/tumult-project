@@ -1,144 +1,152 @@
+/* Define the Discord-like font */
+body {
+    font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
 .tumultLogo {
     height: 35px;
     width: 35px;
 }
 
-.title-tumult{
+.title-tumult,
+.black-link {
     text-decoration: none;
-    color:black
+    color: white; /* Updated to white color at the top of the page */
 }
 
-.home-nav-container{
+.home-nav-container {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background-color:#5865f2;;
+    background-color: #ED4245; /* Updated to the specified red color */
 }
 
-.imagine-container{
+.imagine-container {
     grid-column: 3/span 8;
     text-align: center;
 }
 
-.leftheaderimage{
-    height: 400px;
-    width: 500px;
+/* Updated left header image dimensions as percentages */
+.leftheaderimage {
+    height: 100%;
+    width: 100%;
 }
 
-.rightheaderimage{
-    height: 400px;
-    width: 500px;
+.rightheaderimage {
+    height: 100%;
+    width: 100%;
 }
 
-.header-image-container{
+.header-image-container {
     display: flex;
     justify-content: space-between;
-    background-color:#5865f2;
+    background-color: #ED4245; /* Updated to the specified red color */
 }
 
-.second-image-container{
+.second-image-container {
     display: flex;
     align-items: center;
 }
 
-.third-image-container{
+.third-image-container {
     display: flex;
     align-items: center;
-    background-color: gainsboro
+    background-color: gainsboro;
 }
 
-.fourth-image-container{
+.fourth-image-container {
     display: flex;
     align-items: center;
 }
 
-.fifth-image-container{
+.fifth-image-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color:gainsboro;
+    background-color: gainsboro;
 }
 
-.last-description-container{
+.last-description-container {
     display: flex;
     justify-content: center;
 }
 
-.nav-login{
+.nav-login {
     padding: 10px 50px;
     border-radius: 20px;
 }
 
-.open-tumult{
+.open-tumult {
     padding: 10px;
     border-radius: 20px;
     background-color: white;
-    color:#23272a;
-
+    color: #23272a;
+    cursor: pointer; /* Change cursor on hover */
+    transition: box-shadow 0.3s ease; /* Add transition for shadow */
 }
 
-.open-tumult-header{
+.open-tumult-header {
     margin-top: 10px;
     padding: 10px 80px;
     border-radius: 20px;
     background-color: white;
-    color:#23272a;
+    color: #23272a;
 }
 
-.title-logo-container{
+.title-logo-container {
     display: flex;
     align-items: center;
     column-gap: 15px;
 }
 
-.github-logo{
+.github-logo {
     height: 20px;
-    width: 20px
+    width: 20px;
 }
 
-.linked-logo{
+.linked-logo {
     height: 20px;
-    width: 20px
+    width: 20px;
 }
 
-.about-link-container{
+.about-link-container {
     display: flex;
     justify-content: space-around;
-    background-color: #5865f2;;
+    background-color: #ED4245; /* Updated to the specified red color */
     color: white;
 }
 
-.github-linked-container{
-    display:flex;
+.github-linked-container {
+    display: flex;
 }
 
-.homepage-container{
-    display:grid
+.homepage-container {
+    display: grid;
 }
 
-.second-image-container{
+.second-image-container {
     display: flex;
     align-items: center;
 }
 
-.third-image-container{
+.third-image-container {
     display: flex;
     align-items: center;
 }
 
-.fourth-image-container{
+.fourth-image-container {
     display: flex;
     align-items: center;
 }
 
-.fifth-image-container{
+.fifth-image-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.last-description-container{
+.last-description-container {
     display: flex;
     justify-content: center;
 }
