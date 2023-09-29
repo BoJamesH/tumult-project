@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { postServer } from '../../store/servers'
+import { getOneServer, getPublicServers, postServer } from '../../store/servers'
 import { object } from 'prop-types';
 import { useModal } from "../../context/Modal";
 // import ErrorMessage from './ErrorMessage';
@@ -41,6 +41,8 @@ const CreateServerForm = () => {
                 console.log('RESPONSE CREATE SERVER',response)
                 if (response) {
                     const serverId = response.id
+                    await dispatch(getOneServer(serverId))
+                    await dispatch(getPublicServers())
                     history.push(`/main/${serverId}/${channelServers[0].id}`);
                     closeModal()
 
@@ -60,7 +62,6 @@ const CreateServerForm = () => {
     const handleCancelClick = (e) => {
         e.preventDefault();
         closeModal()
-
     };
 
     return (
