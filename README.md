@@ -4,7 +4,7 @@ Welcome to Tumult, your go-to destination for creating and managing online commu
 
 https://tumult.onrender.com/
 
-![Tumult](public/images/tumult_splash_header1.png)
+![Tumult](https://github.com/BoJamesH/repo/raw/main/public/images/tumult_splash_header1.png)
 
 ## ReadMe Table of Contents
 
@@ -32,7 +32,7 @@ If you'd like to contribute to Tumult, please check out our team members' GitHub
 - **Instant Access**: Join text channels with unparalleled ease whenever you're available, and let friends drop in for a quick chat without the need for a formal call.
 
 - **Moderation and Customization**: Tailor your server to your exact specifications with Tumult's robust moderation tools and customizable member access, giving you complete control over your online community.
-
+- **Full Emoji-Reaction capability using emoji-picker-react at https://github.com/ealush/emoji-picker-react
 
 ## Getting started
 1. Clone this repository (only this branch)
