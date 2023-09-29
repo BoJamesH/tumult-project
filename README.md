@@ -1,4 +1,4 @@
-# Tumult - Discord Clone
+# Tumult - Discord-like Web Application
 
 Welcome to Tumult, your go-to destination for creating and managing online communities with ease! Tumult is an open-source project that brings the power of communication and collaboration to your fingertips. Whether you're a gaming group, a study club, or just a bunch of friends looking to argue, Tumult provides you with all the tools you need to forge your exclusive battleground where you belong. Come check out our live application at:
 
