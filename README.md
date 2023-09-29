@@ -2,7 +2,7 @@
 
 Welcome to Tumult, your go-to destination for creating and managing online communities with ease! Tumult is an open-source project that brings the power of communication and collaboration to your fingertips. Whether you're a gaming group, a study club, or just a bunch of friends looking to argue, Tumult provides you with all the tools you need to forge your exclusive battleground where you belong.
 
-![Tumult](public/images/tumult_splash_header1.png
+![Tumult](public/images/tumult_splash_header1.png)
 
 ## Table of Contents
 
