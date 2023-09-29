@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { getPublicServers  } from '../../store/servers'
+import { getOneServer, getPublicServers  } from '../../store/servers'
 import { useHistory } from 'react-router-dom'
 import { getChannelId, getChannels } from '../../store/channels'
 import { getMessages } from '../../store/messages'
@@ -20,6 +20,7 @@ const PublicServers = () => {
         console.log('-----------------------------------')
         const firstChannelId = response[0].id
         dispatch(getChannels(serverId))
+        dispatch(getOneServer(serverId))
         dispatch(getMessages(serverId, firstChannelId))
         history.push(`/main/${serverId}/${firstChannelId}`)
     }
