@@ -39,58 +39,57 @@ const SelectedServer = () => {
 
     return(
         <>
-        <div className='selected-server'>
-            <ul>
-                <li>
-                    {server.name}
-                </li>
-                <li>
-                    {server.label_image}
-                </li>
-                <li hidden={sessionUserId !== server.owner_id}>
+        <div className='server-details-div'>
+            <div className='selected-server'>
+                <ul>
+                    <li>
+                        {server.name}
+                    </li>
+                    <li hidden={sessionUserId !== server.owner_id}>
 
-                    <OpenModalButton
-                    modalComponent={<UpdateServerForm />}
-                    buttonText="Update Server"
-                    />
-                </li>
-                <li hidden={sessionUserId !== server.owner_id}>
-                    {/* <button onClick={deleteServerHandler}>DELETE SERVER</button> */}
-                    <OpenModalButton
-                    modalComponent={<DeleteServerModal server={server}/>}
-                    buttonText="Delete Server"
-                    />
-                </li>
-            </ul>
-        </div>
-        {/* {forceRerender && channels.length > 0 && (
+                        <OpenModalButton
+                        modalComponent={<UpdateServerForm />}
+                        buttonText=""
+                        />
+                    </li>
+                    <li hidden={sessionUserId !== server.owner_id}>
+                        {/* <button onClick={deleteServerHandler}>DELETE SERVER</button> */}
+                        <OpenModalButton
+                        modalComponent={<DeleteServerModal server={server}/>}
+                        buttonText="-"
+                        />
+                    </li>
+                </ul>
+            </div>
+            {/* {forceRerender && channels.length > 0 && (
                 <div className='channels'>
-                    <h3>Channels</h3>
-                    {channels.map(channel => (
-                        <div className='channel' key={channel.id}>
-                            {channel.name}
-                        </div>
-                    ))}
-                </div>
-            )} */}
-        {channels.length ?
-        <div className='channels'>
-            {channels.map(channel => {
-                if (!channel.id) return null
-                return (
-                    <div key={channel.id} className='channel'>
-                        {/* <Link to="/" */}
-                        <ChannelUtils channel={channel} server={server}/>
+                <h3>Channels</h3>
+                {channels.map(channel => (
+                    <div className='channel' key={channel.id}>
+                    {channel.name}
                     </div>
-                )
-            })}
-        </div>: null}
+                    ))}
+                    </div>
+                )} */}
+            {channels.length ?
+            <div className='channels'>
+                {channels.map(channel => {
+                    if (!channel.id) return null
+                    return (
+                        <div key={channel.id} className='channel'>
+                            {/* <Link to="/" */}
+                            <ChannelUtils channel={channel} server={server}/>
+                        </div>
+                    )
+                })}
+            </div>: null}
 
-        <OpenModalButton
-            modalComponent={<CreateChannelForm />}
-            buttonText="Create new Channel"
-        />
+            <OpenModalButton
+                modalComponent={<CreateChannelForm />}
+                buttonText="Create new Channel"
+                />
 
+        </div>
         </>
     )
 }
