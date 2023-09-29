@@ -1,25 +1,92 @@
-/* Define the Discord-like font */
 body {
     font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.tumultLogo, .tumultLogoBottom, .title-tumult, .title-logo-container,
+.home-nav-container, .nav-links-container, .white-link, .imagine-container,
+.larger-text, .leftheaderimage, .rightheaderimage, .header-image-container,
+.second-image-container, .third-image-container, .fourth-image-container,
+.fifth-image-container, .last-description-container, .nav-login, .open-tumult,
+.open-tumult-header, .github-logo, .linked-logo, .about-link-container,
+.github-linked-container, .homepage-container {
+    margin: 0;
+    padding: 0;
 }
 
 .tumultLogo {
-    height: 35px;
-    width: 35px;
+    height: 3vw !important;
+    width: 3vw !important;
+}
+
+.tumultLogoBottom {
+    height: 3vw !important;
+    width: 3vw !important;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+.tumultLogo {
+    height: 14%;
+    width: 14%;
+}
+
+.tumultLogoBottom {
+    height: 18%;
+    width: 18%;
 }
 
 .title-tumult,
-.black-link {
-    text-decoration: none;
-    color: white; /* Updated to white color at the top of the page */
+.title-logo-container {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    color: white;
+    flex:
+}
+
+.nav-login:hover,
+.open-tumult:hover,
+.open-tumult-header:hover {
+  color: blue; /* Change text color to blue on hover */
+  font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Inherit the font-family */
+  font-size: inherit; /* Inherit the font-size */
+  font-weight: inherit; /* Inherit the font-weight */
 }
 
 .home-nav-container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
     align-items: center;
-    background-color: #ED4245; /* Updated to the specified red color */
+    justify-content: center;
+    background-color: #333333;
+    padding-left: 25%;
+    padding-right: 15%;
+    width: 100%;
+}
+
+.nav-links-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-grow: 1;
+}
+
+.white-link {
+    color: white;
+    text-decoration: none;
 }
 
 .imagine-container {
@@ -27,44 +94,47 @@ body {
     text-align: center;
 }
 
-/* Updated left header image dimensions as percentages */
-.leftheaderimage {
-    height: 100%;
-    width: 100%;
+.larger-text {
+    font-family: "ABC Ginto Nord", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 120%;
 }
 
+.imagine-container h1,
+.imagine-container div {
+    color: white;
+}
+
+.leftheaderimage,
 .rightheaderimage {
     height: 100%;
     width: 100%;
 }
 
-.header-image-container {
-    display: flex;
-    justify-content: space-between;
-    background-color: #ED4245; /* Updated to the specified red color */
-}
-
-.second-image-container {
-    display: flex;
-    align-items: center;
-}
-
-.third-image-container {
-    display: flex;
-    align-items: center;
-    background-color: gainsboro;
-}
-
-.fourth-image-container {
-    display: flex;
-    align-items: center;
-}
-
+.header-image-container,
+.second-image-container,
+.third-image-container,
+.fourth-image-container,
 .fifth-image-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    background-color: gainsboro;
+    width: 100%;
+}
+
+.header-image-container,
+.home-nav-container,
+.about-link-container {
+    background-color: #333333;
+}
+
+.link-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex: 1;
+}
+
+.third-image-container,
+.fifth-image-container {
+    background-color: #f2f2f2;
 }
 
 .last-description-container {
@@ -72,18 +142,143 @@ body {
     justify-content: center;
 }
 
-.nav-login {
-    padding: 10px 50px;
-    border-radius: 20px;
-}
-
-.open-tumult {
+.nav-login,
+.open-tumult,
+.open-tumult-header {
     padding: 10px;
     border-radius: 20px;
     background-color: white;
     color: #23272a;
-    cursor: pointer; /* Change cursor on hover */
-    transition: box-shadow 0.3s ease; /* Add transition for shadow */
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.open-tumult-header {
+    margin-top: 10px;
+    padding: 10px 80px;
+    border-radius: 20px;
+    background-color: white;
+    color: #23272a;
+}
+
+.title-logo-container {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+
+.github-logo,
+.linked-logo {
+    height: 20px;
+    width: 20px;
+}
+
+.about-link-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #495155;
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+
+.github-linked-container {
+    display: flex;
+}
+
+.homepage-container {
+    display: grid;
+    width: 100%;
+}
+
+.title-tumult,
+.title-logo-container {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    color: white;
+}
+
+.home-nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333333;
+}
+
+.nav-links-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-grow: 1;
+}
+
+.white-link {
+    color: white;
+    text-decoration: none;
+}
+
+.imagine-container {
+    grid-column: 3/span 8;
+    text-align: center;
+}
+
+.larger-text {
+    font-family: "ABC Ginto Nord", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 120%;
+}
+
+.imagine-container h1,
+.imagine-container div {
+    color: white;
+}
+
+.leftheaderimage,
+.rightheaderimage {
+    height: 100%;
+    width: 100%;
+}
+
+.header-image-container,
+.second-image-container,
+.third-image-container,
+.fourth-image-container,
+.fifth-image-container {
+    display: flex;
+    align-items: center;
+}
+
+.header-image-container,
+.home-nav-container,
+.about-link-container {
+    background-color: #333333;
+}
+
+.link-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex: 1;
+}
+
+.third-image-container,
+.fifth-image-container {
+    background-color: #f2f2f2;
+}
+
+.last-description-container {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-login,
+.open-tumult,
+.open-tumult-header {
+    padding: 10px;
+    border-radius: 20px;
+    background-color: white;
+    color: #23272a;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
 }
 
 .open-tumult-header {
@@ -113,7 +308,7 @@ body {
 .about-link-container {
     display: flex;
     justify-content: space-around;
-    background-color: #ED4245; /* Updated to the specified red color */
+    background-color: #495155;
     color: white;
 }
 
