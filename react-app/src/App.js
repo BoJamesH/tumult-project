@@ -50,9 +50,6 @@ function App() {
           <Route exact path="/servers/:serverId/:channelId">
             <SelectedChannel />
           </Route>
-          <Route path="/home">
-            <LandingPage user={user}/>
-          </Route>
           <Route path="/login" >
             <LoginFormPage />
           </Route>
@@ -61,6 +58,9 @@ function App() {
           </Route>
           <Route exact path="/servers">
             <PublicServers />
+          </Route>
+          <Route exact path="/">
+            <LandingPage user={user}/>
           </Route>
         </Switch>
       )}

@@ -7,7 +7,8 @@ import { useHistory } from 'react-router-dom'
 import ChannelUtils from '../channelUtils/channelUtils'
 import OpenModalButton from '../openModalButton'
 import CreateChannelForm from '../createChannel/createChannel'
-
+import UpdateServerForm from '../updateServerModal/updateServer'
+import DeleteServerModal from '../deleteModal/deleteServerModal'
 
 const SelectedServer = () => {
     const history = useHistory()
@@ -22,16 +23,11 @@ const SelectedServer = () => {
         await dispatch(getChannels(serverId))
     }, [dispatch])
 
-    const deleteServerHandler = async (e) => {
-        e.preventDefault()
-        dispatch(deleteServer(serverId))
-        history.push('/servers')
-    }
-
-    const updateServerHandler = async (e) => {
-        e.preventDefault()
-        history.push(`/servers/${serverId}/update`)
-    }
+    // const deleteServerHandler = async (e) => {
+    //     e.preventDefault()
+    //     dispatch(deleteServer(serverId))
+    //     history.push('/servers')
+    // }
 
     const addChannelHandler = async (e) => {
         e.preventDefault()
@@ -51,10 +47,18 @@ const SelectedServer = () => {
                     {server.label_image}
                 </li>
                 <li hidden={sessionUserId !== server.owner_id}>
-                    <button onClick={updateServerHandler}>UPDATE SERVER</button>
+
+                    <OpenModalButton
+                    modalComponent={<UpdateServerForm />}
+                    buttonText="Update Server"
+                    />
                 </li>
                 <li hidden={sessionUserId !== server.owner_id}>
-                    <button onClick={deleteServerHandler}>DELETE SERVER</button>
+                    {/* <button onClick={deleteServerHandler}>DELETE SERVER</button> */}
+                    <OpenModalButton
+                    modalComponent={<DeleteServerModal server={server}/>}
+                    buttonText="Delete Server"
+                    />
                 </li>
             </ul>
         </div>
@@ -81,9 +85,6 @@ const SelectedServer = () => {
             })}
         </div>: null}
 
-        <button onClick={addChannelHandler}>
-            Create new channel
-        </button>
         <OpenModalButton
             modalComponent={<CreateChannelForm />}
             buttonText="Create new Channel"

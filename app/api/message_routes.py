@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Message, db, Channel
+from app.models import Message, db, Channel, User
 from app.forms.message_form import MessageForm
 
 message_routes = Blueprint('messages', __name__)
@@ -9,10 +9,19 @@ message_routes = Blueprint('messages', __name__)
 @login_required
 def get_channel_messages(server_id, channel_id):
     """
-    Get all messages for a channel
+    Get all messages for a channel with user information nested in each message.
     """
     messages = Message.query.filter(Message.channel_id == channel_id).all()
-    return {'messages': [message.to_dict() for message in messages]}
+
+    # Create a list of messages with user information nested inside
+    messages_with_users = []
+    for message in messages:
+        message_dict = message.to_dict()  # Convert the message to a dictionary
+        user = User.query.get(message.user_id)  # Assuming user_id is the foreign key in Message
+        if user:
+            message_dict['user'] = user.to_dict()  # Add user information to the message dictionary
+        messages_with_users.append(message_dict)
+    return {'messages': messages_with_users}
 
 
 @message_routes.route('', methods=['POST'])
