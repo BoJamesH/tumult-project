@@ -9,34 +9,10 @@ https://tumult.onrender.com/
 ## ReadMe Table of Contents
 
 - [Project Wiki](https://github.com/BoJamesH/tumult-project/wiki)
-
-
-
-I apologize for the confusion. To create a link that takes you straight to the #database section within the wiki's page, you should make sure that the #database section is correctly defined with an HTML id attribute in your wiki page. Here's how you can do it:
-
-Edit your wiki page on GitHub.
-Locate the #database section within your wiki content.
-Make sure it's formatted like this:
-markdown
-Copy code
-## Database Schema
-
-<!-- Your content for the database schema section here -->
-Add an id attribute to the heading, like this:
-markdown
-Copy code
-## Database Schema {#database}
-
-<!-- Your content for the database schema section here -->
-Save your changes to the wiki page.
-Now, you can create a link in your README.md that goes directly to this section by using the URL of your wiki page followed by #database, like this:
-
-markdown
-Copy code
-- [Database Schema](https://github.com/BoJamesH/tumult-project/wiki#database-schema)
+- [Database Schema](https://github.com/BoJamesH/tumult-project/wiki#database-schema) 
 - [Features](#features)
 - [Contributing](#Contributing)
-- [Getting Started](#getting-started) <!-- Added link to Getting Started section -->
+- [Getting Started](#getting-started)
 
 ## Contributing
 
