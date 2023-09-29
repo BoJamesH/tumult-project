@@ -1,4 +1,4 @@
-.update-server-container{
+.update-channel-container{
     display: flex;
     justify-items: center;
     background-color: #3a3d3f;
@@ -13,11 +13,11 @@
     font-weight: bold;
 }
 
-.update-server-form-container{
+.update-channel-form-container{
     width: 85%;
 }
 
-.update-server-form-container > div > input{
+.update-channel-form-container > div > input{
     width: 100%;
     padding: 3%;
     background-color: #181a1c;
@@ -26,9 +26,9 @@
     font-weight: bold;
 }
 
-.update-server-button-modal{
+.update-channel-button-modal{
     width: 27%;
-    padding: 3%;
+    padding: 3% 0%;
     color:white;
     background-color: #5865f2;
     border-radius: 6px;
@@ -36,13 +36,13 @@
     font-weight: bold;
 }
 
-.update-server-cancel-button-modal{
+.update-channel-cancel-button-modal{
     background-color:#3a3d3f;
     border: none;
     font-weight: bold;
 }
 
-.update-server-buttons-container{
+.update-channel-buttons-container{
     display: flex;
     justify-content: space-between;
     margin: 3% 0%;
