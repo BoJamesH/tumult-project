@@ -4,12 +4,14 @@ import { useHistory } from 'react-router-dom';
 import { postServer } from '../../store/servers'
 import { useParams } from 'react-router-dom';
 // import ErrorMessage from './ErrorMessage';
-import { editChannel } from '../../store/channels';
+import { editChannel, getChannels } from '../../store/channels';
+import { useModal } from '../../context/Modal';
 
-const UpdateChannelForm = () => {
+
+const UpdateChannelForm = ({channel, server}) => {
     const userId = useSelector(state => state.session.user.id)
-    const {serverId} = useParams();
-    const {channelId} = useParams();
+    const serverId = server.id
+    const channelId = channel.id
     // console.log("CHANNNEL ID", channelId)
     // console.log( serverId)
     const serverChannels = useSelector(state => state.channels.channelServers)
@@ -22,6 +24,8 @@ const UpdateChannelForm = () => {
     const history = useHistory();
     const [name, setName] = useState(channelToUpdate.name);
     const [privateChannel, setPrivateChannel] = useState(channelToUpdate.private)
+    const { closeModal } = useModal();
+
 
     const updateName = (e) => setName(e.target.value);
     const updatePrivate = (e) => setPrivateChannel(e.target.value);
@@ -42,6 +46,7 @@ const UpdateChannelForm = () => {
         if (Object.keys(validationErrors).length == 0) {
             try {
                 const response = await dispatch(editChannel(payload, channelId));
+                await dispatch(getChannels(serverId))
                 if (response) {
                     history.push(`/servers/${serverId}`);
                     const serverId = response.id
@@ -51,7 +56,9 @@ const UpdateChannelForm = () => {
                 // "Error: "
                     setErrorMessages({ overall: error.toString().slice(7) })
             }
-        history.push(`/servers/${serverId}`);
+
+        history.push(`/main/${serverId}/${channelId}`);
+        closeModal()
         } else {
             setErrorMessages(validationErrors)
         }
@@ -60,6 +67,7 @@ const UpdateChannelForm = () => {
     const handleCancelClick = (e) => {
         e.preventDefault();
         setErrorMessages({});
+        closeModal()
         // hideForm();
         }
 

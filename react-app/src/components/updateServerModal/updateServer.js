@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { updateServer } from '../../store/servers'
+import { useModal } from "../../context/Modal";
 // import ErrorMessage from './ErrorMessage';
 
 const UpdateServerForm = () => {
@@ -13,6 +14,7 @@ const UpdateServerForm = () => {
     const [name, setName] = useState(serverToUpdate.name);
     const [labelImage, setLabelImage] = useState(serverToUpdate.label_image);
     const [privateServer, setPrivateServer] = useState(serverToUpdate.private)
+    const { closeModal } = useModal();
 
     const updateName = (e) => setName(e.target.value);
     const updateLabelImage = (e) => setLabelImage(e.target.value);
@@ -37,8 +39,11 @@ const UpdateServerForm = () => {
         if (Object.keys(validationErrors).length == 0) {
             try {
                 const response = await dispatch(updateServer(payload, serverToUpdate.id));
+                    closeModal()
                 if (response) {
-                    history.push(`/servers/${serverToUpdate.id}`);
+                    // closeModal()
+                    // history.push(`/servers/${serverToUpdate.id}`);
+
                 }
             } catch (error) {
                 // If error is not a ValidationError, add slice at the end to remove extra
@@ -53,6 +58,7 @@ const UpdateServerForm = () => {
 
     const handleCancelClick = (e) => {
     e.preventDefault();
+    closeModal()
     // setErrorMessages({});
     // hideForm();
     };
@@ -73,7 +79,7 @@ const UpdateServerForm = () => {
         <label>
             Server Image URL
         <input
-            type="text"
+            type="url"
             placeholder="Server Label Image URL"
             required
             value={labelImage}
