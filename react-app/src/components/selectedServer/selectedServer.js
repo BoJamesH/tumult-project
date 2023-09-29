@@ -85,9 +85,6 @@ const SelectedServer = () => {
             })}
         </div>: null}
 
-        <button onClick={addChannelHandler}>
-            Create new channel
-        </button>
         <OpenModalButton
             modalComponent={<CreateChannelForm />}
             buttonText="Create new Channel"

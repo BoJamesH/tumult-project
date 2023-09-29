@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom'
 import { getMessages } from '../../store/messages'
 import OpenModalButton from '../openModalButton'
 import UpdateChannelForm from '../updateChannelModal/updateChannel'
+import DeleteChannelModal from '../deleteModal/deleteChannelModal'
 
 const ChannelUtils = ({channel, server}) => {
     const { serverId } = useParams()
@@ -14,12 +15,12 @@ const ChannelUtils = ({channel, server}) => {
     const sessionUserId = useSelector(state => state.session.user.id)
     const channelServers = useSelector(state => state.channels.channelServers)
 
-    const deleteChannelHandler = async (e) => {
-        e.preventDefault()
-        if (channelServers.length < 2) return
-        dispatch(deleteChannel(serverId, channel.id))
-        history.push(`/servers/${serverId}`)
-    }
+    // const deleteChannelHandler = async (e) => {
+    //     e.preventDefault()
+    //     if (channelServers.length < 2) return
+    //     dispatch(deleteChannel(serverId, channel.id))
+    //     history.push(`/servers/${serverId}`)
+    // }
 
     // const updateChannelHandler = async (e) => {
     //     e.preventDefault()
@@ -46,7 +47,13 @@ const ChannelUtils = ({channel, server}) => {
             />
         </li>
         <li hidden={!(sessionUserId == channel.owner_id || sessionUserId == server.owner_id)}>
-            <button onClick={deleteChannelHandler}>DELETE CHANNEL</button>
+            {/* <button onClick={deleteChannelHandler}>DELETE CHANNEL</button> */}
+            { channelServers.length > 1 &&
+            <OpenModalButton
+            modalComponent={<DeleteChannelModal server={server} channel={channel}/>}
+            buttonText="Delete Channel"
+            />
+            }
         </li>
     </ul>
     )
