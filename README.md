@@ -15,12 +15,11 @@ https://tumult.onrender.com/
 - [Getting Started](#getting-started)
 
 ## Contributing
+If you'd like to contribute to Tumult, please check out our team members' GitHub profiles:
 - [Bo](https://github.com/BoJamesH)
 - [Jordan](https://github.com/Jordo707)
 - [Nick](https://github.com/nita94)
 - [Ryan](https://github.com/RjRosales19)
-
-If you'd like to contribute to Tumult, please check out our team members' GitHub profiles:
 
 ## Features
 
