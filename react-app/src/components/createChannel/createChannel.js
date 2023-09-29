@@ -1,16 +1,19 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { createChannel } from '../../store/channels'
+import { createChannel, getChannels } from '../../store/channels'
+import { useModal } from "../../context/Modal";
 
 const CreateChannelForm = () => {
     const userId = useSelector(state => state.session.user.id)
     const serverId = useSelector(state => state.servers.selectedServer.id)
+    const channelServers = useSelector(state => state.channels.channelServers)
     const [errorMessages, setErrorMessages] = useState({});
     const dispatch = useDispatch();
     const history = useHistory();
     const [name, setName] = useState('');
     const [privateChannel, setPrivateChannel] = useState(false)
+    const { closeModal } = useModal();
 
     const updateName = (e) => setName(e.target.value);
     const updatePrivate = (e) => setPrivateChannel(e.target.value);
@@ -40,7 +43,9 @@ const CreateChannelForm = () => {
                 // "Error: "
                 // setErrorMessages({ overall: error.toString().slice(7) })
             }
-            history.push(`/servers/${serverId}`);
+            dispatch(getChannels(serverId))
+            history.push(`/main/${serverId}/${channelServers[channelServers.length -1].id}`);
+            closeModal()
         } else {
             setErrorMessages(validationErrors)
         }
@@ -48,8 +53,7 @@ const CreateChannelForm = () => {
 
     const handleCancelClick = (e) => {
         e.preventDefault();
-            history.push(`/servers/${serverId}`)
-
+        closeModal()
     };
 
     return (
