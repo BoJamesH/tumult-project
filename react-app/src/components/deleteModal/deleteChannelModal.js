@@ -2,7 +2,7 @@ import { useModal } from "../../context/Modal"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { deleteChannel, getChannels } from "../../store/channels"
-
+import './deleteModal.css'
 const DeleteChannelModal = ({server, channel}) => {
     const {closeModal} = useModal()
     const dispatch = useDispatch()
@@ -22,9 +22,15 @@ const DeleteChannelModal = ({server, channel}) => {
         closeModal()
     }
     return(
-        <div>
-            <button onClick={deleteChannelHandler}>Yes, delete</button>
-            <button onClick={cancelChannelDelete}>No, keep it</button>
+        <div className="delete-channel-container">
+            <div>
+                <h2>Delete Channel</h2>
+                <h4>Are you sure you want to delete ? There is no return after deletion.</h4>
+            </div>
+            <div className="delete-channel-buttons-container">
+                <button className="cancel-delete-modal-button" onClick={cancelChannelDelete}>Cancel</button>
+                <button className="delete-modal-button" onClick={deleteChannelHandler}>Delete Channel</button>
+            </div>
         </div>
     )
 }

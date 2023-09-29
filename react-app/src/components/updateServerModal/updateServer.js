@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { getPublicServers, updateServer } from '../../store/servers'
 import { useModal } from "../../context/Modal";
 // import ErrorMessage from './ErrorMessage';
-
+import './updateServer.css'
 const UpdateServerForm = () => {
     const userId = useSelector(state => state.session.user.id)
     const serverToUpdate = useSelector(state => state.servers.selectedServer)
@@ -65,39 +65,54 @@ const UpdateServerForm = () => {
     };
 
     return (
-    <section className="new-form-holder centered middled">
-        <form className="create-pokemon-form" onSubmit={handleSubmit}>
-        <label>
-            Server Name
-        <input
-            type="text"
-            placeholder="Server Name"
-            required
-            value={name}
-            onChange={updateName} />
-                <span className='server-errors'>{errorMessages.name}</span>
-        </label>
-        <label>
-            Server Image URL
-        <input
-            type="url"
-            placeholder="Server Label Image URL"
-            required
-            value={labelImage}
-            onChange={updateLabelImage} />
-            </label>
-        <label>
-            Private?
-        <input
-            type="checkbox"
-            placeholder="Private"
-            checked={privateServer}
-            onChange={updatePrivate} />
-            </label>
-        <button type="submit">Update server</button>
-        <button type="button" onClick={handleCancelClick}>Cancel</button>
+    <div className="update-server-container">
+        <h2>Server Overview</h2>
+        <h4>Update your server</h4>
+        <form className="update-server-form-container" onSubmit={handleSubmit}>
+
+            <span className='server-errors'>{errorMessages.name}</span>
+
+            <div>
+                <label>
+                    SERVER NAME
+                </label>
+                <input
+                    type="text"
+                    placeholder="Server Name"
+                    required
+                    value={name}
+                    onChange={updateName} />
+            </div>
+
+            <div>
+                <label>
+                    SERVER IMAGE URL
+                </label>
+                <input
+                    type="url"
+                    placeholder="Server Label Image URL"
+                    required
+                    value={labelImage}
+                    onChange={updateLabelImage} />
+            </div>
+
+            <div>
+                <label>
+                    PRIVATE
+                <input
+                type="checkbox"
+                placeholder="Private"
+                className='private-input'
+                checked={privateServer}
+                onChange={updatePrivate} />
+                </label>
+            </div>
+        <div className='update-server-buttons-container'>
+            <button className="update-server-cancel-button-modal" type="button" onClick={handleCancelClick}>Cancel</button>
+            <button className="update-server-button-modal" type="submit">Update server</button>
+        </div>
         </form>
-    </section>
+    </div>
     );
 };
 

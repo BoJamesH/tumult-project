@@ -1,0 +1,33 @@
+.delete-channel-container{
+    display: flex;
+    background-color: #3a3d3f;
+    justify-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    padding: 5%;
+    margin: 0% -5%;
+    border-radius: 6px;
+    color: white;
+}
+
+.delete-channel-buttons-container{
+    display: flex;
+    justify-content: space-between;
+    margin: 3% 0%;
+}
+
+.delete-modal-button{
+    width: 27%;
+    padding: 3%;
+    color:white;
+    background-color: #5865f2;
+    border-radius: 6px;
+    margin: 2% 0%;
+}
+
+.cancel-delete-modal-button{
+    background-color:#3a3d3f;
+    border: none;
+}
