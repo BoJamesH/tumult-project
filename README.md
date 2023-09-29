@@ -1,6 +1,29 @@
-# Flask React Project
+# Tumult - Discord Clone
 
-This is the starter for the Flask React project.
+Welcome to Tumult, your go-to destination for creating and managing Discord-like communities with ease! Tumult is an open-source project that brings the power of communication and collaboration to your fingertips. Whether you're a gaming group, a study club, or just a bunch of friends looking to chat, Tumult provides you with all the tools you need to forge your exclusive battleground where you belong.
+
+![Tumult](link_to_your_deployment_image) <!-- Replace with the link to your deployment image -->
+
+## Table of Contents
+
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Features
+
+- **Topic-Based Channels**: Organize your server with channels for different topics, keeping your discussions clean and organized.
+
+- **Real-Time Voice and Video**: Enjoy low-latency voice and video calls that make it feel like you're in the same room.
+
+- **Easy Collaboration**: Collaborate, share, and chat about your day without clogging up a group chat.
+
+- **Instant Access**: Join voice channels effortlessly when you're free, and let friends pop in to talk without having to call.
+
+- **Moderation and Customization**: Customize your server with moderation tools and custom member access, giving you control over your community.
+
+
 
 ## Getting started
 1. Clone this repository (only this branch)
