@@ -44,7 +44,7 @@ def create_server():
         )
         db.session.add(new_server)
         db.session.commit()
-        return 'Server created'
+        return new_server.to_dict()
     return
 
 # Route to delete a server

@@ -116,3 +116,29 @@
 .homepage-container{
     display:grid
 }
+
+.second-image-container{
+    display: flex;
+    align-items: center;
+}
+
+.third-image-container{
+    display: flex;
+    align-items: center;
+}
+
+.fourth-image-container{
+    display: flex;
+    align-items: center;
+}
+
+.fifth-image-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.last-description-container{
+    display: flex;
+    justify-content: center;
+}
