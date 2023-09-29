@@ -6,9 +6,7 @@ Welcome to Tumult, your go-to destination for creating and managing online commu
 
 ## ReadMe Table of Contents
 
-## ReadMe Table of Contents
-
-- [Wiki](https://github.com/BoJamesH/tumult-project/wiki)
+- [Project Wiki](https://github.com/BoJamesH/tumult-project/wiki)
 - [Database Schema](https://github.com/BoJamesH/tumult-project/wiki/Database-Schema)
 - [Features](#features)
 - [Contributing](#Contributing)
