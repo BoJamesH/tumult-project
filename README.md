@@ -8,8 +8,8 @@ https://tumult.onrender.com/
 
 ## ReadMe Table of Contents
 
-- [Project Wiki](https://github.com/BoJamesH/tumult-project/wiki){:target="_blank"}
-- [Database Schema](https://github.com/BoJamesH/tumult-project/wiki#database-schema){:target="_blank"}
+- [Project Wiki](https://github.com/BoJamesH/tumult-project/wiki) (opens in a new tab/window)
+- [Database Schema](https://github.com/BoJamesH/tumult-project/wiki#database-schema) (opens in a new tab/window)
 - [Features](#features)
 - [Contributing](#Contributing)
 - [Getting Started](#getting-started)
