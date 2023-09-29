@@ -59,12 +59,12 @@ const SelectedChannel = () => {
         setMessage('')
     };
 
-    useEffect(() => {
-        if (sentMessage){
-            setWebSocketMessage([...websocketMessage, sentMessage])
-            setSentMessage(null)
-        }
-    }, [sentMessage])
+    // useEffect(() => {
+    //     if (sentMessage){
+    //         setWebSocketMessage([...websocketMessage, sentMessage])
+    //         setSentMessage(null)
+    //     }
+    // }, [sentMessage])
 
     useEffect(() => {
         // create websocket/connect
@@ -215,7 +215,7 @@ const SelectedChannel = () => {
 
                             ) : (
                             <div key={message.id} className='message'>
-                            {message.user_id}
+                            {message.user.display_name}
                             {message.message_text}
                             {/* <Link to="/" */}
                             {/* <messageUtils message={message}/> */}
