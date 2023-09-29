@@ -5,6 +5,8 @@ import { getOneServer, getPublicServers  } from '../../store/servers'
 import { useHistory } from 'react-router-dom'
 import { getChannelId, getChannels } from '../../store/channels'
 import { getMessages } from '../../store/messages'
+import OpenModalButton from '../openModalButton'
+import CreateServerForm from '../createServer/createServer'
 
 const PublicServers = () => {
     const history = useHistory()
@@ -51,6 +53,11 @@ const PublicServers = () => {
             </div>
             <div>
                 <button to='/servers/new' onClick={handleNewServer}>Create a new server</button>
+                <OpenModalButton
+                    modalComponent={<CreateServerForm />}
+                    buttonText="Create a new Server"
+
+                />
             </div>
         </>
     )

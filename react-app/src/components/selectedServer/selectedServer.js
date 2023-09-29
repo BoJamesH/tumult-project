@@ -5,6 +5,8 @@ import { deleteServer, getOneServer  } from '../../store/servers'
 import { getChannels } from '../../store/channels'
 import { useHistory } from 'react-router-dom'
 import ChannelUtils from '../channelUtils/channelUtils'
+import OpenModalButton from '../openModalButton'
+import CreateChannelForm from '../createChannel/createChannel'
 
 
 const SelectedServer = () => {
@@ -82,6 +84,10 @@ const SelectedServer = () => {
         <button onClick={addChannelHandler}>
             Create new channel
         </button>
+        <OpenModalButton
+            modalComponent={<CreateChannelForm />}
+            buttonText="Create new Channel"
+        />
 
         </>
     )
