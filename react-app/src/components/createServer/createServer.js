@@ -1,18 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { postServer } from '../../store/servers'
+import { getOneServer, getPublicServers, postServer } from '../../store/servers'
 import { object } from 'prop-types';
+import { useModal } from "../../context/Modal";
 // import ErrorMessage from './ErrorMessage';
 
 const CreateServerForm = () => {
     const userId = useSelector(state => state.session.user.id)
+    const channelServers = useSelector(state => state.channels.channelServers)
     const [errorMessages, setErrorMessages] = useState({});
     const dispatch = useDispatch();
     const history = useHistory();
     const [name, setName] = useState('');
     const [labelImage, setLabelImage] = useState('');
     const [privateServer, setPrivateServer] = useState(false)
+    const { closeModal } = useModal();
 
     const updateName = (e) => setName(e.target.value);
     const updateLabelImage = (e) => setLabelImage(e.target.value);
@@ -35,9 +38,14 @@ const CreateServerForm = () => {
         if (Object.keys(validationErrors).length == 0) {
             try {
                 const response = await dispatch(postServer(payload));
+                console.log('RESPONSE CREATE SERVER',response)
+                closeModal()
                 if (response) {
-                    history.push(`/servers`);
                     const serverId = response.id
+                    await dispatch(getOneServer(serverId))
+                    await dispatch(getPublicServers())
+                    history.push(`/main/${serverId}/${channelServers[0].id}`);
+                    // closeModal()
                 }
             } catch (error) {
                 // If error is not a ValidationError, add slice at the end to remove extra
@@ -53,8 +61,7 @@ const CreateServerForm = () => {
 
     const handleCancelClick = (e) => {
         e.preventDefault();
-        history.push('/servers')
-
+        closeModal()
     };
 
     return (

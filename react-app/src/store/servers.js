@@ -75,6 +75,7 @@ export const postServer = (server) => async (dispatch)=> {
             server_id: newServer.id,
             private: false}))
         dispatch(getSingleServer(newServer.id))
+        return newServer
     }
 }
 
