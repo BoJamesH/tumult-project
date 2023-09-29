@@ -4,13 +4,25 @@ Welcome to Tumult, your go-to destination for creating and managing online commu
 
 ![Tumult](public/images/tumult_splash_header1.png)
 
-## Table of Contents
+## ReadMe Table of Contents
 
-## Table of Contents
+## ReadMe Table of Contents
 
 - [Wiki](https://github.com/BoJamesH/tumult-project/wiki)
 - [Database Schema](https://github.com/BoJamesH/tumult-project/wiki/Database-Schema)
 - [Features](#features)
+- [Contributing](#Contributing)
+  
+## Contributing
+
+If you'd like to contribute to Tumult, please check out our team members' GitHub profiles:
+
+- [Bo](https://github.com/BoJamesH)
+- [Jordan](https://github.com/Jordo707)
+- [Nick](https://github.com/nita94)
+- [Ryan](https://github.com/RjRosales19)
+
+Feel free to reach out to any of us to collaborate on this project!
 
 ## Features
 
