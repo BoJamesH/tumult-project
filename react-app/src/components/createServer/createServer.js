@@ -98,9 +98,9 @@ const CreateServerForm = () => {
                     required
                     value={labelImage}
                     onChange={updateLabelImage} />
-            </div>
+                </div>
 
-            <div>
+                <div>
                     <label>PRIVATE
                         <input
                         type="checkbox"
@@ -108,11 +108,13 @@ const CreateServerForm = () => {
                         checked={privateServer}
                         onChange={updatePrivate} />
                     </label>
-            </div>
-        <div className="create-new-server-buttons-container">
-            <button className="create-new-server-cancel-button-modal" type="button" onClick={handleCancelClick}>Cancel</button>
-            <button className="create-new-server-button-modal" type="submit">Create new server</button>
-        </div>
+                </div>
+
+                <div className="create-new-server-buttons-container">
+                    <button className="create-new-server-cancel-button-modal" type="button" onClick={handleCancelClick}>Cancel</button>
+                    <button className="create-new-server-button-modal" type="submit">Create new server</button>
+                </div>
+
         </form>
     </div>
     );

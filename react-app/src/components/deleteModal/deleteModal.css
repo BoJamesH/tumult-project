@@ -6,28 +6,56 @@
     flex-wrap: wrap;
     align-content: center;
     align-items: center;
-    padding: 5%;
-    margin: 0% -5%;
+    padding: 6%;
+    margin: 0% -13%;
     border-radius: 6px;
     color: white;
+    font-weight: bold;
 }
 
-.delete-channel-buttons-container{
+.delete-server-container{
     display: flex;
-    justify-content: space-between;
-    margin: 3% 0%;
+    background-color: #3a3d3f;
+    justify-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    padding: 6%;
+    margin: 0% -13%;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+}
+
+.delete-cancel-buttons-container{
+    display: flex;
+    margin: 2% 30%;
+    column-gap: 100px;
 }
 
 .delete-modal-button{
-    width: 27%;
-    padding: 3%;
+    width: 100%;
+    padding: 2% 0%;
     color:white;
-    background-color: #5865f2;
+    background-color: #e61616;
     border-radius: 6px;
     margin: 2% 0%;
+    font-weight: bold;
+}
+
+.delete-channel-modal-button{
+    width: 100%;
+    padding: 1% 0%;
+    color:white;
+    background-color: #e61616;
+    border-radius: 6px;
+    margin: 2% 0%;
+    font-weight: bold;
 }
 
 .cancel-delete-modal-button{
+    font-weight: bold;
     background-color:#3a3d3f;
     border: none;
 }
