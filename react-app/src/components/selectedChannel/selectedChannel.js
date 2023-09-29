@@ -215,7 +215,7 @@ const SelectedChannel = () => {
 
                             ) : (
                             <div key={message.id} className='message'>
-                            {message.user.display_name}
+                            {message.user.display_name}{message.created_at}
                             {message.message_text}
                             {/* <Link to="/" */}
                             {/* <messageUtils message={message}/> */}
