@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { updateServer } from '../../store/servers'
+import { getPublicServers, updateServer } from '../../store/servers'
 import { useModal } from "../../context/Modal";
 // import ErrorMessage from './ErrorMessage';
 
@@ -39,6 +39,7 @@ const UpdateServerForm = () => {
         if (Object.keys(validationErrors).length == 0) {
             try {
                 const response = await dispatch(updateServer(payload, serverToUpdate.id));
+                    await dispatch(getPublicServers())
                     closeModal()
                 if (response) {
                     // closeModal()

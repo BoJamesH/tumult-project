@@ -39,13 +39,13 @@ const CreateServerForm = () => {
             try {
                 const response = await dispatch(postServer(payload));
                 console.log('RESPONSE CREATE SERVER',response)
+                closeModal()
                 if (response) {
                     const serverId = response.id
                     await dispatch(getOneServer(serverId))
                     await dispatch(getPublicServers())
                     history.push(`/main/${serverId}/${channelServers[0].id}`);
-                    closeModal()
-
+                    // closeModal()
                 }
             } catch (error) {
                 // If error is not a ValidationError, add slice at the end to remove extra
