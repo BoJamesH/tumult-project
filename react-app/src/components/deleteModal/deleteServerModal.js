@@ -2,6 +2,7 @@ import { useModal } from "../../context/Modal"
 import { useDispatch } from "react-redux"
 import { deleteServer, getPublicServers } from "../../store/servers"
 import { useHistory } from "react-router-dom"
+import './deleteModal.css'
 const DeleteServerModal = ({server}) => {
     const {closeModal} = useModal()
     const dispatch = useDispatch()

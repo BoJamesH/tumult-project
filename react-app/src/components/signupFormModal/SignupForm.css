@@ -1,0 +1,34 @@
+.sign-up-container{
+    display: flex;
+    justify-items: center;
+    background-color: #3a3d3f;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    padding: 7%;
+    margin: 0% -50%;
+    border-radius: 6px;
+    color: white;
+}
+.sign-up-form-container > form > div > input{
+    width: 94%;
+    padding: 3%;
+    background-color: #181a1c;
+    color: white;
+    margin: 5% 0%;
+}
+
+.sign-up-form-container{
+    width: 85%;
+
+}
+
+
+.sign-up-button{
+    width: 102%;
+    padding: 3%;
+    color:white;
+    background-color: #5865f2;
+    border-radius: 6px;
+}
