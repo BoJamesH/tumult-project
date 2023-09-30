@@ -285,11 +285,12 @@ const SelectedChannel = () => {
                             <input
                                 type="text"
                                 required
+                                className="message-edit-field"
                                 name = "message_text"
                                 value={editMessageText}
                                 onChange={ (e) => setEditMessageText(e.target.value)}
                                 />
-                                <button onClick={(e) => updateChat(message.id, editMessageText, e)}>Update Message</button>
+                                <button onClick={(e) => updateChat(message.id, editMessageText, e)} className="message-edit-button">Update Message</button>
                             </div>
 
                             ) : (
@@ -340,6 +341,42 @@ const SelectedChannel = () => {
                                         className='emoji-picker-itself'
                                         />
                                     </div>}
+                            <span className="message-date-span">
+                                {formatDate(message.created_at)}
+                            </span>
+                            </div>
+                            <div className="message-text-div">
+                                {message.message_text}
+                            </div>
+                            {allReactions.length &&
+                                allReactions.filter((reaction) => reaction.message_id == message.id).map((reaction) => {
+                                    {console.log('Reaction ', reaction.message_id)}
+                                    return (
+                                    <>
+                                        <span className="emoji-span" onClick={(e) => reactionDeleteHandler(reaction, message, e)}>
+                                            <Emoji className='emoji-react' unified={reaction.reaction_type} size='20' />
+                                        </span>
+                                    </>
+                                    )
+                                })
+                            }
+                            <div className="message-update-delete-div">
+                            <button className="message-update-button"  hidden={sessionUserId !== message.user_id} onClick={(e) => updateMessageHandler(message.id, message.message_text, e)}>Edit</button>
+                            <button className="message-delete-button" hidden={sessionUserId !== message.user_id} onClick={(e) => deleteChat(message.id, e)}>Delete</button>
+                            <button className="message-reaction-button" onClick={(e) => reactionClickHandler(message.id, e)}>React</button>
+                            </div>
+                            {reactionsModal && reactionMessageId == message.id &&
+                                  <div className="emoji-picker-div">
+                                  <EmojiPicker
+                                      onEmojiClick={(e) => emojiChat(message.id, e)}
+                                      autoFocusSearch={false}
+                                      emojiStyle={EmojiStyle.DARK}
+                                      theme={'dark'}
+                                      width={900}
+                                      all={'initial'}
+                                      className={'emoji-picker-itself'}
+                                  />
+                                </div>}
                             </div>
                         </div>
                         )
@@ -348,6 +385,7 @@ const SelectedChannel = () => {
                     )
                 })}
             </div> : null
+
         }
         <form onSubmit={sendChat}>
         {/* <div ref={containerRef} className="auto-growing-input-container"> */}
@@ -360,6 +398,16 @@ const SelectedChannel = () => {
             {/* </div> */}
             <button className="submit-message-button" type="submit" >Send</button>
         </form>
+            <form  onSubmit={sendChat}>
+            {/* <div ref={containerRef} className="auto-growing-input-container"> */}
+                <input
+                    value={chatInput}
+                    onChange={(e) => setChatInput(e.target.value)}
+                    className="message-input-field"
+                />
+                {/* </div> */}
+                <button className="submit-message-button" type="submit">Send</button>
+            </form>
         </div>
     )
 }
