@@ -42,7 +42,7 @@ const SelectedServer = () => {
         <div className='server-details-div'>
             <div className='selected-server'>
                 <ul>
-                    <li>
+                    <li className='server-name'>
                         {server.name}
                     </li>
                     <li hidden={sessionUserId !== server.owner_id}>

@@ -4,7 +4,7 @@ ul {
   margin: 0;
   background-color: #1e1f22;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   height: 50px;
 }
@@ -62,4 +62,13 @@ li a:hover {
 /* Hover effect for the profile icon */
 .profile-button img:hover {
   /* Add any hover styles you want */
+}
+.tumult-dropdown-icon {
+  height: 35px;
+  width: 35px;
+}
+
+.tumult-dropdown-icon:hover {
+  background-color: #555;
+  border-radius: 5px;
 }

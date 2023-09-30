@@ -14,7 +14,11 @@ const PublicServers = () => {
     const dispatch = useDispatch()
     const servers = useSelector( state => state.servers.allServers )
 
-    const [selectedServerId, setSelectedServerId] = useState(null);
+
+
+
+    // const [selectedServerId, setSelectedServerId] = useState(null);
+    const selectedServerId = useSelector(state => state.servers.selectedServer.id)
 
 
     const handleServerClick = async (serverId, e) => {
@@ -23,7 +27,7 @@ const PublicServers = () => {
         console.log('-----------------------------------')
         console.log('RESPONSE: ', response)
         console.log('-----------------------------------')
-        setSelectedServerId(serverId);
+        // setSelectedServerId(serverId);
         const firstChannelId = response[0].id
         dispatch(getChannels(serverId))
         dispatch(getOneServer(serverId))
@@ -47,6 +51,7 @@ const PublicServers = () => {
 
     return(
         <>
+
         <div className='server-list-comp'>
             <div className='public-server-list'>
                 {servers.map(server => {

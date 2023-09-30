@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { getOneServer, getPublicServers, postServer } from '../../store/servers'
 import { object } from 'prop-types';
 import { useModal } from "../../context/Modal";
+import { getMessages } from "../../store/messages"
+import { getChannels, getNewestChannel } from '../../store/channels'
 
 import './createServer.css'
 // import ErrorMessage from './ErrorMessage';
@@ -40,13 +42,16 @@ const CreateServerForm = () => {
         if (Object.keys(validationErrors).length == 0) {
             try {
                 const response = await dispatch(postServer(payload));
-                console.log('RESPONSE CREATE SERVER',response)
+                // console.log('RESPONSE CREATE SERVER',response)
                 closeModal()
                 if (response) {
                     const serverId = response.id
                     await dispatch(getOneServer(serverId))
                     await dispatch(getPublicServers())
-                    history.push(`/main/${serverId}/${channelServers[0].id}`);
+                    const newChannelId = await dispatch(getNewestChannel(serverId))
+                    console.log('NEW CHANNEL ID: ', newChannelId)
+                    await dispatch(getMessages(serverId, newChannelId))
+                    history.push(`/main/${serverId}/${newChannelId}`);
                     // closeModal()
                 }
             } catch (error) {

@@ -1,6 +1,8 @@
 .main-overall-div {
     display: flex;
     flex-direction: row;
+    /* hard-coded pixel size as temporary solution */
+    height: 1241px;
 }
 
 .main-servers-div {
