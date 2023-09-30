@@ -14,7 +14,8 @@
 .messages-overall-div {
     display: flex;
     flex-direction: column;
-    height: 800px;
+    height: 94vh; /* Set the height to 100% of the viewport height */
+    overflow: auto; /* Add scrollbars if the content overflows the viewport */
     background-color: #252525;
     padding-left: 40px;
     color: white;
@@ -39,20 +40,39 @@
     margin-top: 10px;
     margin-right: 80px;
     font-size: 14px;
+    padding-left: 2px;
+}
+
+.message-edit-field {
+    background-color: #181a1c;
+    border-radius: 5px;
+    width: fit-content;
+    height: 30px;
+    width: 700px;
+    color: white;
+    margin-bottom: 30px;
+    margin-left: 5px;
+}
+
+.message-edit-button {
+    height: 30px;
+    width: 120px;
+    background-color: #181a1c;
+    color: white;
+    border-radius: 5px;
 }
 
 .emoji-span {
-    border: solid 1px rgb(131, 42, 153);
+    /* border: solid 1px rgb(131, 42, 153); */
     color: white;
     display: inline-block;
     height: 22px;
     cursor: pointer;
     border-radius: 3px;
-    padding: 1px;
     margin-right: 5px;
     margin-top: 5px;
+    padding: 1px;
 }
-
 .message-update-delete-div {
     margin-bottom: 30px;
     margin-top: 10px;
@@ -91,13 +111,14 @@
 }
 
 .emoji-picker-div {
-    display: inline-block;
-}
-
-.emoji-picker-itself {
-    display: flex;
-    flex-direction: column;
-    width: 600px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
 }
 
 .message-input-field {
@@ -107,9 +128,14 @@
     height: 30px;
     width: 700px;
     color: white;
+    margin-bottom: 20px;
+    /* position: absolute; */
 }
 
 .submit-message-button {
-    height: 35px;
-    width: 80px;
+    height: 30px;
+    width: 120px;
+    background-color: #181a1c;
+    color: white;
+    border-radius: 5px;
 }

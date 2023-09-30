@@ -277,11 +277,12 @@ const SelectedChannel = () => {
                             <input
                                 type="text"
                                 required
+                                className="message-edit-field"
                                 name = "message_text"
                                 value={editMessageText}
                                 onChange={ (e) => setEditMessageText(e.target.value)}
                                 />
-                                <button onClick={(e) => updateChat(message.id, editMessageText, e)}>Update Message</button>
+                                <button onClick={(e) => updateChat(message.id, editMessageText, e)} className="message-edit-button">Update Message</button>
                             </div>
 
                             ) : (
@@ -321,7 +322,8 @@ const SelectedChannel = () => {
                                       autoFocusSearch={false}
                                       emojiStyle={EmojiStyle.DARK}
                                       theme={'dark'}
-                                      width={700}
+                                      width={900}
+                                      all={'initial'}
                                       className='emoji-picker-itself'
                                   />
                                 </div>}
@@ -332,17 +334,18 @@ const SelectedChannel = () => {
                     )
                 })}
             </div> : null
+
         }
-        <form onSubmit={sendChat}>
-        {/* <div ref={containerRef} className="auto-growing-input-container"> */}
-            <input
-                value={chatInput}
-                onChange={(e) => setChatInput(e.target.value)}
-                className="message-input-field"
-            />
-            {/* </div> */}
-            <button className="submit-message-button" type="submit">Send</button>
-        </form>
+            <form  onSubmit={sendChat}>
+            {/* <div ref={containerRef} className="auto-growing-input-container"> */}
+                <input
+                    value={chatInput}
+                    onChange={(e) => setChatInput(e.target.value)}
+                    className="message-input-field"
+                />
+                {/* </div> */}
+                <button className="submit-message-button" type="submit">Send</button>
+            </form>
         </div>
     )
 }
