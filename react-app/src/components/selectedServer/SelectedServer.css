@@ -84,8 +84,7 @@ li {
 
 .update-delete-sever-span {
     display: inline-block;
-    margin-left: 180px;
-    width: 200px;
+    width: 100px;
 }
 
 .update-server-button {
