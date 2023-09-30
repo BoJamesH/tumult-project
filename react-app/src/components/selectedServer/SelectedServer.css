@@ -12,6 +12,7 @@
 .selected-server {
     display: flex;
     flex-direction: row;
+    /* position: fixed; */
     /* justify-content: space-around; */
 }
 
@@ -74,7 +75,7 @@ li {
 }
 
 .server-name {
-    margin-right: 70px;
+    margin-right: 10px;
     margin-left: 12px;
 }
 
