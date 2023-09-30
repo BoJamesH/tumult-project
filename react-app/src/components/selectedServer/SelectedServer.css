@@ -12,6 +12,7 @@
     justify-content: left;
     margin: 10px;
     background-color: #2c2d32;
+    max-height: 60vh;
 }
 
 li {
@@ -67,4 +68,13 @@ li {
 
 .message-container {
     display: flex;
+}
+
+.create-channel-button {
+    width: 200px;
+    margin-left: 10px;
+    color: white;
+    background-color: #37373e;
+    border-radius: 5px;
+    height: 30px;
 }

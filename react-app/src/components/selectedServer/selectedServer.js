@@ -49,14 +49,17 @@ const SelectedServer = () => {
 
                         <OpenModalButton
                         modalComponent={<UpdateServerForm />}
-                        buttonText=""
+                        buttonText="Update Server"
+                        buttonStyle='update-server-button'
+                        buttonImgSrc='../../../public/images/settings_icon.png'
                         />
                     </li>
                     <li hidden={sessionUserId !== server.owner_id}>
                         {/* <button onClick={deleteServerHandler}>DELETE SERVER</button> */}
                         <OpenModalButton
                         modalComponent={<DeleteServerModal server={server}/>}
-                        buttonText="-"
+                        buttonText="Delete Server"
+                        buttonStyle='delete-server-button'
                         />
                     </li>
                 </ul>
@@ -86,7 +89,8 @@ const SelectedServer = () => {
 
             <OpenModalButton
                 modalComponent={<CreateChannelForm />}
-                buttonText="Create new Channel"
+                buttonText="Create New Channel"
+                buttonStyle='create-channel-button'
                 />
 
         </div>

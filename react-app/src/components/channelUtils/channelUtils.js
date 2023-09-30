@@ -44,6 +44,7 @@ const ChannelUtils = ({channel, server}) => {
             <OpenModalButton
             modalComponent={<UpdateChannelForm channel={channel} server={server}/>}
             buttonText="Update Channel"
+            buttonStyle='update-channel-button'
             />
         </li>
         <li hidden={!(sessionUserId == channel.owner_id || sessionUserId == server.owner_id)}>
@@ -52,6 +53,7 @@ const ChannelUtils = ({channel, server}) => {
             <OpenModalButton
             modalComponent={<DeleteChannelModal server={server} channel={channel}/>}
             buttonText="Delete Channel"
+            buttonStyle='delete-channel-button'
             />
             }
         </li>
