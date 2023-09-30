@@ -32,7 +32,6 @@ function LandingPage({ user }) {
                     </a>
                     <div className="link-container">
                         <span>
-                            <NavLink exact to="/" className="white-link">Home</NavLink>
                         </span>
                         <span>
                             <a
