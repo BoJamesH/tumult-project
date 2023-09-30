@@ -42,15 +42,24 @@
 }
 
 .emoji-span {
-    border: solid 1px rgb(131, 42, 153);
+    border: solid 2px #6f3dfd;
+    background-color: #3c3457;
     color: white;
     display: inline-block;
-    height: 22px;
+    height: 30px;
+    width: 30px;
     cursor: pointer;
-    border-radius: 3px;
+    border-radius: 35%;
     padding: 1px;
     margin-right: 5px;
     margin-top: 5px;
+    justify-content: center;
+    align-content: center;
+}
+
+.emoji-span > img {
+    height: 25px;
+    width: 25px;
 }
 
 .message-update-delete-div {
