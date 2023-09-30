@@ -95,6 +95,12 @@
     font-size: 12px;
 }
 
+.message-reaction-button:hover {
+    transition: .5s;
+    transform: .5s ease;
+    color: rgb(211, 211, 211);
+}
+
 .message-delete-button {
     background: none;
     border: none;
@@ -106,6 +112,12 @@
     font-size: 12px;
 }
 
+.message-delete-button:hover {
+    transition: .5s;
+    transform: .5s ease;
+    color: rgb(211, 211, 211);
+}
+
 .message-update-button {
     background: none;
     border: none;
@@ -115,6 +127,12 @@
     color: rgb(148, 148, 148);
     margin-right: 20px;
     font-size: 12px;
+}
+
+.message-update-button:hover {
+    transition: .5s;
+    transform: .5s ease;
+    color: rgb(211, 211, 211);
 }
 
 .emoji-picker-div {
@@ -160,6 +178,7 @@
     margin-right: 20px;
     font-size: 12px;
 }
+
 
 .submit-message-button {
     height: 30px;

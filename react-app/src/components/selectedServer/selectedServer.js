@@ -41,28 +41,30 @@ const SelectedServer = () => {
         <>
         <div className='server-details-div'>
             <div className='selected-server'>
-                <ul>
-                    <li className='server-name'>
+                    <span className='server-name'>
                         {server.name}
-                    </li>
-                    <li hidden={sessionUserId !== server.owner_id}>
+                    </span>
+                    <span className='update-delete-server-span'>
+
+                    <span hidden={sessionUserId !== server.owner_id}>
 
                         <OpenModalButton
                         modalComponent={<UpdateServerForm />}
                         buttonText="Update Server"
                         buttonStyle='update-server-button'
-                        buttonImgSrc='../../../public/images/settings_icon.png'
+                        buttonImgSrc='https://cdn.discordapp.com/attachments/1155921295729500323/1157786665331462175/grayCog.png?ex=6519e05b&is=65188edb&hm=8805a7318ab880bb1e027817c118d8d144899ada0ebeda32d68914c9c476a4d2&'
                         />
-                    </li>
-                    <li hidden={sessionUserId !== server.owner_id}>
-                        {/* <button onClick={deleteServerHandler}>DELETE SERVER</button> */}
+                    </span>
+                    <span hidden={sessionUserId !== server.owner_id}>
+                        {/* <button onCspanck={deleteServerHandler}>DELETE SERVER</button> */}
                         <OpenModalButton
                         modalComponent={<DeleteServerModal server={server}/>}
                         buttonText="Delete Server"
                         buttonStyle='delete-server-button'
+                        buttonImgSrc='https://cdn.discordapp.com/attachments/1155921295729500323/1157787492729241643/kisspng-computer-icons-icon-design-delete-button-5abcecff15c4a2.6087623815223308790892.png?ex=6519e120&is=65188fa0&hm=d3c1f05621d8ec345c506d89c6f5754b652871b9e8030bd54b7cb6a02a808d59&'
                         />
-                    </li>
-                </ul>
+                    </span>
+                </span>
             </div>
             {/* {forceRerender && channels.length > 0 && (
                 <div className='channels'>
@@ -89,7 +91,7 @@ const SelectedServer = () => {
 
             <OpenModalButton
                 modalComponent={<CreateChannelForm />}
-                buttonText="Create New Channel"
+                buttonText="Create Channel"
                 buttonStyle='create-channel-button'
                 />
 

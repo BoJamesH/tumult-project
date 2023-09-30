@@ -4,14 +4,21 @@
 
 .server-details-div,
 .selected-server {
-    background-color: #2c2d32;
+    background-color: #1e1e1e;
     color: #969aa5;
+    margin-top: 20px;
+}
+
+.selected-server {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 .server-details-div ul {
     justify-content: left;
     margin: 10px;
-    background-color: #2c2d32;
+    background-color: #1e1e1e;
     max-height: 60vh;
 }
 
@@ -66,15 +73,57 @@ li {
     }
 }
 
+.server-name {
+    margin-right: 70px;
+    margin-left: 12px;
+}
+
 .message-container {
     display: flex;
 }
 
-.create-channel-button {
+.update-delete-sever-span {
+    display: inline-block;
+    margin-left: 180px;
     width: 200px;
-    margin-left: 10px;
-    color: white;
-    background-color: #37373e;
-    border-radius: 5px;
-    height: 30px;
+}
+
+.update-server-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: rgb(148, 148, 148);
+    margin-right: 20px;
+    font-size: 12px;
+}
+
+.delete-server-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: rgb(148, 148, 148);
+    margin-right: 20px;
+    font-size: 12px;
+}
+
+.create-channel-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: rgb(148, 148, 148);
+    margin-right: 20px;
+    font-size: 12px;
+    margin-left: 20px;
+}
+
+.create-channel-button:hover {
+    transition: .5s;
+    transform: .5s ease;
+    color: rgb(194, 194, 194);
 }

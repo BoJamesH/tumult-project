@@ -23,7 +23,7 @@ function OpenModalButton({
     <>
     {!buttonImgSrc ? (
     <button className={buttonStyle} onClick={onClick}>{buttonText}</button>
-    ) : <img src={buttonImgSrc} alt='update server icon' className='button-icon' nClick={onClick} />}
+    ) : <img src={buttonImgSrc} alt='update server icon' className='button-icon' onClick={onClick} />}
     </>
   );
 }

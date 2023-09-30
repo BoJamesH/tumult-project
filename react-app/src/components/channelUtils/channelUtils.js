@@ -7,6 +7,7 @@ import { getMessages } from '../../store/messages'
 import OpenModalButton from '../openModalButton'
 import UpdateChannelForm from '../updateChannelModal/updateChannel'
 import DeleteChannelModal from '../deleteModal/deleteChannelModal'
+import './channelUtils.css'
 
 const ChannelUtils = ({channel, server}) => {
     const { serverId } = useParams()
@@ -45,6 +46,7 @@ const ChannelUtils = ({channel, server}) => {
             modalComponent={<UpdateChannelForm channel={channel} server={server}/>}
             buttonText="Update Channel"
             buttonStyle='update-channel-button'
+            buttonImgSrc='https://cdn.discordapp.com/attachments/1155921295729500323/1157786665331462175/grayCog.png?ex=6519e05b&is=65188edb&hm=8805a7318ab880bb1e027817c118d8d144899ada0ebeda32d68914c9c476a4d2&'
             />
         </li>
         <li hidden={!(sessionUserId == channel.owner_id || sessionUserId == server.owner_id)}>
@@ -54,6 +56,7 @@ const ChannelUtils = ({channel, server}) => {
             modalComponent={<DeleteChannelModal server={server} channel={channel}/>}
             buttonText="Delete Channel"
             buttonStyle='delete-channel-button'
+            buttonImgSrc='https://cdn.discordapp.com/attachments/1155921295729500323/1157787492729241643/kisspng-computer-icons-icon-design-delete-button-5abcecff15c4a2.6087623815223308790892.png?ex=6519e120&is=65188fa0&hm=d3c1f05621d8ec345c506d89c6f5754b652871b9e8030bd54b7cb6a02a808d59&'
             />
             }
         </li>
