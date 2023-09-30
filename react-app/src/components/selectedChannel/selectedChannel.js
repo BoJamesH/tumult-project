@@ -179,9 +179,7 @@ const SelectedChannel = () => {
 
     const deleteChat = (messageId, e) => {
         e.preventDefault()
-        // emit a message
         socket.emit("delete_message", { message_id: messageId });
-        // dispatch(getMessages(serverId, channelId))
     }
 
     const updateChat = (messageId, message_text, e) => {
