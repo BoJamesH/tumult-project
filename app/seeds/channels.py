@@ -4,7 +4,8 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_channels():
-  channel1 = Channel(
+
+    channel1 = Channel(
         name='general',
         owner_id=1,
         server_id=1,

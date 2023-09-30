@@ -56,15 +56,11 @@ li a:hover {
   background-color: #f5f5f5;
 }
 
-/* Style for the profile icon within the ProfileButton component */
+
 .profile-button img {
-  cursor: pointer; /* Change cursor to pointer on hover */
+  cursor: pointer;
 }
 
-/* Hover effect for the profile icon */
-.profile-button img:hover {
-  /* Add any hover styles you want */
-}
 .tumult-dropdown-icon {
   height: 35px;
   width: 35px;
