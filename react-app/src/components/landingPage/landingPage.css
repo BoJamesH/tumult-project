@@ -6,197 +6,21 @@ body {
 
 *, *::before, *::after {
     box-sizing: border-box;
-}
-
-.tumultLogo, .tumultLogoBottom, .title-tumult, .title-logo-container,
-.home-nav-container, .nav-links-container, .white-link, .imagine-container,
-.larger-text, .leftheaderimage, .rightheaderimage, .header-image-container,
-.second-image-container, .third-image-container, .fourth-image-container,
-.fifth-image-container, .last-description-container, .nav-login, .open-tumult,
-.open-tumult-header, .github-logo, .linked-logo, .about-link-container,
-.github-linked-container, .homepage-container {
     margin: 0;
     padding: 0;
 }
 
-.tumultLogo {
+.tumultLogo, .tumultLogoBottom {
     height: 3vw !important;
     width: 3vw !important;
 }
 
-.tumultLogoBottom {
-    height: 3vw !important;
-    width: 3vw !important;
-}
-
-*, *::before, *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    overflow-x: hidden;
-}
-
-.tumultLogo {
-    height: 14%;
-    width: 14%;
-}
-
-.tumultLogoBottom {
-    height: 18%;
-    width: 18%;
-}
-
-.title-tumult,
-.title-logo-container{
+.title-tumult, .title-logo-container {
     display: flex;
     align-items: center;
     column-gap: 15px;
-    color: white;
-}
-
-.nav-login:hover,
-.open-tumult:hover,
-.open-tumult-header:hover {
-  color: blue; /* Change text color to blue on hover */
-  font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Inherit the font-family */
-  font-size: inherit; /* Inherit the font-size */
-  font-weight: inherit; /* Inherit the font-weight */
-}
-
-.home-nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #333333;
-    padding-left: 25%;
-    padding-right: 15%;
-    width: 100%;
-}
-
-.nav-links-container {
-    display: flex;
-    justify-content: space-evenly;
-    flex-grow: 1;
-}
-
-.white-link {
     color: white;
     text-decoration: none;
-}
-
-.imagine-container {
-    grid-column: 3/span 8;
-    text-align: center;
-}
-
-.larger-text {
-    font-family: "ABC Ginto Nord", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 120%;
-}
-
-.imagine-container h1,
-.imagine-container div {
-    color: white;
-}
-
-.leftheaderimage,
-.rightheaderimage {
-    height: 100%;
-    width: 100%;
-}
-
-.header-image-container,
-.second-image-container,
-.third-image-container,
-.fourth-image-container,
-.fifth-image-container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
-
-.header-image-container,
-.home-nav-container,
-.about-link-container {
-    background-color: #333333;
-}
-
-.link-container {
-    display: flex;
-    justify-content: space-evenly;
-    flex: 1;
-}
-
-.third-image-container,
-.fifth-image-container {
-    background-color: #f2f2f2;
-}
-
-.last-description-container {
-    display: flex;
-    justify-content: center;
-}
-
-.nav-login,
-.open-tumult,
-.open-tumult-header {
-    padding: 10px;
-    border-radius: 20px;
-    background-color: white;
-    color: #23272a;
-    cursor: pointer;
-    transition: box-shadow 0.3s ease;
-}
-
-.open-tumult-header {
-    margin-top: 10px;
-    padding: 10px 80px;
-    border-radius: 20px;
-    background-color: white;
-    color: #23272a;
-}
-
-.title-logo-container {
-    display: flex;
-    align-items: center;
-    column-gap: 15px;
-}
-
-.github-logo,
-.linked-logo {
-    height: 20px;
-    width: 20px;
-}
-
-.about-link-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    background-color: #495155;
-    color: white;
-    width: 100%;
-    text-align: center;
-}
-
-.github-linked-container {
-    display: flex;
-}
-
-.homepage-container {
-    display: grid;
-    width: 100%;
-}
-
-.title-tumult,
-.title-logo-container {
-    display: flex;
-    align-items: center;
-    column-gap: 15px;
-    color: white;
 }
 
 .home-nav-container {
@@ -204,9 +28,27 @@ body {
     align-items: center;
     justify-content: space-between;
     background-color: #333333;
+    padding-left: 25%;
+    padding-right: 15%;
+    width: 100%;
 }
 
-.nav-links-container {
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px; 
+}
+
+.button-container button, .nav-login, .open-tumult, .open-tumult-header {
+    margin: 0 10px;
+    min-width: 100px;
+    padding: 10px 20px;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.link-container, .nav-links-container {
     display: flex;
     justify-content: space-evenly;
     flex-grow: 1;
@@ -220,6 +62,11 @@ body {
 .imagine-container {
     grid-column: 3/span 8;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 .larger-text {
@@ -227,51 +74,75 @@ body {
     font-size: 120%;
 }
 
-.imagine-container h1,
-.imagine-container div {
+.imagine-container h1 {
     color: white;
+    margin-bottom: 10px;
 }
 
-.leftheaderimage,
-.rightheaderimage {
+.imagine-container div {
+    color: white;
+    text-align: center;
+}
+
+.imagine-container .open-tumult-header {
+    margin-top: 20px;
+}
+
+.leftheaderimage, .rightheaderimage {
     height: 100%;
     width: 100%;
 }
 
-.header-image-container,
-.second-image-container,
-.third-image-container,
-.fourth-image-container,
-.fifth-image-container {
+.header-image-container, .second-image-container, .third-image-container, .fourth-image-container, .fifth-image-container {
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
-.header-image-container,
-.home-nav-container,
-.about-link-container {
+.header-image-container, .home-nav-container {
     background-color: #333333;
 }
 
-.link-container {
-    display: flex;
-    justify-content: space-evenly;
-    flex: 1;
-}
-
-.third-image-container,
-.fifth-image-container {
+.third-image-container, .fifth-image-container {
     background-color: #f2f2f2;
 }
 
-.last-description-container {
+.fifth-image-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #f2f2f2;
+    padding: 5%;
+    height: auto;
 }
 
-.nav-login,
-.open-tumult,
-.open-tumult-header {
+.fifth-image-container h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.fifth-image-container div {
+    font-size: 16px;
+}
+
+.about-link-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #495155;
+    color: white;
+    text-align: center;
+    padding: 20px; /* Adjusted padding for a bigger container */
+}
+
+
+.about-link-container h3 {
+    font-size: 1.2em; /* Adjusted font-size */
+}
+
+.nav-login, .open-tumult, .open-tumult-header {
     padding: 10px;
     border-radius: 20px;
     background-color: white;
@@ -283,32 +154,11 @@ body {
 .open-tumult-header {
     margin-top: 10px;
     padding: 10px 80px;
-    border-radius: 20px;
-    background-color: white;
-    color: #23272a;
 }
 
-.title-logo-container {
-    display: flex;
-    align-items: center;
-    column-gap: 15px;
-}
-
-.github-logo {
-    height: 20px;
-    width: 20px;
-}
-
-.linked-logo {
-    height: 20px;
-    width: 20px;
-}
-
-.about-link-container {
-    display: flex;
-    justify-content: space-around;
-    background-color: #495155;
-    color: white;
+.github-logo, .linked-logo {
+    height: 30px;
+    width: 30px;
 }
 
 .github-linked-container {
@@ -317,30 +167,49 @@ body {
 
 .homepage-container {
     display: grid;
+    width: 100%;
 }
 
-.second-image-container {
-    display: flex;
-    align-items: center;
+.nav-login:hover, .open-tumult:hover, .open-tumult-header:hover {
+    color: blue;
+    font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: inherit;
+    font-weight: inherit;
 }
 
-.third-image-container {
-    display: flex;
-    align-items: center;
+.nav-login {
+    padding: 10px 20px;
+    border-radius: 25px;
 }
 
-.fourth-image-container {
-    display: flex;
-    align-items: center;
+.login-signup-button {
+    padding: 10px 20px;
+    border-radius: 25px;
 }
 
-.fifth-image-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.header-image-container h2,
+.second-image-container h2,
+.third-image-container h2,
+.fourth-image-container h2,
+.fifth-image-container h2 {
+    font-size: 2.5em;
 }
 
-.last-description-container {
-    display: flex;
-    justify-content: center;
+.adventure-container h2 {
+    font-size: 1.25em;
+    margin-bottom: 10px;
+}
+
+.adventure-container .download-button {
+    padding: 10px 100px;
+    border-radius: 20px;
+    background-color: #5865F2;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.adventure-container .download-button:hover {
+    background-color: #4B55B5;
+    color: white;
 }
