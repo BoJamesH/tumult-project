@@ -27,9 +27,9 @@ const DeleteChannelModal = ({server, channel}) => {
                 <h2>Delete Channel</h2>
                 <h4>Are you sure you want to delete ? There is no return after deletion.</h4>
             </div>
-            <div className="delete-channel-buttons-container">
+            <div className="delete-cancel-buttons-container">
                 <button className="cancel-delete-modal-button" onClick={cancelChannelDelete}>Cancel</button>
-                <button className="delete-modal-button" onClick={deleteChannelHandler}>Delete Channel</button>
+                <button className="delete-channel-modal-button" onClick={deleteChannelHandler}>Delete Channel</button>
             </div>
         </div>
     )

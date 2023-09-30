@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { getOneServer, getPublicServers, postServer } from '../../store/servers'
 import { object } from 'prop-types';
 import { useModal } from "../../context/Modal";
+import { getMessages } from "../../store/messages"
+import { getChannels, getNewestChannel } from '../../store/channels'
 
 import './createServer.css'
 // import ErrorMessage from './ErrorMessage';
@@ -40,13 +42,16 @@ const CreateServerForm = () => {
         if (Object.keys(validationErrors).length == 0) {
             try {
                 const response = await dispatch(postServer(payload));
-                console.log('RESPONSE CREATE SERVER',response)
+                // console.log('RESPONSE CREATE SERVER',response)
                 closeModal()
                 if (response) {
                     const serverId = response.id
                     await dispatch(getOneServer(serverId))
                     await dispatch(getPublicServers())
-                    history.push(`/main/${serverId}/${channelServers[0].id}`);
+                    const newChannelId = await dispatch(getNewestChannel(serverId))
+                    console.log('NEW CHANNEL ID: ', newChannelId)
+                    await dispatch(getMessages(serverId, newChannelId))
+                    history.push(`/main/${serverId}/${newChannelId}`);
                     // closeModal()
                 }
             } catch (error) {
@@ -98,9 +103,9 @@ const CreateServerForm = () => {
                     required
                     value={labelImage}
                     onChange={updateLabelImage} />
-            </div>
+                </div>
 
-            <div>
+                <div>
                     <label>PRIVATE
                         <input
                         type="checkbox"
@@ -108,11 +113,13 @@ const CreateServerForm = () => {
                         checked={privateServer}
                         onChange={updatePrivate} />
                     </label>
-            </div>
-        <div className="create-new-server-buttons-container">
-            <button className="create-new-server-cancel-button-modal" type="button" onClick={handleCancelClick}>Cancel</button>
-            <button className="create-new-server-button-modal" type="submit">Create new server</button>
-        </div>
+                </div>
+
+                <div className="create-new-server-buttons-container">
+                    <button className="create-new-server-cancel-button-modal" type="button" onClick={handleCancelClick}>Cancel</button>
+                    <button className="create-new-server-button-modal" type="submit">Create new server</button>
+                </div>
+
         </form>
     </div>
     );

@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 // import ErrorMessage from './ErrorMessage';
 import { editChannel, getChannels } from '../../store/channels';
 import { useModal } from '../../context/Modal';
+import './updateChannel.css'
 
 
 const UpdateChannelForm = ({channel, server}) => {
@@ -72,28 +73,38 @@ const UpdateChannelForm = ({channel, server}) => {
         }
 
     return (
-    <section className="new-form-holder centered middled">
-        <form className="create-pokemon-form" onSubmit={handleChannelUpdate}>
-        <label>
-            Channel Name
-        <input
-            type="text"
-            placeholder="Channel Name"
-            required
-            value={name}
-            onChange={updateName} />
-        </label>
-        <label>
-            Private?
-        <input
-            type="checkbox"
-            checked={privateChannel}
-            onChange={updatePrivate} />
-            </label>
-        <button type="submit">Update Channel</button>
-        <button type="button" onClick={handleCancelClick}>Cancel</button>
+    <div className="update-channel-container">
+        <h2>Channel Overview</h2>
+        <h4>Update your Channel</h4>
+        <form className="update-channel-form-container" onSubmit={handleChannelUpdate}>
+        <div>
+
+                <label>
+                    CHANNEL NAME
+                </label>
+                <input
+                type="text"
+                placeholder="Channel Name"
+                required
+                value={name}
+                onChange={updateName} />
+            </div>
+            <div>
+                <label>
+                    PRIVATE
+                    <input
+                    className='private-input'
+                    type="checkbox"
+                    checked={privateChannel}
+                    onChange={updatePrivate} />
+                </label>
+            </div>
+            <div className='update-channel-buttons-container'>
+                <button className="update-channel-cancel-button-modal" type="button" onClick={handleCancelClick}>Cancel</button>
+                <button className="update-channel-button-modal" type="submit">Update Channel</button>
+            </div>
         </form>
-    </section>
+    </div>
     );
 };
 

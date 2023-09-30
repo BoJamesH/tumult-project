@@ -56,7 +56,7 @@ body {
     align-items: center;
     column-gap: 15px;
     color: white;
-    flex:
+    /* flex: */
 }
 
 .nav-login:hover,
