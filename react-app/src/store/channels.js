@@ -40,7 +40,18 @@ export const getChannels = (serverId) => async (dispatch) => {
     }
 };
 
-export const getChannelId = serverId => async (dispatch) => {
+export const getNewestChannel = (serverId) => async (dispatch) => {
+    const response = await fetch(`/api/channels/${serverId}`);
+    if (response.ok) {
+        const getServerChannels = await response.json();
+        // console.log('getServerChannels: ', getServerChannels)
+        const serverChannel = getServerChannels.channels[0]
+        console.log('serverChannel: ', serverChannel)
+        return serverChannel.id
+    }
+}
+
+export const getChannelId = (serverId) => async (dispatch) => {
     const response = await fetch(`/api/channels/${serverId}`);
     if (response.ok) {
         const getServerChannels = await response.json();

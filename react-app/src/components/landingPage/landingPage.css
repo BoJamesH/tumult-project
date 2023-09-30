@@ -51,12 +51,11 @@ body {
 }
 
 .title-tumult,
-.title-logo-container {
+.title-logo-container{
     display: flex;
     align-items: center;
     column-gap: 15px;
     color: white;
-    flex:
 }
 
 .nav-login:hover,

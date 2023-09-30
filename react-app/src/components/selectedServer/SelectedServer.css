@@ -8,4 +8,63 @@
     color: #969aa5;
 }
 
+.server-details-div ul {
+    justify-content: left;
+    margin: 10px;
+    background-color: #2c2d32;
+}
 
+li {
+    cursor: pointer;
+}
+
+.server-name {
+    color: #f2f3ea;
+    font-weight: bold;
+}
+
+.channel ul {
+    transition: 0.2s;
+    border-radius: 20%;
+    cursor: pointer;
+}
+
+.channel ul:hover {
+    color: #dcdee1;
+    background-color: #37373e;
+}
+
+.message-container img {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    padding: 5px;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.message-container img:hover {
+    animation: shake 1s ease infinite;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-1px);
+    }
+    50% {
+        transform: translateY(1px);
+    }
+    75% {
+        transform: translateY(-1px);
+    }
+    100% {
+        transform: translateY(1px);
+    }
+}
+
+.message-container {
+    display: flex;
+}
