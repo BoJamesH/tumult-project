@@ -341,14 +341,14 @@ const SelectedChannel = () => {
                                         className='emoji-picker-itself'
                                         />
                                     </div>}
-                            <span className="message-date-span">
+                                </div>
+                            {/* <span className="message-date-span">
                                 {formatDate(message.created_at)}
                             </span>
-                            </div>
-                            <div className="message-text-div">
+                            {/* <div className="message-text-div">
                                 {message.message_text}
-                            </div>
-                            {allReactions.length &&
+                            </div> */}
+                            {/* {allReactions.length &&
                                 allReactions.filter((reaction) => reaction.message_id == message.id).map((reaction) => {
                                     {console.log('Reaction ', reaction.message_id)}
                                     return (
@@ -359,12 +359,12 @@ const SelectedChannel = () => {
                                     </>
                                     )
                                 })
-                            }
-                            <div className="message-update-delete-div">
+                            } */}
+                            {/* <div className="message-update-delete-div">
                             <button className="message-update-button"  hidden={sessionUserId !== message.user_id} onClick={(e) => updateMessageHandler(message.id, message.message_text, e)}>Edit</button>
                             <button className="message-delete-button" hidden={sessionUserId !== message.user_id} onClick={(e) => deleteChat(message.id, e)}>Delete</button>
                             <button className="message-reaction-button" onClick={(e) => reactionClickHandler(message.id, e)}>React</button>
-                            </div>
+                            </div> */}
                             {reactionsModal && reactionMessageId == message.id &&
                                   <div className="emoji-picker-div">
                                   <EmojiPicker
@@ -378,7 +378,6 @@ const SelectedChannel = () => {
                                   />
                                 </div>}
                             </div>
-                        </div>
                         )
                         }
                     </>
@@ -398,16 +397,6 @@ const SelectedChannel = () => {
             {/* </div> */}
             <button className="submit-message-button" type="submit" >Send</button>
         </form>
-            <form  onSubmit={sendChat}>
-            {/* <div ref={containerRef} className="auto-growing-input-container"> */}
-                <input
-                    value={chatInput}
-                    onChange={(e) => setChatInput(e.target.value)}
-                    className="message-input-field"
-                />
-                {/* </div> */}
-                <button className="submit-message-button" type="submit">Send</button>
-            </form>
         </div>
     )
 }

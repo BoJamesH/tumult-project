@@ -16,8 +16,7 @@
     flex-direction: column;
 
     height: 100%;
-    height: 94vh; /* Set the height to 100% of the viewport height */
-    overflow: auto; /* Add scrollbars if the content overflows the viewport */
+    /* overflow: auto;  */
 
     background-color: #252525;
     padding-left: 40px;

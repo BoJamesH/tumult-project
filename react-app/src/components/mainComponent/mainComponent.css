@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
     /* hard-coded pixel size as temporary solution */
-    height: 1241px;
+    height: 100%
 }
 
 .main-servers-div {
