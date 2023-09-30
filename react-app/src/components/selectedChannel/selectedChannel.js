@@ -324,7 +324,7 @@ const SelectedChannel = () => {
                                       theme={'dark'}
                                       width={900}
                                       all={'initial'}
-                                      className='emoji-picker-itself'
+                                      className={'emoji-picker-itself'}
                                   />
                                 </div>}
                             </div>
