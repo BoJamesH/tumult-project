@@ -53,7 +53,7 @@ function LandingPage({ user }) {
         </span>
         <span>
             <a
-                href="https://www.linkedin.com/in/nicholas-tan-8046a5159/"
+                href="https://www.linkedin.com/in/ryan-rosales-646437276"
                 className="white-link"
             >
                 Ryan Rosales
@@ -204,7 +204,7 @@ function LandingPage({ user }) {
                             <a href="https://github.com/RjRosales19">
                                 <img className="github-logo" src="../images/github_logo.png" />
                             </a>
-                            <a href="">
+                            <a href="https://www.linkedin.com/in/ryan-rosales-646437276">
                                 <img className="linked-logo" src="../images/linked_logo.png" />
                             </a>
                         </div>

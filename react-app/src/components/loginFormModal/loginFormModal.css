@@ -13,7 +13,7 @@
 }
 
 .email-input{
-    width: 94%;
+    width: 102%;
     padding: 3%;
     background-color: #181a1c;
     color: white;
@@ -21,7 +21,7 @@
 }
 
 .password-input{
-    width: 94%;
+    width: 102%;
     padding: 3%;
     background-color: #181a1c;
     color: white;
@@ -46,4 +46,11 @@
 
 .log-in-form-container{
     width: 85%;
+}
+
+.errors{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    color: rgb(204, 12, 12);
 }
