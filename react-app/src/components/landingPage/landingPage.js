@@ -190,7 +190,7 @@ function LandingPage({ user }) {
                         <a href="https://github.com/BoJamesH" target="_blank" rel="noopener noreferrer">
                             <img className="github-logo" src="../images/github_logo.png" alt="GitHub" />
                         </a>
-                        <a href="LINK_TO_BO_LINKEDIN" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.linkedin.com/in/bo-j-1a1312276/" target="_blank" rel="noopener noreferrer">
                             <img className="linked-logo" src="../images/linked_logo.png" alt="LinkedIn" />
                         </a>
                     </div>
@@ -201,7 +201,7 @@ function LandingPage({ user }) {
                         <a href="https://github.com/Jordo707" target="_blank" rel="noopener noreferrer">
                             <img className="github-logo" src="../images/github_logo.png" alt="GitHub" />
                         </a>
-                        <a href="LINK_TO_JORDAN_LINKEDIN" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.linkedin.com/in/jordan-pentti-4b0044138/" target="_blank" rel="noopener noreferrer">
                             <img className="linked-logo" src="../images/linked_logo.png" alt="LinkedIn" />
                         </a>
                     </div>
