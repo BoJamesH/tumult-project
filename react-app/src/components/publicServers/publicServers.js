@@ -14,6 +14,9 @@ const PublicServers = () => {
     const dispatch = useDispatch()
     const servers = useSelector( state => state.servers.allServers )
 
+
+
+
     // const [selectedServerId, setSelectedServerId] = useState(null);
     const selectedServerId = useSelector(state => state.servers.selectedServer.id)
 
@@ -48,6 +51,7 @@ const PublicServers = () => {
 
     return(
         <>
+
         <div className='server-list-comp'>
             <div className='public-server-list'>
                 {servers.map(server => {
