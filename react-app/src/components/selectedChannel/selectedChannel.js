@@ -355,9 +355,10 @@ const SelectedChannel = () => {
                 value={chatInput}
                 onChange={(e) => setChatInput(e.target.value)}
                 className="message-input-field"
+                placeholder={`Share your thoughts...`}
             />
             {/* </div> */}
-            <button className="submit-message-button" type="submit">Send</button>
+            <button className="submit-message-button" type="submit" >Send</button>
         </form>
         </div>
     )

@@ -34,12 +34,35 @@ li {
     background-color: #37373e;
 }
 
-img {
+.message-container img {
     border-radius: 50%;
     height: 50px;
     width: 50px;
     padding: 5px;
     margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.message-container img:hover {
+    animation: shake 1s ease infinite;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-1px);
+    }
+    50% {
+        transform: translateY(1px);
+    }
+    75% {
+        transform: translateY(-1px);
+    }
+    100% {
+        transform: translateY(1px);
+    }
 }
 
 .message-container {
