@@ -187,3 +187,7 @@
     color: white;
     border-radius: 5px;
 }
+
+.create-channel-button-div {
+    margin-bottom: 40px;
+}

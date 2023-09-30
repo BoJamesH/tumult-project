@@ -88,12 +88,14 @@ const SelectedServer = () => {
                     )
                 })}
             </div>: null}
+            <div className='create-channel-button-div'>
 
             <OpenModalButton
                 modalComponent={<CreateChannelForm />}
                 buttonText="Create Channel"
                 buttonStyle='create-channel-button'
                 />
+            </div>
 
         </div>
         </>
