@@ -43,16 +43,20 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
+      {/* <button onClick={openMenu}>
         <i className="fas fa-user-circle" />
-      </button>
+      </button> */}
+      <img className="tumult-dropdown-icon"
+        onClick={openMenu}
+        src="https://cdn.discordapp.com/attachments/880221705191161867/1157538345518370836/white_tumult_on_nothing.png?ex=6518f917&is=6517a797&hm=09fbe312aea7c89870d35842b5cb3dc01832b25071851698f0a30ebb4b508a53&"
+      />
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
+            <li className="nav-li-element">{user.username}</li>
+            <li className="nav-li-element">{user.email}</li>
+            <li className="nav-logout-li">
+              <button className='nav-logout-button' onClick={handleLogout}>Log Out</button>
             </li>
           </>
         ) : (

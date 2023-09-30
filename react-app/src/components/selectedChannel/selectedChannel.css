@@ -14,14 +14,18 @@
 .messages-overall-div {
     display: flex;
     flex-direction: column;
-    height: 800px;
+
+    height: 94.2vh;
+    /* overflow: auto;  */
+
     background-color: #252525;
     padding-left: 40px;
     color: white;
     padding-top: 20px;
     word-wrap: break-word;
     padding-right: 20px;
-    max-width: 1000px;
+    width: auto
+    /* max-width: 1000px; */
 }
 
 .message-display-name {
@@ -39,20 +43,43 @@
     margin-top: 10px;
     margin-right: 80px;
     font-size: 14px;
+    padding-left: 2px;
+}
+
+.message-edit-field {
+    background-color: #181a1c;
+    border-radius: 5px;
+    width: fit-content;
+    height: 30px;
+    width: 700px;
+    color: white;
+    margin-bottom: 30px;
+    margin-left: 5px;
+}
+
+.message-edit-button {
+    height: 30px;
+    width: 120px;
+    background-color: #181a1c;
+    color: white;
+    border-radius: 5px;
 }
 
 .emoji-span {
-    border: solid 1px rgb(131, 42, 153);
+    border: solid 2px #6f3dfd;
+    background-color: #3c3457;
     color: white;
     display: inline-block;
-    height: 22px;
+    height: 30px;
+    width: 30px;
     cursor: pointer;
-    border-radius: 3px;
+    border-radius: 35%;
     padding: 1px;
     margin-right: 5px;
     margin-top: 5px;
+    justify-content: center;
+    align-content: center;
 }
-
 .message-update-delete-div {
     margin-bottom: 30px;
     margin-top: 10px;
@@ -68,6 +95,12 @@
     font-size: 12px;
 }
 
+.message-reaction-button:hover {
+    transition: .5s;
+    transform: .5s ease;
+    color: rgb(211, 211, 211);
+}
+
 .message-delete-button {
     background: none;
     border: none;
@@ -77,6 +110,12 @@
     color: rgb(148, 148, 148);
     margin-right: 20px;
     font-size: 12px;
+}
+
+.message-delete-button:hover {
+    transition: .5s;
+    transform: .5s ease;
+    color: rgb(211, 211, 211);
 }
 
 .message-update-button {
@@ -90,26 +129,65 @@
     font-size: 12px;
 }
 
-.emoji-picker-div {
-    display: inline-block;
+.message-update-button:hover {
+    transition: .5s;
+    transform: .5s ease;
+    color: rgb(211, 211, 211);
 }
 
-.emoji-picker-itself {
-    display: flex;
-    flex-direction: column;
-    width: 600px;
+.emoji-picker-div {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 400px;
+    z-index: 9999;
 }
 
 .message-input-field {
     background-color: #181a1c;
     border-radius: 5px;
-    width: fit-content;
+    width: 80%;
     height: 30px;
-    width: 700px;
+    max-width: 700px;
+    min-width: 200px;
     color: white;
+    margin-bottom: 20px;
+    /* position: absolute; */
 }
 
+.update-server-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: rgb(148, 148, 148);
+    margin-right: 20px;
+    font-size: 12px;
+}
+
+.delete-server-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: rgb(148, 148, 148);
+    margin-right: 20px;
+    font-size: 12px;
+}
+
+
 .submit-message-button {
-    height: 35px;
-    width: 80px;
+    height: 30px;
+    width: 120px;
+    background-color: #181a1c;
+    color: white;
+    border-radius: 5px;
+}
+
+.create-channel-button-div {
+    margin-bottom: 40px;
 }
