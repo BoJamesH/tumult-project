@@ -37,7 +37,7 @@ const ChannelUtils = ({channel, server}) => {
     return (
         <ul>
         <li>
-            <div onClick={selectChannelHandler}>{channel.name}</div>
+            <div onClick={selectChannelHandler}># {channel.name}</div>
         </li>
         <li hidden={!(sessionUserId == channel.owner_id || sessionUserId == server.owner_id)}>
             {/* <button onClick={updateChannelHandler}>UPDATE CHANNEL</button> */}

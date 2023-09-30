@@ -261,6 +261,14 @@ const SelectedChannel = () => {
         }
     };
 
+    const userTumults = [
+        "https://cdn.discordapp.com/attachments/880221705191161867/1157536137460580432/white_tumult_on_orange.png?ex=6518f709&is=6517a589&hm=398c1878234bb44cdabfd3c99b88fd1e657205d47016d5ce69a4965ad4fd64b8&",
+        "https://cdn.discordapp.com/attachments/880221705191161867/1157538345300271104/white_tumult_on_gray.png?ex=6518f917&is=6517a797&hm=447c23284748b2ae902fc3e7c7e51e6c774f7050768907454ec67eabf330acf7&",
+        "https://cdn.discordapp.com/attachments/880221705191161867/1157538346009108610/white_tumult_on_purple.png?ex=6518f917&is=6517a797&hm=dbd9dac7ca74a9e09b2b1f8ab38b8ee5def30bb59d83698386b371df63322a4b&",
+        "https://cdn.discordapp.com/attachments/880221705191161867/1157536554273734697/white_tumult_on_green.png?ex=6518f76c&is=6517a5ec&hm=880d715273685178a6546d801a182d439acf59941eeec35a425a4e7c9898a4fe&",
+        "https://cdn.discordapp.com/attachments/880221705191161867/1157538346785062932/white_tumult_on_yellow.png?ex=6518f917&is=6517a797&hm=acdc2312791b3475b443e5d9bc8fe081d8814f1c94f75a3b1b1e66e971b424d1&"
+    ]
+
 
     return (
         <div className="messages-overall-div">
@@ -285,47 +293,55 @@ const SelectedChannel = () => {
                             </div>
 
                             ) : (
+                            <div className="message-container">
+                                {console.log("------------------------------------")}
+                                {console.log("MESSAGE USER ID:",message.user.id)}
+                                {console.log("------------------------------------")}
+                                <img
+                                    src={userTumults[message.user.id % userTumults.length]} alt='User Tumult'
+                                />
                             <div key={message.id} className='message'>
-                            <div className="message-name-date-div">
-                                <span className="message-display-name">
-                                    {message.user.display_name}
+                                <div className="message-name-date-div">
+                                    <span className="message-display-name">
+                                        {message.user.display_name}
+                                    </span>
+                                <span className="message-date-span">
+                                    {formatDate(message.created_at)}
                                 </span>
-                            <span className="message-date-span">
-                                {formatDate(message.created_at)}
-                            </span>
+                                </div>
+                                <div className="message-text-div">
+                                    {message.message_text}
+                                </div>
+                                {allReactions.length &&
+                                    allReactions.filter((reaction) => reaction.message_id == message.id).map((reaction) => {
+                                        {console.log('Reaction ', reaction.message_id)}
+                                        return (
+                                            <>
+                                            <span className="emoji-span" onClick={(e) => reactionDeleteHandler(reaction, message, e)}>
+                                                <Emoji className='emoji-react' unified={reaction.reaction_type} size='20' />
+                                            </span>
+                                        </>
+                                        )
+                                    })
+                                }
+                                <div className="message-update-delete-div">
+                                <button className="message-update-button"  hidden={sessionUserId !== message.user_id} onClick={(e) => updateMessageHandler(message.id, message.message_text, e)}>Edit</button>
+                                <button className="message-delete-button" hidden={sessionUserId !== message.user_id} onClick={(e) => deleteChat(message.id, e)}>Delete</button>
+                                <button className="message-reaction-button" onClick={(e) => reactionClickHandler(message.id, e)}>React</button>
+                                </div>
+                                {reactionsModal && reactionMessageId == message.id &&
+                                    <div className="emoji-picker-div">
+                                    <EmojiPicker
+                                        onEmojiClick={(e) => emojiChat(message.id, e)}
+                                        autoFocusSearch={false}
+                                        emojiStyle={EmojiStyle.DARK}
+                                        theme={'dark'}
+                                        width={700}
+                                        className='emoji-picker-itself'
+                                        />
+                                    </div>}
                             </div>
-                            <div className="message-text-div">
-                                {message.message_text}
-                            </div>
-                            {allReactions.length &&
-                                allReactions.filter((reaction) => reaction.message_id == message.id).map((reaction) => {
-                                    {console.log('Reaction ', reaction.message_id)}
-                                    return (
-                                    <>
-                                        <span className="emoji-span" onClick={(e) => reactionDeleteHandler(reaction, message, e)}>
-                                            <Emoji className='emoji-react' unified={reaction.reaction_type} size='20' />
-                                        </span>
-                                    </>
-                                    )
-                                })
-                            }
-                            <div className="message-update-delete-div">
-                            <button className="message-update-button"  hidden={sessionUserId !== message.user_id} onClick={(e) => updateMessageHandler(message.id, message.message_text, e)}>Edit</button>
-                            <button className="message-delete-button" hidden={sessionUserId !== message.user_id} onClick={(e) => deleteChat(message.id, e)}>Delete</button>
-                            <button className="message-reaction-button" onClick={(e) => reactionClickHandler(message.id, e)}>React</button>
-                            </div>
-                            {reactionsModal && reactionMessageId == message.id &&
-                                  <div className="emoji-picker-div">
-                                  <EmojiPicker
-                                      onEmojiClick={(e) => emojiChat(message.id, e)}
-                                      autoFocusSearch={false}
-                                      emojiStyle={EmojiStyle.DARK}
-                                      theme={'dark'}
-                                      width={700}
-                                      className='emoji-picker-itself'
-                                  />
-                                </div>}
-                            </div>
+                        </div>
                         )
                         }
                     </>

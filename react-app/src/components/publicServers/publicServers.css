@@ -13,9 +13,6 @@
     border-radius: 40%;
 }
 
-.server-image.selected {
-    border-radius: 40%;
-}
 
 .new-server-button.button {
     padding: 10px 50px;
@@ -36,4 +33,26 @@
     justify-content: center;
     padding:10px ;
     height: 100%;
+}
+
+
+.server-image.selected {
+    border-radius: 40%;
+    /* Add other selected styles here */
+    position: relative;
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.5); /* Initial box shadow (no blur and fully transparent) */
+    animation: pulsingShadow 1.5s ease infinite; /* Adjust the animation duration as needed */
+}
+
+/* Define the keyframes for the pulsing box shadow animation */
+@keyframes pulsingShadow {
+    0% {
+        box-shadow: 0 0 0 0  rgba(255, 0, 0, 0.5); /* No shadow (initial state) */
+    }
+    50% {
+        box-shadow: 0 0 10px 5px rgba(255, 0, 0, 0.7); /* Adjust the blur radius and size as needed */
+    }
+    100% {
+        box-shadow: 0 0 0 0  rgba(255, 0, 0, 0.5); /* No shadow (back to initial state) */
+    }
 }
