@@ -9,6 +9,7 @@
     height: auto;
     flex-grow: 1;
     overflow-y: auto;
+    word-wrap: break-word;
 }
 
 .messages-overall-div {
@@ -24,8 +25,8 @@
     padding-top: 20px;
     word-wrap: break-word;
     padding-right: 20px;
-    width: auto
-    /* max-width: 1000px; */
+    width: auto;
+    max-width: 75vw;
 }
 
 .message-display-name {
@@ -44,6 +45,8 @@
     margin-right: 80px;
     font-size: 14px;
     padding-left: 2px;
+    word-wrap: break-word;
+    max-width: 75vw;
 }
 
 .message-edit-field {
@@ -191,3 +194,4 @@
 .create-channel-button-div {
     margin-bottom: 40px;
 }
+
