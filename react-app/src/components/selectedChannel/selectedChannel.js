@@ -317,7 +317,7 @@ const SelectedChannel = () => {
                                         return (
                                             <>
                                             <span className="emoji-span" onClick={(e) => reactionDeleteHandler(reaction, message, e)}>
-                                                <Emoji className='emoji-react' unified={reaction.reaction_type} size='20' />
+                                                <Emoji className='emoji-react' unified={reaction.reaction_type} size='30' />
                                             </span>
                                         </>
                                         )

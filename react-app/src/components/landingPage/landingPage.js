@@ -79,10 +79,11 @@ function LandingPage({ user }) {
                             Open Tumult
                         </button>
                     ) : (
-                        <OpenModalButton
-                            buttonText="Log In"
-                            modalComponent={<LoginFormModal />}
-                        />
+                        null
+                        // <OpenModalButton
+                        //     buttonText="Log In"
+                        //     modalComponent={<LoginFormModal />}
+                        // />
                     )}
                 </div>
             </nav>

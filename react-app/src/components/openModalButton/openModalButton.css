@@ -1,19 +1,24 @@
-.nav-login {
+.create-server-button {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #ffffff; /* Add background color */
     padding: 0px;
-    color: rgb(65, 2, 146); /* Text color */
+    color: rgb(87, 158, 140);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s;
+    background-color: #1e1f22;
+    font-weight: bold;
+    font-size: 20px;
+    border: none;
 }
 
-.nav-login:hover {
+.create-server-button:hover {
     border-radius: 40%;
+    background-color: rgb(87, 158, 140);
+    color: white;
 }
 
 .button-icon {

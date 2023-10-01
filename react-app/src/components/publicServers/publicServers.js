@@ -71,7 +71,7 @@ const PublicServers = () => {
                 <OpenModalButton
                     modalComponent={<CreateServerForm />}
                     buttonText="+"
-                    buttonStyle='nav-login'
+                    buttonStyle='create-server-button'
                 />
             </div>
         </div>
