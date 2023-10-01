@@ -5,6 +5,7 @@ import OpenModalButton from "../openModalButton";
 import LoginFormModal from "../loginFormModal";
 import SignupFormModal from "../signupFormModal";
 import { useHistory } from "react-router-dom";
+import './Navigation.css'
 
 function ProfileButton({ user }) {
   const history = useHistory()
@@ -61,17 +62,25 @@ function ProfileButton({ user }) {
           </>
         ) : (
           <>
+          <ul className="nav-ul-unlogged">
+            <li className="nav-li-element-unlogged">
+
             <OpenModalButton
+              buttonStyle='nav-login-button'
               buttonText="Log In"
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
-            />
-
+              />
+              </li>
+              <li className="nav-li-element-unlogged">
             <OpenModalButton
+              buttonStyle='nav-signup-button'
               buttonText="Sign Up"
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
+            </li>
+            </ul>
           </>
         )}
       </ul>

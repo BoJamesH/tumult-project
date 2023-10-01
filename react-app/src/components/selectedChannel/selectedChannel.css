@@ -66,8 +66,8 @@
 }
 
 .emoji-span {
-    border: solid 2px #6f3dfd;
-    background-color: #3c3457;
+    /* border: solid 2px #6f3dfd;
+    background-color: #3c3457; */
     color: white;
     display: inline-block;
     height: 30px;

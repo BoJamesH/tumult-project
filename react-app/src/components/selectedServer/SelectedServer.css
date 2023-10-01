@@ -34,8 +34,7 @@ li {
 
 .channel ul {
     transition: 0.2s;
-    border-radius: 20%;
-    cursor: pointer;
+    border-radius: 10px;
 }
 
 .channel ul:hover {
@@ -77,6 +76,7 @@ li {
 .server-name {
     margin-right: 10px;
     margin-left: 12px;
+    cursor: pointer;
 }
 
 .message-container {

@@ -37,7 +37,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20px; 
+    margin-top: 20px;
 }
 
 .button-container button, .nav-login, .open-tumult, .open-tumult-header {
