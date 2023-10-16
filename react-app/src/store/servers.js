@@ -6,6 +6,7 @@ const SET_CURRENT_SERVER = 'server/SET_CURRENT_SERVER';
 const REMOVE_SERVER = 'servers/REMOVE_SERVER';
 const UPDATE_SERVER = 'servers/UPDATE_SERVER';
 const CREATE_SERVER = 'servers/CREATE_SERVER';
+const UNSET_SERVER = 'servers/UNSET_SERVER';
 
 // Action Creators
 
