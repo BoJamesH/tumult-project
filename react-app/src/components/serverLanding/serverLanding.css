@@ -1,0 +1,7 @@
+.serverLanding-list-comp{
+    display: flex;
+    height: auto;
+    background-color: #323239;
+    justify-content: center;
+    padding:10px ;
+}
