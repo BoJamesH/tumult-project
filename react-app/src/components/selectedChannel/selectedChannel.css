@@ -15,6 +15,7 @@
 .messages-overall-div {
     display: flex;
     flex-direction: column;
+    
 
     height: 94.2vh;
     /* overflow: auto;  */
@@ -27,6 +28,7 @@
     padding-right: 20px;
     width: auto;
     max-width: 75vw;
+    justify-content: flex-end;
 }
 
 .message-display-name {
@@ -138,16 +140,6 @@
     color: rgb(211, 211, 211);
 }
 
-.emoji-picker-div {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 800px;
-    height: 400px;
-    z-index: 9999;
-}
-
 .message-input-field {
     background-color: #181a1c;
     border-radius: 5px;
@@ -195,3 +187,55 @@
     margin-bottom: 40px;
 }
 
+.EmojiPickerReact.epr-dark-theme {
+    display: inline-block;
+    --epr-emoji-size: 22px;
+    --epr-emoji-gap: 10px;
+    --epr-hover-bg-color: purple;
+    --epr-text-color: rgb(122, 122, 122);
+}
+
+.epr-body {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    justify-content: space-around;
+    /* height: 1000px; */
+    position: absolute;
+}
+
+.epr-emoji-category-content {
+    width: 100px;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: absolute;
+}
+
+.epr-emoji-category {
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    /* position: absolute; */
+    max-height: 970px;
+}
+
+.epr-emoji-category-label {
+    position: sticky;
+}
+
+
+.emoji-picker-div {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 500px;
+    z-index: 9999;
+}
+
+li {
+    list-style: none;
+}

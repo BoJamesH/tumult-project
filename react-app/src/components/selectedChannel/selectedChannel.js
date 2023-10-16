@@ -328,7 +328,7 @@ const SelectedChannel = () => {
                                 <button className="message-delete-button" hidden={sessionUserId !== message.user_id} onClick={(e) => deleteChat(message.id, e)}>Delete</button>
                                 <button className="message-reaction-button" onClick={(e) => reactionClickHandler(message.id, e)}>React</button>
                                 </div>
-                                {reactionsModal && reactionMessageId == message.id &&
+                                {/* {reactionsModal && reactionMessageId == message.id &&
                                     <div className="emoji-picker-div">
                                     <EmojiPicker
                                         onEmojiClick={(e) => emojiChat(message.id, e)}
@@ -338,7 +338,7 @@ const SelectedChannel = () => {
                                         width={700}
                                         className='emoji-picker-itself'
                                         />
-                                    </div>}
+                                    </div>} */}
                                 </div>
                             {/* <span className="message-date-span">
                                 {formatDate(message.created_at)}
@@ -370,9 +370,12 @@ const SelectedChannel = () => {
                                       autoFocusSearch={false}
                                       emojiStyle={EmojiStyle.DARK}
                                       theme={'dark'}
-                                      width={900}
+                                      width={800}
+                                      height={600}
                                       all={'initial'}
                                       className={'emoji-picker-itself'}
+                                      categories={['smileys_people', 'animals_nature',
+                                      'food_drink', 'travel_places', 'activities', 'flags']}
                                   />
                                 </div>}
                             </div>
