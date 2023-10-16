@@ -7,9 +7,9 @@ import { getChannelId, getChannels } from '../../store/channels'
 import { getMessages } from '../../store/messages'
 import OpenModalButton from '../openModalButton'
 import CreateServerForm from '../createServer/createServer'
-import './publicServers.css'
+import './serverLanding.css'
 
-const PublicServers = () => {
+const ServerLanding = () => {
     const history = useHistory()
     const dispatch = useDispatch()
     const servers = useSelector( state => state.servers.allServers )
@@ -52,7 +52,7 @@ const PublicServers = () => {
     return(
         <>
 
-        <div className='server-list-comp'>
+        <div className='serverLanding-list-comp'>
             <div className='main-servers-div'>
                 {servers.map(server => {
                     if (!server.id) return null
@@ -74,7 +74,7 @@ const PublicServers = () => {
                     />
                 </div>
             </div>
-                {/* <div
+                <div
                     style={{display: "flex", flexDirection: "column", justifyContent: "space-evenly", alignItems: "start"}}
                     className='main-selected-servers-div'>
                         <h2> <img style={{ width: "20px"}} src='../images/friends_list_icon.png'/> Friends</h2>
@@ -87,10 +87,10 @@ const PublicServers = () => {
                     className="main-selected-channel-div">
                         <h2 style={{color: 'white'}}>Welcome to Tumult</h2>
                         <img style={{width:'35rem'}}src="../images/Tumult-Logo-Larger.png"></img>
-                </div> */}
+                </div>
         </div>
         </>
     )
 }
 
-export default PublicServers
+export default ServerLanding
