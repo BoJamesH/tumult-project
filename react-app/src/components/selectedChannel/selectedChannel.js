@@ -296,9 +296,11 @@ const SelectedChannel = () => {
                                 {console.log("------------------------------------")}
                                 {console.log("MESSAGE USER ID:",message.user.id)}
                                 {console.log("------------------------------------")}
+                                {!message.user.profile_image ?
                                 <img
-                                    src={userTumults[message.user.id % userTumults.length]} alt='User Tumult'
-                                />
+                                src={userTumults[message.user.id % userTumults.length]} alt='User Tumult'
+                                /> : <img src={message.user.profile_image} alt={message.user.display_name} />
+                            }
                             <div key={message.id} className='message'>
                                 <div className="message-name-date-div">
                                     <span className="message-display-name">
