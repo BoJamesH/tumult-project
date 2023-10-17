@@ -29,6 +29,7 @@ flask-socketio = "*"
 eventlet = "*"
 python-socketio = "==5.5.0"
 socketio = "*"
+boto3 = "*"
 
 [dev-packages]
 

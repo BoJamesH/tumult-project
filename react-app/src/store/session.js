@@ -70,7 +70,7 @@ export const logout = () => async (dispatch) => {
 	}
 };
 
-export const signUp = (username, email, password, display_name) => async (dispatch) => {
+export const signUp = (username, email, password, display_name, profile_image) => async (dispatch) => {
 	const response = await fetch("/api/auth/signup", {
 		method: "POST",
 		headers: {
@@ -81,8 +81,10 @@ export const signUp = (username, email, password, display_name) => async (dispat
 			email,
 			password,
 			display_name,
+			profile_image,
 		}),
 	});
+	console.log('SIGN UP ROUTE RESPONSE!!!!!!  ,', response)
 
 	if (response.ok) {
 		const data = await response.json();
