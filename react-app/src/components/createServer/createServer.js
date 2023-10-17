@@ -17,13 +17,46 @@ const CreateServerForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [name, setName] = useState('');
-    const [labelImage, setLabelImage] = useState('');
+    const [image, setImage] = useState(null);
     const [privateServer, setPrivateServer] = useState(false)
     const { closeModal } = useModal();
 
     const updateName = (e) => setName(e.target.value);
-    const updateLabelImage = (e) => setLabelImage(e.target.value);
     const updatePrivate = (e) => setPrivateServer(e.target.value);
+
+    const handleFileChange = (e) => {
+        const selectedImage = e.target.files[0];
+        setImage(selectedImage);
+      };
+
+    const handleUploadToS3 = async (file) => {
+        try {
+            const formData = new FormData();
+            formData.append('image', file);
+            const response = await fetch('/api/images', {
+              method: 'POST',
+              body: formData,
+            });
+          console.log('frontend FILE!!! ', file)
+
+          if (response.ok) {
+            const data = await response.json();
+            console.log('RETURN URL FROM s3 BUCKET!!!! ', data.url);
+            console.log('RETURN DATA FROM s3 BUCKET!!!! ', data);
+            if (data.hasOwnProperty('url')) {
+              console.log('RETURN URL FROM s3 BUCKET!!!! ', data.url);
+              return data.url;
+            } else {
+              throw new Error('Image upload response does not contain URL');
+            }
+          } else {
+            throw new Error('File upload failed');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          throw error;
+        }
+      };
 
 
     const handleServerCreate = async (e) => {
@@ -32,11 +65,19 @@ const CreateServerForm = () => {
         if (name.trim() == '') {
             validationErrors.name = 'Server name is required.'
         }
+        let s3Url = '';
+        try {
+            if (image) {
+              s3Url = await handleUploadToS3(image);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+        }
 
         const payload = {
         name: name.trim(),
         owner_id: userId,
-        label_image: labelImage,
+        label_image: s3Url,
         private: privateServer,
     };
         if (Object.keys(validationErrors).length == 0) {
@@ -94,16 +135,9 @@ const CreateServerForm = () => {
                 </div>
 
                 <div>
-                    <label>
-                    SERVER IMAGE URL
-                    </label>
-                    <input
-                    type="url"
-                    placeholder="Server Label Image URL"
-                    required
-                    value={labelImage}
-                    onChange={updateLabelImage} />
-                </div>
+              <label>UPLOAD SERVER IMAGE</label>
+              <input type="file" accept="image/*" onChange={handleFileChange} />
+            </div>
 
                 <div>
                     <label>PRIVATE
