@@ -30,6 +30,7 @@ eventlet = "*"
 python-socketio = "==5.5.0"
 socketio = "*"
 boto3 = "*"
+gevent = "*"
 
 [dev-packages]
 
