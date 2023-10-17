@@ -26,8 +26,8 @@ def upload_image():
         filename = secure_filename(image.filename)
         image.filename = get_unique_filename(filename)
         upload = upload_file_to_s3(image)
-        print('BACKEND IMAGE UPLOADED TO S3')
-
+        print('BACKEND IMAGE UPLOADED TO S3!!!, ', upload)
+        print('RETURNED UPLOAD URL!!!! ', upload['url'])
         if "url" in upload:
             return jsonify({'url': upload['url']})
         else:
