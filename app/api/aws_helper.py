@@ -4,6 +4,7 @@ import os
 import uuid
 
 BUCKET_NAME = os.environ.get("S3_BUCKET")
+BUC = os.environ.get("S3_BUCKET")
 S3_LOCATION = f"https://{BUCKET_NAME}.s3.amazonaws.com/"
 ALLOWED_EXTENSIONS = {"pdf", "png", "jpg", "jpeg", "gif"}
 
@@ -25,9 +26,10 @@ def upload_file_to_s3(file, acl="public-read"):
     try:
         unique_filename = get_unique_filename(file.filename)
         print('UNIQUE FILENAME!!! ', unique_filename)
+        print('BUCKET NAME ------ ', BUC)
         s3.upload_fileobj(
             file,
-            BUCKET_NAME,
+            BUC,
             unique_filename,
             ExtraArgs={
                 "ACL": acl,
