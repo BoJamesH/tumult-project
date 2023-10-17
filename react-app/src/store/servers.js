@@ -92,6 +92,7 @@ export const deleteServer = (serverId) => async (dispatch) => {
 };
 
 export const updateServer = (updatedServer, serverId) => async (dispatch)=> {
+    console.log('STORE UPDATED SERVER!!!!!! ', updatedServer)
     const response = await fetch(`/api/servers/${serverId}`, {
 		method: "PUT",
 		headers: {
