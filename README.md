@@ -103,8 +103,7 @@ If you'd like to contribute to Tumult, please check out our team members' GitHub
 2. Install dependencies:
 pipenv install -r requirements.txt
 
-markdown
-Copy code
+
 3. Create a `.env` file based on the example with proper settings for your development environment. Make sure to set the following variables:
    - `SECRET_KEY` (click "Generate" to generate a secure secret for production)
    - `FLASK_ENV` set to `production`
@@ -122,8 +121,6 @@ flask db upgrade
 flask seed all
 flask run
 
-sql
-Copy code
 7. To run the React App in development, follow the README inside the `react-app` directory.
 
 ## Deployment on Render.com:
@@ -140,13 +137,8 @@ Copy code
 10. Add the Build command in the Build field (all in one line):
 npm install --prefix react-app && npm run build --prefix react-app && pip install -r requirements.txt && pip install psycopg2 && flask db upgrade && flask seed all
 
-sql
-Copy code
 11. Add the Start command in the Start field:
 gunicorn app:app
-
-markdown
-Copy code
 
 ### Part B: Add Environment Variables
 
