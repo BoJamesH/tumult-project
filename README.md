@@ -6,6 +6,26 @@ https://tumult.onrender.com/
 
 ![Tumult](https://github.com/BoJamesH/repo/raw/main/public/images/tumult_splash_header1.png)
 
+## Tech Stack
+
+## Frameworks and Libraries
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+![Socket.io](https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&badgeColor=010101)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![Babel](https://img.shields.io/badge/Babel-F9DC3e?style=for-the-badge&logo=babel&logoColor=black)
+
+## Database
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+
+## Hosting
+![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+
 ## ReadMe Table of Contents
 
 - [Project Wiki](https://github.com/BoJamesH/tumult-project/wiki) 
@@ -13,6 +33,19 @@ https://tumult.onrender.com/
 - [Features](#features)
 - [Contributing](#Contributing)
 - [Getting Started](#getting-started)
+
+## Previews
+### Landing Page
+![tumult-landing-gif](https://github.com/BoJamesH/tumult-project/assets/128858490/90afda07-54c0-45bf-bbaf-0489842431f6)
+
+### Server/Channel Selection
+![tumult-server-selection-gif](https://github.com/BoJamesH/tumult-project/assets/128858490/de464d6e-199e-4e28-a6b5-acf6b2c35da7)
+
+### Chat/Reactions
+![tumult-chat-reaction-gif](https://github.com/BoJamesH/tumult-project/assets/128858490/46a7aeb2-7bca-46b6-9ee7-d9a2265b0f3d)
+
+### Server Create / Update
+![tumult-create-update-server-gif](https://github.com/BoJamesH/tumult-project/assets/128858490/94e56c03-1fba-4e72-a816-92d759e5d584)
 
 ## Contributing
 If you'd like to contribute to Tumult, please check out our team members' GitHub profiles:
