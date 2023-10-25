@@ -59,6 +59,35 @@ If you'd like to contribute to Tumult, please check out our team members' GitHub
 - [Nick](https://github.com/nita94)
 - [Ryan](https://github.com/RjRosales19)
 
+## Endpoints
+### Auth
+| Request                        | Purpose                | Return Value  |
+| :----------------------------- | :--------------------: | :------------------------------ |
+| GET /api/auth/        | This fetch is sent upon initial app load and on subsequent refreshes.<br>It returns an object representing the current user, if user is logged in.                                 | {<br>&nbsp;&nbsp;&nbsp;'id': INT,<br>&nbsp;&nbsp;&nbsp;'username': STRING,<br>&nbsp;&nbsp;&nbsp;'email': STRING,<br>&nbsp;&nbsp;&nbsp;'display_name': STRING,<br>&nbsp;&nbsp;&nbsp;'created_at': DATETIME,<br>&nbsp;&nbsp;&nbsp;'updated_at': DATETIME,<br>}<br><br>Status: 200<br>|
+| POST /api/auth/unauthorized      | This endpoint will be routed to in the case that a protected route does not pass validations for the current user.<br>It returns an object with an errors property, which is an array with the value 'Unauthorized'          | {<br>&nbsp;&nbsp;&nbsp;'errors': ARRAY[STRINGS]<br>}<br><br>Status: 401<br>|
+| POST /api/auth/signup        | This fetch sends the form data signup from data to the backend to process the creation of a new user.<br>It returns an object representing the current user, after logging them in, if account creation succeeds.                                 | {<br>&nbsp;&nbsp;&nbsp;'id': INT,<br>&nbsp;&nbsp;&nbsp;'username': STRING,<br>&nbsp;&nbsp;&nbsp;'email': STRING,<br>&nbsp;&nbsp;&nbsp;'display_name': STRING,<br>&nbsp;&nbsp;&nbsp;'created_at': DATETIME,<br>&nbsp;&nbsp;&nbsp;'updated_at': DATETIME,<br>}<br><br>Status: 200<br>|
+| POST /api/auth/login | This fetch attempts to login a user with the provided credentials.<br>It returns an object representing the current user, if validation succeeds.                                 | {<br>&nbsp;&nbsp;&nbsp;'id': INT,<br>&nbsp;&nbsp;&nbsp;'username': STRING,<br>&nbsp;&nbsp;&nbsp;'email': STRING,<br>&nbsp;&nbsp;&nbsp;'display_name': STRING,<br>&nbsp;&nbsp;&nbsp;'created_at': DATETIME,<br>&nbsp;&nbsp;&nbsp;'updated_at': DATETIME,<br>}<br><br>Status: 200<br>|
+| POST /api/auth/logout | This fetch will logout the current user.<br>It returns an object with the message 'User logged Out' if it succeeds.                                 | {<br>&nbsp;&nbsp;&nbsp;'message': STRING<br>}<br><br>Status: 200<br>|
+
+### Server
+| Request                        | Purpose                | Return Value  |
+| :----------------------------- | :--------------------: | :------------------------------ |
+| GET /api/servers       | This fetch retrieves a list of all servers.                 | [ {<br>&nbsp;&nbsp;&nbsp;'id': INT,<br>&nbsp;&nbsp;&nbsp;'name': STRING,<br>&nbsp;&nbsp;&nbsp;'owner_id': INT,<br>&nbsp;&nbsp;&nbsp;'label_image': STRING,<br>&nbsp;&nbsp;&nbsp;'private': Boolean,<br>&nbsp;&nbsp;&nbsp;'created_at': DATETIME,<br>&nbsp;&nbsp;&nbsp;'updated_at': DATETIME}]<br><br>Status: 200<br>|
+| GET /api/servers/<server_id>        | This fetch is sent to retrieve information for a specific server.                 | {<br>&nbsp;&nbsp;&nbsp;'id': INT,<br>&nbsp;&nbsp;&nbsp;'name': STRING,<br>&nbsp;&nbsp;&nbsp;'owner_id': INT,<br>&nbsp;&nbsp;&nbsp;'label_image': STRING,<br>&nbsp;&nbsp;&nbsp;'private': Boolean,<br>&nbsp;&nbsp;&nbsp;'created_at': DATETIME,<br>&nbsp;&nbsp;&nbsp;'updated_at': DATETIME}<br><br>Status: 200<br>|
+| POST /api/servers       | This fetch is used to create a new server                | {<br>&nbsp;&nbsp;&nbsp;'id': INT,<br>&nbsp;&nbsp;&nbsp;'name': STRING,<br>&nbsp;&nbsp;&nbsp;'owner_id': INT,<br>&nbsp;&nbsp;&nbsp;'label_image': STRING,<br>&nbsp;&nbsp;&nbsp;'private': Boolean,<br>&nbsp;&nbsp;&nbsp;'created_at': DATETIME,<br>&nbsp;&nbsp;&nbsp;'updated_at': DATETIME}<br><br>Status: 200<br>|
+| DELETE /api/servers/<server_id> | This fetch is used to delete a server. | {<br>&nbsp;&nbsp;&nbsp;'message': STRING<br>}<br><br>Status: 200<br>
+| PUT /api/servers/<server_id> | This fetch is used to edit a server. | {<br>&nbsp;&nbsp;&nbsp;'message': STRING<br>}<br><br>Status: 200<br>
+
+
+### Channel
+| Request                        | Purpose                | Return Value  |
+| :----------------------------- | :--------------------: | :------------------------------ |
+| GET /api/channels/<server_id>       | This fetch retrieves a list of all channels for a given server.                 | [ {<br>&nbsp;&nbsp;&nbsp;'id': INT,<br>&nbsp;&nbsp;&nbsp;'name': STRING,<br>&nbsp;&nbsp;&nbsp;'owner_id': INT,<br>&nbsp;&nbsp;&nbsp;'server_id': INT,<br>&nbsp;&nbsp;&nbsp;'private': Boolean,<br>&nbsp;&nbsp;&nbsp;'created_at': DATETIME,<br>&nbsp;&nbsp;&nbsp;'updated_at': DATETIME}]<br><br>Status: 200<br>|
+| POST /api/channels/<server_id>        | This fetch is used to create a new channel within a server.                 | {<br>&nbsp;&nbsp;&nbsp;'id': INT,<br>&nbsp;&nbsp;&nbsp;'name': STRING,<br>&nbsp;&nbsp;&nbsp;'owner_id': INT,<br>&nbsp;&nbsp;&nbsp;'server_id': INT,<br>&nbsp;&nbsp;&nbsp;'private': Boolean,<br>&nbsp;&nbsp;&nbsp;'created_at': DATETIME,<br>&nbsp;&nbsp;&nbsp;'updated_at': DATETIME}<br><br>Status: 200<br>|
+| PUT /api/channels/<channel_id>       | This fetch is used to edit an existing channel.                | {<br>&nbsp;&nbsp;&nbsp;'id': INT,<br>&nbsp;&nbsp;&nbsp;'name': STRING,<br>&nbsp;&nbsp;&nbsp;'owner_id': INT,<br>&nbsp;&nbsp;&nbsp;'server_id': INT,<br>&nbsp;&nbsp;&nbsp;'private': Boolean,<br>&nbsp;&nbsp;&nbsp;'created_at': DATETIME,<br>&nbsp;&nbsp;&nbsp;'updated_at': DATETIME}<br><br>Status: 200<br>|
+| DELETE /api/channels/<channel_id> | This fetch is used to delete a channel. | {<br>&nbsp;&nbsp;&nbsp;'message': STRING<br>}<br><br>Status: 200<br>
+|
+
 ## Features
 
 - **Topic-Based Channels**: Tumult allows you to organize your server with channels dedicated to different topics, making it easy to keep your discussions clean and well-organized.
