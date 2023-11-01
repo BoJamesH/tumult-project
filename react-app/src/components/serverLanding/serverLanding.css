@@ -4,3 +4,10 @@
     background-color: #323239;
     justify-content: center;
 }
+
+.server-number-span {
+    color: #5865f2;
+    margin-left: 4px;
+    font-weight: bold;
+    font-size: 21px;
+}
