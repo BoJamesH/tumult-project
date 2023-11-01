@@ -1,6 +1,6 @@
 .serverLanding-list-comp{
     display: flex;
-    height: 95.2vh;
+    height: auto;
     background-color: #323239;
     justify-content: center;
 }
