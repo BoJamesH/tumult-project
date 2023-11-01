@@ -14,7 +14,7 @@
     /* width: 300px; */
     overflow-y: scroll;
     min-width: 80px;
-    padding-top: 12px;
+    /* padding-top: 12px; */
 }
 
 .main-servers-div::-webkit-scrollbar-thumb {

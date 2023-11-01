@@ -16,7 +16,7 @@
     cursor: pointer;
     transition: all 0.2s;
     object-fit: cover;
-    margin-left: 5px;
+    margin-left: 4px;
 }
 
 .server-image:hover {
@@ -45,8 +45,8 @@
     /* height:1241px; */
     height: auto;
     max-width: 70px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    /* padding-top: 20px;
+    padding-bottom: 20px; */
 }
 
 
