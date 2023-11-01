@@ -15,7 +15,7 @@
 .messages-overall-div {
     display: flex;
     flex-direction: column;
-    
+
 
     height: 94.2vh;
     /* overflow: auto;  */
@@ -144,11 +144,12 @@
     background-color: #181a1c;
     border-radius: 5px;
     width: 80%;
-    height: 30px;
-    max-width: 700px;
-    min-width: 200px;
+    height: 40px;
+    max-width: 60vw;
+    min-width: 20vw;
     color: white;
     margin-bottom: 20px;
+    padding-left: 8px;
     /* position: absolute; */
 }
 
@@ -176,11 +177,12 @@
 
 
 .submit-message-button {
-    height: 30px;
+    height: 40px;
     width: 120px;
     background-color: #181a1c;
     color: white;
     border-radius: 5px;
+    margin-left: 5px;
 }
 
 .create-channel-button-div {

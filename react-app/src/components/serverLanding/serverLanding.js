@@ -75,12 +75,12 @@ const ServerLanding = () => {
                 </div>
             </div>
                 <div
-                    style={{display: "flex", flexDirection: "column", justifyContent: "space-evenly", alignItems: "start"}}
+                    style={{display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "start"}}
                     className='main-selected-servers-div'>
-                        <h2> <img style={{ width: "20px"}} src='../images/friends_list_icon.png'/> Friends</h2>
-                        <h2> <img style={{ width: "20px", backgroundColor: "#1e1e1e"}} src='../images/Nitro_logo.png'/> Nitro</h2>
-                        <h3>There are a total of {servers.length} servers. </h3>
-                        <h4>Browse through the left column to join any public servers that appeals to your character!</h4>
+                        {/* <h2 style={{marginTop:"40px"}}> <img style={{ width: "20px"}} src='../images/friends_list_icon.png'/> Friends</h2>
+                        <h2 style={{marginTop:"40px"}}> <img style={{ width: "20px", backgroundColor: "#1e1e1e"}} src='../images/Nitro_logo.png'/> Nitro</h2> */}
+                        <h3 style={{marginTop:"80px", marginLeft:"10px"}}>Currently, there are a total of {servers.length} servers. </h3>
+                        <h4 style={{marginTop:"80px", marginLeft:"10px"}}>Browse through the left column to join any public servers that appeals to your character. Or, create your own server at the bottom of the column!</h4>
                 </div>
                 <div
                     style={{display: "grid", justifyItems: "center", alignContent: "center"}}

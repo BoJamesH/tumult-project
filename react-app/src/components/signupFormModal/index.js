@@ -17,7 +17,7 @@ function SignupFormModal() {
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
   const history = useHistory();
-  const [image, setImage] = useState(null); // State for the uploaded image
+  const [image, setImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
 
   const handleFileChange = (e) => {
@@ -108,9 +108,7 @@ const handleUploadToS3 = async (file) => {
 		]);
 	  }
 	} catch (error) {
-	  // Handle any errors that may occur during the image upload or sign-up process.
 	  console.error("Error:", error);
-	  // You can also set an error state here if needed.
 	}
   };
 
@@ -131,6 +129,7 @@ const handleUploadToS3 = async (file) => {
             <div>
               <label>EMAIL</label>
               <input
+                placeholder="Email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -140,6 +139,7 @@ const handleUploadToS3 = async (file) => {
             <div>
               <label>USERNAME</label>
               <input
+                placeholder="Username"
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
@@ -149,6 +149,7 @@ const handleUploadToS3 = async (file) => {
             <div>
               <label>DISPLAY NAME</label>
               <input
+                placeholder="Display Name"
                 type="text"
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
@@ -158,6 +159,7 @@ const handleUploadToS3 = async (file) => {
             <div>
               <label>PASSWORD</label>
               <input
+                placeholder="Password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -167,16 +169,17 @@ const handleUploadToS3 = async (file) => {
             <div>
               <label>CONFIRM PASSWORD</label>
               <input
+                placeholder="Confirm Password"
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
             </div>
-            <div>
               <label>Upload Image</label>
+              <div>
               <input type="file" accept="image/*" onChange={handleFileChange} />
-            </div>
+              </div>
             <button className="sign-up-button" type="submit">
               Sign Up
             </button>
@@ -184,10 +187,12 @@ const handleUploadToS3 = async (file) => {
           </form>
           <h6>By registering, you agree to get hacked by the Guuntag clan</h6>
         </div>
+        <div className="signup-login-div">
         <OpenModalButton
           buttonText="Already have an account?"
           modalComponent={<LoginFormModal />}
-        />
+          />
+          </div>
       </div>
     </>
   );

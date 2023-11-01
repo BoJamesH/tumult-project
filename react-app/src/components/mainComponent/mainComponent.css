@@ -8,10 +8,10 @@
 .main-servers-div {
     flex: 1;
     /* margin: 20px; */
-    height: 94.2vh;
-    max-width: 80px;
+    height: 95.2vh;
+    max-width: 70px;
     justify-content: center;
-    width: 300px;
+    /* width: 300px; */
     overflow-y: scroll;
     min-width: 80px;
 }

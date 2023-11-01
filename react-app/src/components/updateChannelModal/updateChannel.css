@@ -6,7 +6,7 @@
     flex-wrap: wrap;
     align-content: center;
     align-items: center;
-    padding: 20%;
+    padding: 2%;
     margin: 0% -60%;
     border-radius: 6px;
     color: white;
@@ -26,7 +26,7 @@
     font-weight: bold;
 }
 
-.update-channel-button-modal{
+.update-channel-button-modal {
     width: 27%;
     padding: 3% 0%;
     color:white;
@@ -34,6 +34,11 @@
     border-radius: 6px;
     margin: 2% 0%;
     font-weight: bold;
+    transition: background-color 0.5s ease;
+}
+
+.update-channel-button-modal:hover {
+    background-color: #3b4af0;
 }
 
 .update-channel-cancel-button-modal{

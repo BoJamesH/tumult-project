@@ -1,4 +1,4 @@
-.sign-up-container{
+.sign-up-container {
     display: flex;
     justify-items: center;
     background-color: #3a3d3f;
@@ -11,12 +11,14 @@
     border-radius: 6px;
     color: white;
 }
+
 .sign-up-form-container > form > div > input{
     width: 102%;
-    padding: 3%;
+    padding: 2%;
     background-color: #181a1c;
     color: white;
-    margin: 5% 0%;
+    margin: 2% 0%;
+    height: 40px;
 }
 
 .sign-up-form-container{
@@ -25,10 +27,24 @@
 }
 
 
-.sign-up-button{
+.sign-up-button {
     width: 102%;
     padding: 3%;
     color:white;
     background-color: #5865f2;
     border-radius: 6px;
+    margin-top: 10px;
+    transition: background-color 0.5s ease;
+}
+
+.sign-up-button:hover {
+    background-color: #3b4af0;
+}
+
+.signup-login-div {
+    margin-top: 10px;
+}
+
+h6 {
+    text-align: center;
 }

@@ -53,7 +53,7 @@ const PublicServers = () => {
         <>
 
         <div className='server-list-comp'>
-            <div className='main-servers-div'>
+            <div className='public-servers-div'>
                 {servers.map(server => {
                     if (!server.id) return null
                     return (

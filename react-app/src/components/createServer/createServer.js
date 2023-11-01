@@ -120,8 +120,8 @@ const CreateServerForm = () => {
 
                 <span className='server-errors'>{errorMessages.name}</span>
 
-                <div>
-                    <label>
+                <div className='create-server-name-div'>
+                    <label className='create-server-name-label'>
                         SERVER NAME
                     </label>
                     <input
