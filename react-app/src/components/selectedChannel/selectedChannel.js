@@ -31,7 +31,6 @@ const SelectedChannel = () => {
     const channelMessages = useSelector(state => state.messages.channelMessages)
     const sessionUserId = useSelector(state => state.session.user.id)
     const allReactions = useSelector(state =>  state.reactions.allReactions)
-    console.log('allReactions:', allReactions)
     const [errorMessages, setErrorMessages] = useState({});
     const emojiPickerRef = useRef(null);
 
@@ -39,9 +38,6 @@ const SelectedChannel = () => {
         dispatch(getMessages(serverId, channelId))
         dispatch(getReactions())
     }, [dispatch])
-
-    console.log('webSocketMessage', websocketMessage)
-    // const updateMessage = (e) => setMessage(e.target.value);
 
     const handleMessageCreate = async (e) => {
         e.preventDefault();
@@ -52,43 +48,23 @@ const SelectedChannel = () => {
         try {
             const response = await dispatch(postMessage(serverId, channelId, payload));
         } catch (error) {
-            // If error is not a ValidationError, add slice at the end to remove extra
-            // "Error: "
             setErrorMessages({ overall: error.toString().slice(7) })
         }
         setMessage('')
     };
 
-    // useEffect(() => {
-    //     if (sentMessage){
-    //         setWebSocketMessage([...websocketMessage, sentMessage])
-    //         setSentMessage(null)
-    //     }
-    // }, [sentMessage])
-
     useEffect(() => {
-        // create websocket/connect
         socket = io();
-        console.log(socket)
         socket.on("chat", (chat) => {
-            // when we recieve a chat, add it into our messages array in state
-            console.log('-------------')
-            console.log("Socket On")
-            console.log(socket)
-            console.log('-------------')
             setWebSocketMessage(messages => [...messages, chat])
             dispatch(getMessages(serverId, channelId))
         })
         socket.on("delete_message", (delete_message) => {
-            console.log('DELETE MESSAGE CHAT: ', delete_message)
-            // setWebSocketMessage(messages => [...messages, delete_message])
             dispatch(getMessages(serverId, channelId))
-            // console.log(serverId, channelId, 'SERVER ID CHANNEL ID')
         })
         socket.on("update_message", (update_message) => {
             dispatch(getMessages(serverId, channelId))
         })
-        // when component unmounts, disconnect
         socket.on('post_emoji', () => {
             dispatch(getReactions())
         })
@@ -97,9 +73,6 @@ const SelectedChannel = () => {
         })
         return (() => {
             socket.disconnect()
-            console.log('--------------')
-            console.log('Socket Disconnected')
-            console.log('--------------')
         })
     }, [channelId])
 
@@ -114,7 +87,6 @@ const SelectedChannel = () => {
             document.removeEventListener('mousedown', handleClickOutsideEmojiPicker);
         }
 
-        // Cleanup event listener on component unmount
         return () => {
             document.removeEventListener('mousedown', handleClickOutsideEmojiPicker);
         };
@@ -128,26 +100,16 @@ const SelectedChannel = () => {
         setEditMessageText(message_text)
     }
 
-    // const submitEditMessageHandler = async(messageId, message_text, e) => {
-    //     e.preventDefault()
-    //     dispatch(updateMessage(serverId, channelId, messageId, message_text))
-    //     setEditMessage(false)
-    // }
-
     const reactionClickHandler = async(messageId, e) => {
         e.preventDefault()
         setReactionsModal(true)
         setReactionMessageId(messageId)
     }
 
-    // MouseEvent
 
     // function onEmojiClick(message_id, EmojiClickData, e) {
     //     let emojiData = EmojiClickData
-    //     console.log("EmojiClickData.unified", EmojiClickData.unified)
     //     setSelectedEmoji(EmojiClickData.unified);
-    //     console.log('MESSAGE ID IN ON EMOJI CLICK:', message_id)
-    //     console.log('EMOJICLICKDATA.UNIFIED ', EmojiClickData.unified)
     //     const reaction_type = EmojiClickData.unified
     //     dispatch(postReactions(message_id, reaction_type))
     //     dispatch(getReactions())
@@ -196,7 +158,6 @@ const SelectedChannel = () => {
     }
 
     const emojiChat = (message_id, EmojiClickData, e) => {
-        // e.preventDefault()
         const postEmojis = allReactions.filter(reaction => reaction.message_id == message_id)
         if (postEmojis.length > 30){
             alert('This post already has the maximum number of reactions')
@@ -293,9 +254,6 @@ const SelectedChannel = () => {
 
                             ) : (
                             <div className="message-container">
-                                {console.log("------------------------------------")}
-                                {console.log("MESSAGE USER ID:",message.user.id)}
-                                {console.log("------------------------------------")}
                                 {!message.user.profile_image ?
                                 <img
                                 src={userTumults[message.user.id % userTumults.length]} alt='User Tumult'
@@ -315,7 +273,6 @@ const SelectedChannel = () => {
                                 </div>
                                 {allReactions.length &&
                                     allReactions.filter((reaction) => reaction.message_id == message.id).map((reaction) => {
-                                        {console.log('Reaction ', reaction.message_id)}
                                         return (
                                             <>
                                             <span className="emoji-span" onClick={(e) => reactionDeleteHandler(reaction, message, e)}>
@@ -330,41 +287,7 @@ const SelectedChannel = () => {
                                 <button className="message-delete-button" hidden={sessionUserId !== message.user_id} onClick={(e) => deleteChat(message.id, e)}>Delete</button>
                                 <button className="message-reaction-button" onClick={(e) => reactionClickHandler(message.id, e)}>React</button>
                                 </div>
-                                {/* {reactionsModal && reactionMessageId == message.id &&
-                                    <div className="emoji-picker-div">
-                                    <EmojiPicker
-                                        onEmojiClick={(e) => emojiChat(message.id, e)}
-                                        autoFocusSearch={false}
-                                        emojiStyle={EmojiStyle.DARK}
-                                        theme={'dark'}
-                                        width={700}
-                                        className='emoji-picker-itself'
-                                        />
-                                    </div>} */}
                                 </div>
-                            {/* <span className="message-date-span">
-                                {formatDate(message.created_at)}
-                            </span>
-                            {/* <div className="message-text-div">
-                                {message.message_text}
-                            </div> */}
-                            {/* {allReactions.length &&
-                                allReactions.filter((reaction) => reaction.message_id == message.id).map((reaction) => {
-                                    {console.log('Reaction ', reaction.message_id)}
-                                    return (
-                                    <>
-                                        <span className="emoji-span" onClick={(e) => reactionDeleteHandler(reaction, message, e)}>
-                                            <Emoji className='emoji-react' unified={reaction.reaction_type} size='20' />
-                                        </span>
-                                    </>
-                                    )
-                                })
-                            } */}
-                            {/* <div className="message-update-delete-div">
-                            <button className="message-update-button"  hidden={sessionUserId !== message.user_id} onClick={(e) => updateMessageHandler(message.id, message.message_text, e)}>Edit</button>
-                            <button className="message-delete-button" hidden={sessionUserId !== message.user_id} onClick={(e) => deleteChat(message.id, e)}>Delete</button>
-                            <button className="message-reaction-button" onClick={(e) => reactionClickHandler(message.id, e)}>React</button>
-                            </div> */}
                             {reactionsModal && reactionMessageId == message.id &&
                                   <div className="emoji-picker-div">
                                   <EmojiPicker
@@ -390,14 +313,12 @@ const SelectedChannel = () => {
 
         }
         <form onSubmit={sendChat}>
-        {/* <div ref={containerRef} className="auto-growing-input-container"> */}
             <input
                 value={chatInput}
                 onChange={(e) => setChatInput(e.target.value)}
                 className="message-input-field"
                 placeholder={`Share your thoughts...`}
             />
-            {/* </div> */}
             <button className="submit-message-button" type="submit" >Send</button>
         </form>
         </div>

@@ -13,21 +13,12 @@ const PublicServers = () => {
     const history = useHistory()
     const dispatch = useDispatch()
     const servers = useSelector( state => state.servers.allServers )
-
-
-
-
-    // const [selectedServerId, setSelectedServerId] = useState(null);
     const selectedServerId = useSelector(state => state.servers.selectedServer.id)
 
 
     const handleServerClick = async (serverId, e) => {
         const nextServerChannels = await getChannelId(serverId)
         const response = await nextServerChannels()
-        console.log('-----------------------------------')
-        console.log('RESPONSE: ', response)
-        console.log('-----------------------------------')
-        // setSelectedServerId(serverId);
         const firstChannelId = response[0].id
         dispatch(getChannels(serverId))
         dispatch(getOneServer(serverId))
@@ -40,14 +31,8 @@ const PublicServers = () => {
         await dispatch(getPublicServers())
     }, [dispatch])
 
-    console.log("SERVER DATA", servers)
 
-    // const handleNewServer = (e) => {
-    //     e.preventDefault()
-    //     history.push('/servers/new')
-    // }
-
-    if(!servers.length) return null
+    if (!servers.length) return null
 
     return(
         <>

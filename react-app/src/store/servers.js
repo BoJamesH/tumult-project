@@ -33,30 +33,36 @@ export const removeServer = (serverId) => ({
 // Thunks
 
 export const getPublicServers = () => async (dispatch) => {
-    const response = await fetch('/api/servers')
-    console.log("Response", response)
+    try {
+        const response = await fetch('/api/servers')
 
-    if (response.ok) {
-        const getAllServers = await response.json();
-        const allServers = getAllServers.servers
-        console.log('All Servers: ', allServers )
-        dispatch(getServers(allServers));
-    } else {
-        console.log('Could not load servers :-(')
+        if (response.ok) {
+            const getAllServers = await response.json();
+            const allServers = getAllServers.servers
+            dispatch(getServers(allServers));
+        } else {
+            console.log('Could not load servers :-(')
+        }
+    } catch (error) {
+        console.error('An error occurred while fetching servers:', error);
     }
 }
 
 export const getOneServer = (serverId) => async (dispatch) => {
-    const response = await fetch(`/api/servers/${serverId}`)
+    try {
+        const response = await fetch(`/api/servers/${serverId}`)
 
-    if (response.ok){
-        const server = await response.json()
-        dispatch(getSingleServer(server))
-    }else{
-        console.log('Could not load server')
+        if (response.ok) {
+            const server = await response.json()
+            dispatch(getSingleServer(server))
+        } else {
+            console.log('Could not load server');
+        }
+    } catch (error) {
+        console.error('An error occurred while fetching the server:', error);
     }
-
 }
+
 
 export const postServer = (server) => async (dispatch)=> {
     const response = await fetch(`/api/servers`, {
@@ -65,11 +71,8 @@ export const postServer = (server) => async (dispatch)=> {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify(server)})
-        console.log(response)
     if (response.ok){
         const newServer = await response.json()
-        console.log(newServer)
-        // server id in response?
         dispatch(createChannel(newServer.id, {
             name: 'general',
             owner_id: newServer.owner_id,
@@ -86,20 +89,17 @@ export const deleteServer = (serverId) => async (dispatch) => {
     });
     if (response.ok) {
         dispatch(removeServer(serverId));
-        console.log('HIT DELETE SERVER')
         return serverId;
     }
 };
 
 export const updateServer = (updatedServer, serverId) => async (dispatch)=> {
-    console.log('STORE UPDATED SERVER!!!!!! ', updatedServer)
     const response = await fetch(`/api/servers/${serverId}`, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify(updatedServer)})
-        console.log(response)
     if (response.ok){
         dispatch(getOneServer(serverId))
     }

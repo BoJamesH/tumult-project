@@ -32,11 +32,8 @@ export const getChannels = (serverId) => async (dispatch) => {
     const response = await fetch(`/api/channels/${serverId}`);
     if (response.ok) {
         const getServerChannels = await response.json();
-        // console.log('getServerChannels: ', getServerChannels)
         const serverChannels = getServerChannels.channels
-        // console.log('serverChannels: ', serverChannels)
         dispatch(setChannels(serverChannels));
-        // return serverChannels
     }
 };
 
@@ -44,9 +41,7 @@ export const getNewestChannel = (serverId) => async (dispatch) => {
     const response = await fetch(`/api/channels/${serverId}`);
     if (response.ok) {
         const getServerChannels = await response.json();
-        // console.log('getServerChannels: ', getServerChannels)
         const serverChannel = getServerChannels.channels[0]
-        console.log('serverChannel: ', serverChannel)
         return serverChannel.id
     }
 }
@@ -56,7 +51,6 @@ export const getChannelId = (serverId) => async (dispatch) => {
     if (response.ok) {
         const getServerChannels = await response.json();
         const serverChannels = getServerChannels.channels
-        console.log('serverChannels: ', serverChannels)
         return serverChannels
     } else {
         return []
@@ -71,11 +65,8 @@ export const createChannel = (serverId, channelData) => async (dispatch) => {
         },
         body: JSON.stringify(channelData),
     });
-    console.log(response)
     if (response) {
         const channel = await response.json();
-        // dispatch(addChannel(channel));
-        console.log("CHANNEL DATA", channel)
         dispatch(getChannels(serverId))
         return channel;
     }
@@ -91,7 +82,6 @@ export const editChannel = (channelData, channelId) => async (dispatch) => {
     });
     if (response.ok) {
         const channel = await response.json();
-        // dispatch(updateChannel(channel));
         return channel;
     }
 };
@@ -132,5 +122,3 @@ export default function channelsReducer(state = initialState, action) {
             return state;
     }
 };
-
-// export default channelsReducer;

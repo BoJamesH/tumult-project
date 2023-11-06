@@ -25,35 +25,6 @@ function SignupFormModal() {
     setImage(selectedImage);
   };
 
-//   const handleUploadToS3 = async (file) => {
-// 	try {
-// 	  const formData = new FormData();
-// 	  formData.append('image', file);
-// 	  console.log('HANDLE UPLOAD TO S3 FORMDATA!!!1 ', formData)
-// 	  console.log('HANDLE UPLOAD TO S3 FILE!!!1 ', file)
-// 	  const response = await fetch('/api/images', {
-// 		method: 'POST',
-// 		body: formData,
-// 	  });
-// 	  console.log('API/IMAGES RESPONSE FRONTEND-------', response)
-
-// 	  if (response.ok) {
-// 		const data = await response.json();
-// 		if (data.hasOwnProperty('url')) {
-// 		  console.log('RETURN URL FROM s3 BUCKET!!!! ', data.url);
-// 		  return data.url;
-// 		} else {
-// 		  throw new Error('Image upload response does not contain URL');
-// 		}
-// 	  } else {
-// 		throw new Error('File upload failed');
-// 	  }
-// 	} catch (error) {
-// 	  console.error('Error:', error);
-// 	  throw error;
-// 	}
-//   };
-
 const handleUploadToS3 = async (file) => {
 	try {
 		const formData = new FormData();
@@ -62,14 +33,10 @@ const handleUploadToS3 = async (file) => {
 		  method: 'POST',
 		  body: formData,
 		});
-	  console.log('frontend FILE!!! ', file)
 
 	  if (response.ok) {
 		const data = await response.json();
-		console.log('RETURN URL FROM s3 BUCKET!!!! ', data.url);
-		console.log('RETURN DATA FROM s3 BUCKET!!!! ', data);
 		if (data.hasOwnProperty('url')) {
-		  console.log('RETURN URL FROM s3 BUCKET!!!! ', data.url);
 		  return data.url;
 		} else {
 		  throw new Error('Image upload response does not contain URL');

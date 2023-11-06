@@ -29,7 +29,6 @@ def create_channel(server_id):
     user_id = int(current_user.get_id())
     form = ChannelForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("HIT ROUTE", form)
     if form.validate_on_submit():
         data = form.data
         new_channel = Channel(
@@ -54,7 +53,6 @@ def update_channel(channel_id):
     Update a exisiting Channel
     """
     form = ChannelForm()
-    print("FORM DATA", form.data)
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():

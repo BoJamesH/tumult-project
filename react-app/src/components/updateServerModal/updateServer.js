@@ -33,14 +33,10 @@ const UpdateServerForm = () => {
               method: 'POST',
               body: formData,
             });
-          console.log('frontend FILE!!! ', file)
 
           if (response.ok) {
             const data = await response.json();
-            console.log('RETURN URL FROM s3 BUCKET!!!! ', data.url);
-            console.log('RETURN DATA FROM s3 BUCKET!!!! ', data);
             if (data.hasOwnProperty('url')) {
-              console.log('RETURN URL FROM s3 BUCKET!!!! ', data.url);
               return data.url;
             } else {
               throw new Error('Image upload response does not contain URL');
@@ -74,7 +70,6 @@ const UpdateServerForm = () => {
             label_image: s3Url,
             private: privateServer,
         };
-        console.log(payload)
         if (Object.keys(validationErrors).length == 0) {
             try {
                 const response = await dispatch(updateServer(payload, serverToUpdate.id));

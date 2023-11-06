@@ -12,15 +12,11 @@ def post_reaction(message_id):
     Post a new reaction to a message
     """
     user_id = current_user.get_id()
-    # print('--------------USER_ID', user_id)
-    # print('--------------MESSAGE_ID', message_id)
 
     form = ReactionForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("--------------FORM DATA",form.data)
     if form.validate_on_submit():
         data = form.data
-        print(data)
         new_reaction = Reaction(
             user_id = user_id,
             message_id = message_id,
@@ -37,9 +33,7 @@ def delete_reactions(reaction_id):
     """
     Delete a reaction
     """
-    print('HITTING DELETE REACTION ENDPOINT')
     reaction_to_delete = Reaction.query.get(reaction_id)
-    print('REACTION TO DELETE: ', reaction_to_delete)
     db.session.delete(reaction_to_delete)
     db.session.commit()
     return {'message': 'Reaction deleted'}
@@ -51,5 +45,4 @@ def get_reactions():
     Get ALL THE REACTIONS!!!
     """
     reactions = Reaction.query.all()
-    print('-----------REACTIONS', reactions)
     return {'reactions': [reaction.to_dict() for reaction in reactions]}

@@ -30,7 +30,6 @@ def create_server():
     """
     Create a new server
     """
-    print(current_user)
     user_id = int(current_user.get_id())
     form = ServerForm()
     form['csrf_token'].data = request.cookies['csrf_token']
