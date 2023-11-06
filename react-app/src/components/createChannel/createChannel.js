@@ -32,7 +32,6 @@ const CreateChannelForm = () => {
             server_id: serverId,
             private: privateChannel,
         };
-        (payload)
         if (Object.keys(validationErrors).length == 0) {
             try {
                 const response = await dispatch(createChannel(serverId, payload));
