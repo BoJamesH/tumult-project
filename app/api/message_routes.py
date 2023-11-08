@@ -30,14 +30,9 @@ def post_message(server_id, channel_id):
     """
     Post a new message to a channel
     """
-    print('SERVERID BACKEND', server_id, 'CHANNELID BACKEND', channel_id)
     user_id = int(current_user.get_id())
     form = MessageForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    # channel = Channel.query.filter(Channel.id == channel_id)
-    # print(channel)
-    print('FORM', form)
-    print('FORM DATA', form.data)
     if form.validate_on_submit():
         data = form.data
         new_message = Message(
@@ -55,9 +50,7 @@ def post_message(server_id, channel_id):
 @message_routes.route('/<message_id>', methods=['DELETE'])
 @login_required
 def delete_message(server_id, channel_id, message_id):
-    print("-----MADE IT TO DELETE MESSAGE BACKEND-------")
     message_to_delete = Message.query.get(message_id)
-    print('MESSAGE TO DELETE:', message_to_delete)
     db.session.delete(message_to_delete)
     db.session.commit()
     return {'message': 'Message deleted'}
@@ -68,7 +61,6 @@ def update_message(server_id, channel_id, message_id):
     """
     Update an existing message
     """
-    print('REQUEST GET JSON ',request.get_json())
     user_id = int(current_user.get_id())
     form = MessageForm()
     form['csrf_token'].data = request.cookies['csrf_token']

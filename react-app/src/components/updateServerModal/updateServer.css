@@ -6,34 +6,41 @@
     flex-wrap: wrap;
     align-content: center;
     align-items: center;
-    padding: 20%;
-    margin: 0% -60%;
+    padding: 3%;
+    margin: 0% -30%;
     border-radius: 6px;
     color: white;
     font-weight: bold;
+    width: auto;
 }
 
 .update-server-form-container{
-    width: 85%;
+    width: 65%;
 }
 
 .update-server-form-container > div > input{
     width: 100%;
-    padding: 3%;
+    padding: 2%;
     background-color: #181a1c;
     color: white;
-    margin: 5% 0%;
+    margin: 2% 0%;
     font-weight: bold;
+    margin-bottom: 20px;
 }
 
 .update-server-button-modal{
     width: 27%;
-    padding: 3%;
+    padding: 2%;
     color:white;
     background-color: #5865f2;
     border-radius: 6px;
     margin: 2% 0%;
     font-weight: bold;
+    transition: background-color 0.5s ease;
+}
+
+.update-server-button-modal:hover {
+    background-color: #3b4af0;
 }
 
 .update-server-cancel-button-modal{
@@ -45,7 +52,7 @@
 .update-server-buttons-container{
     display: flex;
     justify-content: space-between;
-    margin: 3% 0%;
+    margin: 1% 0%;
 }
 
 .private-input{

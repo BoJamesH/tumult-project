@@ -35,12 +35,12 @@ function LandingPage({ user }) {
                         </span>
                         <span>
                             <a
-                                href="https://www.linkedin.com/in/bo-j-1a1312276/"
+                                href="https://www.linkedin.com/in/bo-james-hancock-1a1312276/"
                                 className="white-link"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                Bo Hancock
+                                Bo James Hancock
                             </a>
                         </span>
                         <span>
@@ -65,7 +65,7 @@ function LandingPage({ user }) {
                         </span>
                         <span>
                             <a
-                                href="https://www.linkedin.com/in/ryan-rosales-646437276"
+                                href="https://www.linkedin.com/in/ryan-joshua-rosales-646437276/"
                                 className="white-link"
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -190,7 +190,7 @@ function LandingPage({ user }) {
                         <a href="https://github.com/BoJamesH" target="_blank" rel="noopener noreferrer">
                             <img className="github-logo" src="../images/github_logo.png" alt="GitHub" />
                         </a>
-                        <a href="https://www.linkedin.com/in/bo-j-1a1312276/" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.linkedin.com/in/bo-james-hancock-1a1312276/" target="_blank" rel="noopener noreferrer">
                             <img className="linked-logo" src="../images/linked_logo.png" alt="LinkedIn" />
                         </a>
                     </div>
@@ -223,7 +223,7 @@ function LandingPage({ user }) {
                         <a href="https://github.com/RjRosales19" target="_blank" rel="noopener noreferrer">
                             <img className="github-logo" src="../images/github_logo.png" alt="GitHub" />
                         </a>
-                        <a href="https://www.linkedin.com/in/ryan-rosales-646437276" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.linkedin.com/in/ryan-joshua-rosales-646437276/" target="_blank" rel="noopener noreferrer">
                             <img className="linked-logo" src="../images/linked_logo.png" alt="LinkedIn" />
                         </a>
                     </div>

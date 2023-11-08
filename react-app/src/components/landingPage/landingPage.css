@@ -97,6 +97,7 @@ body {
     display: flex;
     align-items: center;
     width: 100%;
+    background-color: white;
 }
 
 .header-image-container, .home-nav-container {

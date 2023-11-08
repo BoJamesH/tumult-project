@@ -84,7 +84,6 @@ export const signUp = (username, email, password, display_name, profile_image) =
 			profile_image,
 		}),
 	});
-	console.log('SIGN UP ROUTE RESPONSE!!!!!!  ,', response)
 
 	if (response.ok) {
 		const data = await response.json();

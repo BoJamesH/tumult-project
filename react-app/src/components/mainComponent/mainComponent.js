@@ -6,21 +6,6 @@ import '../mainComponent/mainComponent.css'
 
 const Main = () => {
 
-    // const {serverId} = useParams()
-    // const {channelId} = useParams()
-    // const [serverFocusId, setServerFocusId] = useState()
-    // const [channelFocusId, setChannelFocusId] = useState()
-
-    // console.log('-----------------------')
-    // console.log('Server ID: ',serverId)
-    // console.log('-----------------------')
-
-    // useEffect( async () => {
-    //     setServerFocusId(serverId)
-    // },[serverId])
-
-
-
     return (
         <>
         <div className="main-overall-div">

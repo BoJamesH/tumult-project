@@ -14,20 +14,12 @@ const ServerLanding = () => {
     const dispatch = useDispatch()
     const servers = useSelector( state => state.servers.allServers )
 
-
-
-
-    // const [selectedServerId, setSelectedServerId] = useState(null);
     const selectedServerId = useSelector(state => state.servers.selectedServer.id)
 
 
     const handleServerClick = async (serverId, e) => {
         const nextServerChannels = await getChannelId(serverId)
         const response = await nextServerChannels()
-        console.log('-----------------------------------')
-        console.log('RESPONSE: ', response)
-        console.log('-----------------------------------')
-        // setSelectedServerId(serverId);
         const firstChannelId = response[0].id
         dispatch(getChannels(serverId))
         dispatch(getOneServer(serverId))
@@ -40,12 +32,6 @@ const ServerLanding = () => {
         await dispatch(getPublicServers())
     }, [dispatch])
 
-    console.log("SERVER DATA", servers)
-
-    // const handleNewServer = (e) => {
-    //     e.preventDefault()
-    //     history.push('/servers/new')
-    // }
 
     if(!servers.length) return null
 
@@ -75,12 +61,12 @@ const ServerLanding = () => {
                 </div>
             </div>
                 <div
-                    style={{display: "flex", flexDirection: "column", justifyContent: "space-evenly", alignItems: "start"}}
+                    style={{display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "start"}}
                     className='main-selected-servers-div'>
-                        <h2> <img style={{ width: "20px"}} src='../images/friends_list_icon.png'/> Friends</h2>
-                        <h2> <img style={{ width: "20px", backgroundColor: "#1e1e1e"}} src='../images/Nitro_logo.png'/> Nitro</h2>
-                        <h3>There are a total of {servers.length} servers. </h3>
-                        <h4>Browse through the left column to join any public servers that appeals to your character!</h4>
+                        {/* <h2 style={{marginTop:"40px"}}> <img style={{ width: "20px"}} src='../images/friends_list_icon.png'/> Friends</h2>
+                        <h2 style={{marginTop:"40px"}}> <img style={{ width: "20px", backgroundColor: "#1e1e1e"}} src='../images/Nitro_logo.png'/> Nitro</h2> */}
+                        <h3 style={{marginTop:"25px", marginLeft:"10px"}}>Currently, there are a total of <span className='server-number-span'>{servers.length}</span> servers. </h3>
+                        <h4 style={{marginTop:"80px", marginLeft:"10px"}}>Browse through the left column to join any public servers that appeals to your character. Or, create your own server at the bottom of the column!</h4>
                 </div>
                 <div
                     style={{display: "grid", justifyItems: "center", alignContent: "center"}}

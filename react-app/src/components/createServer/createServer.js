@@ -37,14 +37,10 @@ const CreateServerForm = () => {
               method: 'POST',
               body: formData,
             });
-          console.log('frontend FILE!!! ', file)
 
           if (response.ok) {
             const data = await response.json();
-            console.log('RETURN URL FROM s3 BUCKET!!!! ', data.url);
-            console.log('RETURN DATA FROM s3 BUCKET!!!! ', data);
             if (data.hasOwnProperty('url')) {
-              console.log('RETURN URL FROM s3 BUCKET!!!! ', data.url);
               return data.url;
             } else {
               throw new Error('Image upload response does not contain URL');
@@ -83,14 +79,12 @@ const CreateServerForm = () => {
         if (Object.keys(validationErrors).length == 0) {
             try {
                 const response = await dispatch(postServer(payload));
-                // console.log('RESPONSE CREATE SERVER',response)
                 closeModal()
                 if (response) {
                     const serverId = response.id
                     await dispatch(getOneServer(serverId))
                     await dispatch(getPublicServers())
                     const newChannelId = await dispatch(getNewestChannel(serverId))
-                    console.log('NEW CHANNEL ID: ', newChannelId)
                     await dispatch(getMessages(serverId, newChannelId))
                     history.push(`/main/${serverId}/${newChannelId}`);
                     // closeModal()
@@ -120,8 +114,8 @@ const CreateServerForm = () => {
 
                 <span className='server-errors'>{errorMessages.name}</span>
 
-                <div>
-                    <label>
+                <div className='create-server-name-div'>
+                    <label className='create-server-name-label'>
                         SERVER NAME
                     </label>
                     <input

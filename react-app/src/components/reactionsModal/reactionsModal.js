@@ -12,7 +12,6 @@ function ReactionsModal() {
 
     function onClick(EmojiClickData, MouseEvent) {
         let emojiData = EmojiClickData
-        console.log("EmojiClickData.unified", EmojiClickData.unified)
         setInputValue(
           (inputValue) =>
             inputValue + (emojiData.isCustom ? emojiData.unified : emojiData.emoji)

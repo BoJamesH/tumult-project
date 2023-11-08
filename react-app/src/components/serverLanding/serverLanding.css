@@ -3,5 +3,24 @@
     height: auto;
     background-color: #323239;
     justify-content: center;
-    padding:10px ;
+}
+
+.server-number-span {
+    color: #5865f2;
+    margin-left: 4px;
+    font-weight: 700;
+    font-size: 21px;
+}
+
+.main-servers-div {
+    flex: 1;
+    /* margin: 20px; */
+    height: 95.2vh;
+    max-width: 70px;
+    justify-content: center;
+    /* width: 300px; */
+    overflow-y: scroll;
+    min-width: 80px;
+    padding-top: 12px;
+    padding-left: 12px;
 }

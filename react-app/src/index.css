@@ -8,3 +8,11 @@
     background-color: #495155;
     font-family: Arial, Helvetica, sans-serif;
 } */
+
+button {
+    cursor: pointer;
+}
+
+body {
+    background-color: #1e1f22;
+}

@@ -12,7 +12,6 @@ export const setReactions = (reactions) => ({
 // })
 
 export const postReactions = (message_id, reaction_type) => async (dispatch)=> {
-    console.log('REACTION STRING', reaction_type)
     const response = await fetch(`/api/reactions/${message_id}`, {
 		method: "POST",
 		headers: {
@@ -20,25 +19,19 @@ export const postReactions = (message_id, reaction_type) => async (dispatch)=> {
 		},
 		body: JSON.stringify({reaction_type})
     })
-        console.log('POST MESSAGE RESPONSE', response)
     if (response){
         const newReaction = await response.json()
-        console.log(newReaction)
-        // server id in response?
         dispatch(getReactions())
     }
 }
 
 export const getReactions = () => async (dispatch) => {
     const response = await fetch(`/api/reactions`)
-    console.log('resonse: ', response)
     if(response.ok) {
         const getAllReactions = await response.json();
-        console.log('getAllReactions:', getAllReactions)
         const allReactions = getAllReactions.reactions
         dispatch(setReactions(allReactions))
     }
-    console.log("Bad Response")
 }
 
 export const deleteReaction = (reaction_id, message_id) => async (dispatch) => {

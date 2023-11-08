@@ -6,7 +6,7 @@
     flex-wrap: wrap;
     align-content: center;
     align-items: center;
-    padding: 6%;
+    padding: 3%;
     margin: 0% -13%;
     border-radius: 6px;
     color: white;
@@ -21,7 +21,7 @@
     flex-wrap: wrap;
     align-content: center;
     align-items: center;
-    padding: 6%;
+    padding: 3%;
     margin: 0% -13%;
     border-radius: 6px;
     color: white;
@@ -42,9 +42,15 @@
     border-radius: 6px;
     margin: 2% 0%;
     font-weight: bold;
+    width: 160px;
+    height: 40px;
+    transition: background-color 0.5s ease;
 }
 
-.delete-channel-modal-button{
+.delete-modal-button:hover {
+    background-color: #dd5151;
+}
+.delete-channel-modal-button {
     width: 100%;
     padding: 1% 0%;
     color:white;
@@ -52,6 +58,13 @@
     border-radius: 6px;
     margin: 2% 0%;
     font-weight: bold;
+    width: 160px;
+    height: 40px;
+    transition: background-color 0.5s ease;
+}
+
+.delete-channel-modal-button:hover {
+    background-color: #dd5151;
 }
 
 .cancel-delete-modal-button{

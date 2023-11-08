@@ -13,13 +13,8 @@ const UpdateChannelForm = ({channel, server}) => {
     const userId = useSelector(state => state.session.user.id)
     const serverId = server.id
     const channelId = channel.id
-    // console.log("CHANNNEL ID", channelId)
-    // console.log( serverId)
     const serverChannels = useSelector(state => state.channels.channelServers)
-    // console.log('SERVER CHANNELS', serverChannels)
-    serverChannels.map((channel) => console.log('MAPPING CHANNEL ID',channel.id))
     const channelToUpdate = serverChannels.find((channel) => channel.id == channelId)
-    // console.log('CHANNEL TO UPDATE',channelToUpdate)
     const [errorMessages, setErrorMessages] = useState({});
     const dispatch = useDispatch();
     const history = useHistory();
@@ -43,7 +38,6 @@ const UpdateChannelForm = ({channel, server}) => {
             server_id: serverId,
             private: privateChannel,
         };
-        console.log(payload)
         if (Object.keys(validationErrors).length == 0) {
             try {
                 const response = await dispatch(editChannel(payload, channelId));
@@ -53,8 +47,6 @@ const UpdateChannelForm = ({channel, server}) => {
                     const serverId = response.id
                 }
                 } catch (error) {
-                // If error is not a ValidationError, add slice at the end to remove extra
-                // "Error: "
                     setErrorMessages({ overall: error.toString().slice(7) })
             }
 

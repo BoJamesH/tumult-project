@@ -18,28 +18,22 @@ export const createMessage = (messages) => ({
 
 export const getMessages = (serverId, channelId) => async (dispatch) => {
     const response = await fetch(`/api/${serverId}/${channelId}/messages`);
-    console.log('RESPONSE', response)
     if (response) {
         const getChannelMessages = await response.json();
-        // console.log('MADE THROUGH RESPONSE.OK')
         const channelMessages = getChannelMessages.messages
         dispatch(setMessages(channelMessages))
     }
-    // console.log('BAD RESPONSE')
 }
 
 export const postMessage = (serverId, channelId, message_text) => async (dispatch)=> {
-    console.log('MESSAGE TEXT', message_text)
     const response = await fetch(`/api/${serverId}/${channelId}/messages`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify(message_text)})
-        console.log('POST MESSAGE RESPONSE', response)
     if (response){
         const newMessage = await response.json()
-        console.log(newMessage)
         // server id in response?
         dispatch(getMessages(serverId, channelId))
     }
@@ -63,7 +57,6 @@ export const updateMessage = (serverId, channelId, messageId, message_text) => a
 		},
         body: JSON.stringify({ message_text }),
     });
-    console.log('UPDATE MESSAGE RESPONSE',response)
     if(response) {
         dispatch(getMessages(serverId, channelId))
         return messageId

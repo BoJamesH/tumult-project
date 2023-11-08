@@ -9,6 +9,10 @@
     margin-top: 20px;
 }
 
+.delete-server-modal-button:hover {
+    background-color: black;
+}
+
 .selected-server {
     display: flex;
     flex-direction: row;
@@ -191,3 +195,4 @@ li {
     width: auto;
     overflow: auto;
 }
+
