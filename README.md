@@ -156,4 +156,4 @@ gunicorn app:app
 17. Choose "Yes" for the Auto-Deploy field to automatically redeploy your application every time you push to the `main` branch.
 18. Click "Create Web Service" to deploy your project on Render.com. The deployment process will likely take about 10-15 minutes.
 19. Monitor the logs to see your build and start commands being executed and check for any errors in the build process.
-20. Once deployment is complete, open your deployed site and verify that 
+20. Once deployment is complete, open your deployed site and verify that the site is functioning.
